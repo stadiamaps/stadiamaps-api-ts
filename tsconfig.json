@@ -5,6 +5,7 @@
     "moduleResolution": "node16",
     "declaration": true,
     "declarationMap": true,
+    "rootDir": "./",
     "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,

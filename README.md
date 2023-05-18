@@ -2,4 +2,36 @@
 
 Welcome to the Stadia Maps APIs for TypeScript (or JavaScript).
 
-TODO: Write me.
+## Getting started
+
+This library exposes 3 different APIs for grouping functionality: `GeocodingApi`,
+`GeospatialApi`, and `RoutingApi`. These correspond to the sections in our online
+[API Reference](https://docs.stadiamaps.com/api-reference/).
+
+All clients have the same interface and only expose different methods. Here is an
+example of getting started with the geocoding API:
+
+```typescript
+// Imports: you need the API(s) that you intend to use at a minimum.
+import { GeocodingApi, Configuration } from '@stadiamaps/api';
+
+// If you writing a front-end web browser application, you can usually use our domain-based auth
+// (see https://docs.stadiamaps.com/authentication/). This lets you skip the configuration app-side
+// entirely. If you are writing for a backend application or can't use domain-based auth,
+// then you'll need to add your API key as shown below.
+const config = new Configuration({ apiKey: "YOUR-API-KEY" });
+const api = new GeocodingApi(config);
+
+// Make an API call! The responses use the standard promise API.
+api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
+    console.log(result);
+}, function (err) {
+    console.log(err);
+});
+```
+
+## Documentation
+
+TypeScript hints and autocomplete only go so far. Check out our official documentation at
+[docs.stadiamaps.com](https://docs.stadiamaps.com/) for both long-form prose explanation of the finer
+details and a compact [API reference](https://docs.stadiamaps.com/api-reference/).

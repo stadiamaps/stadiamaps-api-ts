@@ -5,7 +5,9 @@
   "keywords": ["stadia maps", "geocoding", "routing", "time zone", "elevation"],
   "homepage": "https://docs.stadiamaps.com/",
   "main": "dist/index.js",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
