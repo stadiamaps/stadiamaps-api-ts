@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build module
+        run: npm run build
+
       - name: Run tests
         run: npm test
         env:

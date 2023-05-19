@@ -10,6 +10,15 @@ Regenerating the generated portions of the codebase can be done simply with this
 openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o .
 ```
 
+## Build
+
+You'll need to build before running tests, as the `main` and `exports` in `package.json` point at the dist
+directory.
+
+```shell
+npm run build
+```
+
 ## Tests
 
 The project includes some unit tests as a sanity check, utilizing mocks and real API responses,
@@ -25,10 +34,4 @@ You'll also need an API key. You can store one or both of these in `.env` in the
 ```
 API_KEY=YOUR-API-KEY
 RUN_INTEGRATION_TESTS=true
-```
-
-## Dist build
-
-```shell
-npm run build
 ```
