@@ -9,5 +9,6 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,
+    "sourceMap": true,
   }
 }

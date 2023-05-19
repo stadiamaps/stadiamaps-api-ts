@@ -2,7 +2,13 @@
   "name": "@stadiamaps/api",
   "version": "0.1.0",
   "description": "Stadia Maps Geospatial APIs",
-  "keywords": ["stadia maps", "geocoding", "routing", "time zone", "elevation"],
+  "keywords": [
+    "stadia maps",
+    "geocoding",
+    "routing",
+    "time zone",
+    "elevation"
+  ],
   "homepage": "https://docs.stadiamaps.com/",
   "main": "dist/index.js",
   "exports": {
@@ -27,6 +33,7 @@
     "@types/jest": "^29.5.1",
     "@types/lodash": "^4.14.194",
     "babel-jest": "^29.5.0",
+    "dotenv": "^16.0.3",
     "jest": "^29.5.0",
     "jest-fetch-mock": "^3.0.3",
     "lodash": "^4.17.21",

@@ -6,7 +6,5 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.js?$': 'babel-jest'
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  setupFiles: ['./jest.setup.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '__tests__/utils.ts'],
 };

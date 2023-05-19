@@ -23,11 +23,15 @@ const config = new Configuration({ apiKey: "YOUR-API-KEY" });
 const api = new GeocodingApi(config);
 
 // Make an API call! The responses use the standard promise API.
+// You can use either the callback interface...
 api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
     console.log(result);
 }, function (err) {
     console.log(err);
 });
+
+// ... or the await keyword in an async context
+const res = await api.autocomplete({ text: "Põhja pst 27a" });
 ```
 
 ## Documentation
@@ -35,3 +39,7 @@ api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
 TypeScript hints and autocomplete only go so far. Check out our official documentation at
 [docs.stadiamaps.com](https://docs.stadiamaps.com/) for both long-form prose explanation of the finer
 details and a compact [API reference](https://docs.stadiamaps.com/api-reference/).
+
+## Developing
+
+Refer to [DEVELOPING.md](DEVELOPING.md) for details on local development.

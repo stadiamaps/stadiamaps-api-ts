@@ -10,13 +10,21 @@ Regenerating the generated portions of the codebase can be done simply with this
 openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o .
 ```
 
-## Unit Tests
+## Tests
 
-The project includes some unit tests as a sanity check, utilizing mocks and real API responses.
-The test suites are specified using Jest and are fairly straightforward.
+The project includes some unit tests as a sanity check, utilizing mocks and real API responses,
+as well as integration tests. The test suites are specified using Jest and are fairly straightforward.
 
 ```shell
 npm run test
+```
+
+To run integration tests, you need to set the environment variable `RUN_INTEGRATION_TESTS=true`.
+You'll also need an API key. You can store one or both of these in `.env` in the repo root.
+
+```
+API_KEY=YOUR-API-KEY
+RUN_INTEGRATION_TESTS=true
 ```
 
 ## Dist build
