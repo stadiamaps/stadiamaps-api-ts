@@ -7,16 +7,7 @@ Regenerating the generated portions of the codebase can be done simply with this
 (run this whenever new features / changes to the OpenAPI spec are released).
 
 ```shell
-openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o .
-```
-
-## Build
-
-You'll need to build before running tests, as the `main` and `exports` in `package.json` point at the dist
-directory.
-
-```shell
-npm run build
+openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o src
 ```
 
 ## Tests
@@ -29,9 +20,18 @@ npm run test
 ```
 
 To run integration tests, you need to set the environment variable `RUN_INTEGRATION_TESTS=true`.
-You'll also need an API key. You can store one or both of these in `.env` in the repo root.
+You'll also need an API key (with access to all services, or some tests may fail!). You can store
+one or both of these in `.env` in the repo root.
 
 ```
 API_KEY=YOUR-API-KEY
 RUN_INTEGRATION_TESTS=true
+```
+
+## Build
+
+Finally, you can do a dist build as you might expect:
+
+```shell
+npm run build
 ```

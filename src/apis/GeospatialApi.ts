@@ -28,7 +28,7 @@ import {
     TzResponseToJSON,
 } from '../models';
 
-export interface ElevationServiceRequest {
+export interface ElevationRequest {
     heightRequest?: HeightRequest;
 }
 
@@ -47,7 +47,7 @@ export class GeospatialApi extends runtime.BaseAPI {
      * The Stadia elevation API allows you to get the elevation of any point on earth. You can pass either a simple set of points or a Google encoded polyline string. This pairs well with our routing APIs, so you can generate an elevation profile for your next bike or run.
      * Get the elevation profile along a polyline or at a point.
      */
-    async elevationServiceRaw(requestParameters: ElevationServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HeightResponse>> {
+    async elevationRaw(requestParameters: ElevationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HeightResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -73,8 +73,8 @@ export class GeospatialApi extends runtime.BaseAPI {
      * The Stadia elevation API allows you to get the elevation of any point on earth. You can pass either a simple set of points or a Google encoded polyline string. This pairs well with our routing APIs, so you can generate an elevation profile for your next bike or run.
      * Get the elevation profile along a polyline or at a point.
      */
-    async elevationService(requestParameters: ElevationServiceRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HeightResponse> {
-        const response = await this.elevationServiceRaw(requestParameters, initOverrides);
+    async elevation(requestParameters: ElevationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HeightResponse> {
+        const response = await this.elevationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

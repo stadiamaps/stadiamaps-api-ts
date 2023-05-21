@@ -19,6 +19,12 @@ import {
     PeliasGeoJSONPropertiesAddendumFromJSONTyped,
     PeliasGeoJSONPropertiesAddendumToJSON,
 } from './PeliasGeoJSONPropertiesAddendum';
+import type { PeliasLayer } from './PeliasLayer';
+import {
+    PeliasLayerFromJSON,
+    PeliasLayerFromJSONTyped,
+    PeliasLayerToJSON,
+} from './PeliasLayer';
 
 /**
  * 
@@ -45,6 +51,12 @@ export interface PeliasGeoJSONProperties {
      * @memberof PeliasGeoJSONProperties
      */
     label?: string;
+    /**
+     * 
+     * @type {PeliasLayer}
+     * @memberof PeliasGeoJSONProperties
+     */
+    layer?: PeliasLayer;
     /**
      * The name of the place, the street address including house number, or label of similar relevance. If your app is localized to a specific region, you may get better display results by combining name, locality OR region (or neither?), and postal code together in the local format. Experiment with what works best for your use case.
      * @type {string}
@@ -197,6 +209,7 @@ export function PeliasGeoJSONPropertiesFromJSONTyped(json: any, ignoreDiscrimina
         'gid': !exists(json, 'gid') ? undefined : json['gid'],
         'sourceId': !exists(json, 'source_id') ? undefined : json['source_id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
+        'layer': !exists(json, 'layer') ? undefined : PeliasLayerFromJSON(json['layer']),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'accuracy': !exists(json, 'accuracy') ? undefined : json['accuracy'],
         'addendum': !exists(json, 'addendum') ? undefined : PeliasGeoJSONPropertiesAddendumFromJSON(json['addendum']),
@@ -232,6 +245,7 @@ export function PeliasGeoJSONPropertiesToJSON(value?: PeliasGeoJSONProperties | 
         'gid': value.gid,
         'source_id': value.sourceId,
         'label': value.label,
+        'layer': PeliasLayerToJSON(value.layer),
         'name': value.name,
         'accuracy': value.accuracy,
         'addendum': PeliasGeoJSONPropertiesAddendumToJSON(value.addendum),

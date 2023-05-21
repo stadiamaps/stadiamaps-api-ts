@@ -1,10 +1,17 @@
 # Stadia Maps TypeScript APIs
 
-Welcome to the Stadia Maps APIs for TypeScript (or JavaScript).
+This SDK helps you access the full range of geospatial APIs from Stadia Maps.
 
 ## Getting started
 
-This library exposes 3 different APIs for grouping functionality: `GeocodingApi`,
+First, add `@stadiamaps/api` as a dependency of your project using your favorite package manager
+like `npm` or `yarn`. Something like this:
+
+```shell
+npm install --save @stadiamaps/api
+```
+
+The library exposes 3 different API classes for grouping functionality: `GeocodingApi`,
 `GeospatialApi`, and `RoutingApi`. These correspond to the sections in our online
 [API Reference](https://docs.stadiamaps.com/api-reference/).
 
@@ -31,7 +38,7 @@ api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
 });
 
 // ... or the await keyword in an async context
-const res = await api.autocomplete({ text: "Põhja pst 27a" });
+const res = await api.search({ text: "Põhja pst 27a" });
 ```
 
 ## Documentation

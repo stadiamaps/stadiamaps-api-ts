@@ -5,10 +5,12 @@
     "moduleResolution": "node16",
     "declaration": true,
     "declarationMap": true,
-    "rootDir": "./",
+    "declarationDir": "dist",
+    "rootDir": "./src",
     "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
+    "isolatedModules": true
   }
 }
