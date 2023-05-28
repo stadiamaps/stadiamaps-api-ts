@@ -19,6 +19,12 @@ import {
     CostingOptionsFromJSONTyped,
     CostingOptionsToJSON,
 } from './CostingOptions';
+import type { DirectionsOptions } from './DirectionsOptions';
+import {
+    DirectionsOptionsFromJSON,
+    DirectionsOptionsFromJSONTyped,
+    DirectionsOptionsToJSON,
+} from './DirectionsOptions';
 import type { MapMatchCostingModel } from './MapMatchCostingModel';
 import {
     MapMatchCostingModelFromJSON,
@@ -37,12 +43,6 @@ import {
     TraceAttributesRequestAllOfFiltersFromJSONTyped,
     TraceAttributesRequestAllOfFiltersToJSON,
 } from './TraceAttributesRequestAllOfFilters';
-import type { ValhallaLanguages } from './ValhallaLanguages';
-import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
 
 /**
  * 
@@ -50,24 +50,6 @@ import {
  * @interface TraceAttributesRequest
  */
 export interface TraceAttributesRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof TraceAttributesRequest
-     */
-    units?: TraceAttributesRequestUnitsEnum;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof TraceAttributesRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof TraceAttributesRequest
-     */
-    directionsType?: TraceAttributesRequestDirectionsTypeEnum;
     /**
      * An identifier to disambiguate requests (echoed by the server).
      * @type {string}
@@ -107,31 +89,18 @@ export interface TraceAttributesRequest {
     shapeMatch?: TraceAttributesRequestShapeMatchEnum;
     /**
      * 
+     * @type {DirectionsOptions}
+     * @memberof TraceAttributesRequest
+     */
+    directionsOptions?: DirectionsOptions;
+    /**
+     * 
      * @type {TraceAttributesRequestAllOfFilters}
      * @memberof TraceAttributesRequest
      */
     filters?: TraceAttributesRequestAllOfFilters;
 }
 
-
-/**
- * @export
- */
-export const TraceAttributesRequestUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type TraceAttributesRequestUnitsEnum = typeof TraceAttributesRequestUnitsEnum[keyof typeof TraceAttributesRequestUnitsEnum];
-
-/**
- * @export
- */
-export const TraceAttributesRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
-} as const;
-export type TraceAttributesRequestDirectionsTypeEnum = typeof TraceAttributesRequestDirectionsTypeEnum[keyof typeof TraceAttributesRequestDirectionsTypeEnum];
 
 /**
  * @export
@@ -164,15 +133,13 @@ export function TraceAttributesRequestFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
-        'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'shape': !exists(json, 'shape') ? undefined : ((json['shape'] as Array<any>).map(MapMatchWaypointFromJSON)),
         'encodedPolyline': !exists(json, 'encoded_polyline') ? undefined : json['encoded_polyline'],
         'costing': MapMatchCostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'shapeMatch': !exists(json, 'shape_match') ? undefined : json['shape_match'],
+        'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
         'filters': !exists(json, 'filters') ? undefined : TraceAttributesRequestAllOfFiltersFromJSON(json['filters']),
     };
 }
@@ -186,15 +153,13 @@ export function TraceAttributesRequestToJSON(value?: TraceAttributesRequest | nu
     }
     return {
         
-        'units': value.units,
-        'language': ValhallaLanguagesToJSON(value.language),
-        'directions_type': value.directionsType,
         'id': value.id,
         'shape': value.shape === undefined ? undefined : ((value.shape as Array<any>).map(MapMatchWaypointToJSON)),
         'encoded_polyline': value.encodedPolyline,
         'costing': MapMatchCostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),
         'shape_match': value.shapeMatch,
+        'directions_options': DirectionsOptionsToJSON(value.directionsOptions),
         'filters': TraceAttributesRequestAllOfFiltersToJSON(value.filters),
     };
 }

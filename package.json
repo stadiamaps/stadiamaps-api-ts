@@ -10,12 +10,20 @@
     "elevation"
   ],
   "homepage": "https://docs.stadiamaps.com/",
-  "source": "src/index.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/stadiamaps-api.umd.js",
+  "module": "dist/stadiamaps-api.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/stadiamaps-api.mjs",
+      "require": "./dist/stadiamaps-api.umd.cjs"
+    }
+  },
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "parcel build",
+    "build": "vite build",
     "test": "jest"
   },
   "author": {
@@ -27,15 +35,14 @@
     "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "^2.8.3",
-    "@parcel/transformer-typescript-tsc": "^2.8.3",
-    "@parcel/transformer-typescript-types": "^2.8.3",
     "@types/jest": "^29.5.1",
     "dotenv": "^16.0.3",
     "jest": "^29.5.0",
     "jest-fetch-mock": "^3.0.3",
     "parcel": "^2.8.3",
     "ts-jest": "^29.1.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0"
   }
 }

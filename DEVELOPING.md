@@ -20,7 +20,7 @@ npm run test
 ```
 
 To run integration tests, you need to set the environment variable `RUN_INTEGRATION_TESTS=true`.
-You'll also need an API key (with access to all services, or some tests may fail!). You can store
+You'll also need an API key (with access to all services, or else some tests will fail!). You can store
 one or both of these in `.env` in the repo root.
 
 ```

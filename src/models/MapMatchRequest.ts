@@ -19,6 +19,12 @@ import {
     CostingOptionsFromJSONTyped,
     CostingOptionsToJSON,
 } from './CostingOptions';
+import type { DirectionsOptions } from './DirectionsOptions';
+import {
+    DirectionsOptionsFromJSON,
+    DirectionsOptionsFromJSONTyped,
+    DirectionsOptionsToJSON,
+} from './DirectionsOptions';
 import type { MapMatchCostingModel } from './MapMatchCostingModel';
 import {
     MapMatchCostingModelFromJSON,
@@ -37,12 +43,6 @@ import {
     MapMatchWaypointFromJSONTyped,
     MapMatchWaypointToJSON,
 } from './MapMatchWaypoint';
-import type { ValhallaLanguages } from './ValhallaLanguages';
-import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
 
 /**
  * 
@@ -50,24 +50,6 @@ import {
  * @interface MapMatchRequest
  */
 export interface MapMatchRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof MapMatchRequest
-     */
-    units?: MapMatchRequestUnitsEnum;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof MapMatchRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof MapMatchRequest
-     */
-    directionsType?: MapMatchRequestDirectionsTypeEnum;
     /**
      * An identifier to disambiguate requests (echoed by the server).
      * @type {string}
@@ -106,6 +88,12 @@ export interface MapMatchRequest {
      */
     shapeMatch?: MapMatchRequestShapeMatchEnum;
     /**
+     * 
+     * @type {DirectionsOptions}
+     * @memberof MapMatchRequest
+     */
+    directionsOptions?: DirectionsOptions;
+    /**
      * The timestamp at the start of the trace. Combined with `durations`, this provides a way to include timing information for an `encoded_polyline` trace.
      * @type {number}
      * @memberof MapMatchRequest
@@ -141,25 +129,6 @@ export interface MapMatchRequest {
 /**
  * @export
  */
-export const MapMatchRequestUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type MapMatchRequestUnitsEnum = typeof MapMatchRequestUnitsEnum[keyof typeof MapMatchRequestUnitsEnum];
-
-/**
- * @export
- */
-export const MapMatchRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
-} as const;
-export type MapMatchRequestDirectionsTypeEnum = typeof MapMatchRequestDirectionsTypeEnum[keyof typeof MapMatchRequestDirectionsTypeEnum];
-
-/**
- * @export
- */
 export const MapMatchRequestShapeMatchEnum = {
     EdgeWalk: 'edge_walk',
     MapSnap: 'map_snap',
@@ -188,15 +157,13 @@ export function MapMatchRequestFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
-        'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'shape': !exists(json, 'shape') ? undefined : ((json['shape'] as Array<any>).map(MapMatchWaypointFromJSON)),
         'encodedPolyline': !exists(json, 'encoded_polyline') ? undefined : json['encoded_polyline'],
         'costing': MapMatchCostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'shapeMatch': !exists(json, 'shape_match') ? undefined : json['shape_match'],
+        'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
         'beginTime': !exists(json, 'begin_time') ? undefined : json['begin_time'],
         'durations': !exists(json, 'durations') ? undefined : json['durations'],
         'useTimestamps': !exists(json, 'use_timestamps') ? undefined : json['use_timestamps'],
@@ -214,15 +181,13 @@ export function MapMatchRequestToJSON(value?: MapMatchRequest | null): any {
     }
     return {
         
-        'units': value.units,
-        'language': ValhallaLanguagesToJSON(value.language),
-        'directions_type': value.directionsType,
         'id': value.id,
         'shape': value.shape === undefined ? undefined : ((value.shape as Array<any>).map(MapMatchWaypointToJSON)),
         'encoded_polyline': value.encodedPolyline,
         'costing': MapMatchCostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),
         'shape_match': value.shapeMatch,
+        'directions_options': DirectionsOptionsToJSON(value.directionsOptions),
         'begin_time': value.beginTime,
         'durations': value.durations,
         'use_timestamps': value.useTimestamps,

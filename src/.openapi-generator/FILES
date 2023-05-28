@@ -8,7 +8,6 @@ models/AutoCostingOptions.ts
 models/AutoCostingOptionsAllOf.ts
 models/BaseCostingOptions.ts
 models/BaseTraceRequest.ts
-models/BaseTraceRequestAllOf.ts
 models/BicycleCostingOptions.ts
 models/BicycleCostingOptionsAllOf.ts
 models/Contour.ts
@@ -45,16 +44,13 @@ models/MatchedPoint.ts
 models/MatrixCostingModel.ts
 models/MatrixDistance.ts
 models/MatrixRequest.ts
-models/MatrixRequestAllOf.ts
 models/MatrixResponse.ts
 models/MotorScooterCostingOptions.ts
 models/MotorScooterCostingOptionsAllOf.ts
 models/MotorcycleCostingOptions.ts
 models/MotorcycleCostingOptionsAllOf.ts
 models/NearestRoadsRequest.ts
-models/NearestRoadsRequestAllOf.ts
 models/OptimizedRouteRequest.ts
-models/OptimizedRouteRequestAllOf.ts
 models/PedestrianCostingOptions.ts
 models/PeliasGeoJSONFeature.ts
 models/PeliasGeoJSONProperties.ts
@@ -68,7 +64,6 @@ models/RoadClass.ts
 models/RouteLeg.ts
 models/RouteManeuver.ts
 models/RouteRequest.ts
-models/RouteRequestAllOf.ts
 models/RouteResponse.ts
 models/RouteResponseTrip.ts
 models/RouteSummary.ts

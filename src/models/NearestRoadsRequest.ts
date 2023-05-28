@@ -31,12 +31,12 @@ import {
     CostingOptionsFromJSONTyped,
     CostingOptionsToJSON,
 } from './CostingOptions';
-import type { ValhallaLanguages } from './ValhallaLanguages';
+import type { DirectionsOptions } from './DirectionsOptions';
 import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
+    DirectionsOptionsFromJSON,
+    DirectionsOptionsFromJSONTyped,
+    DirectionsOptionsToJSON,
+} from './DirectionsOptions';
 
 /**
  * 
@@ -44,24 +44,6 @@ import {
  * @interface NearestRoadsRequest
  */
 export interface NearestRoadsRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof NearestRoadsRequest
-     */
-    units?: NearestRoadsRequestUnitsEnum;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof NearestRoadsRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof NearestRoadsRequest
-     */
-    directionsType?: NearestRoadsRequestDirectionsTypeEnum;
     /**
      * An identifier to disambiguate requests (echoed by the server).
      * @type {string}
@@ -92,28 +74,13 @@ export interface NearestRoadsRequest {
      * @memberof NearestRoadsRequest
      */
     verbose?: boolean;
+    /**
+     * 
+     * @type {DirectionsOptions}
+     * @memberof NearestRoadsRequest
+     */
+    directionsOptions?: DirectionsOptions;
 }
-
-
-/**
- * @export
- */
-export const NearestRoadsRequestUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type NearestRoadsRequestUnitsEnum = typeof NearestRoadsRequestUnitsEnum[keyof typeof NearestRoadsRequestUnitsEnum];
-
-/**
- * @export
- */
-export const NearestRoadsRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
-} as const;
-export type NearestRoadsRequestDirectionsTypeEnum = typeof NearestRoadsRequestDirectionsTypeEnum[keyof typeof NearestRoadsRequestDirectionsTypeEnum];
-
 
 /**
  * Check if a given object implements the NearestRoadsRequest interface.
@@ -136,14 +103,12 @@ export function NearestRoadsRequestFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
-        'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'locations': ((json['locations'] as Array<any>).map(CoordinateFromJSON)),
         'costing': CostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'verbose': !exists(json, 'verbose') ? undefined : json['verbose'],
+        'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
     };
 }
 
@@ -156,14 +121,12 @@ export function NearestRoadsRequestToJSON(value?: NearestRoadsRequest | null): a
     }
     return {
         
-        'units': value.units,
-        'language': ValhallaLanguagesToJSON(value.language),
-        'directions_type': value.directionsType,
         'id': value.id,
         'locations': ((value.locations as Array<any>).map(CoordinateToJSON)),
         'costing': CostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),
         'verbose': value.verbose,
+        'directions_options': DirectionsOptionsToJSON(value.directionsOptions),
     };
 }
 

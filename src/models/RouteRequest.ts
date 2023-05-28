@@ -25,18 +25,18 @@ import {
     CostingOptionsFromJSONTyped,
     CostingOptionsToJSON,
 } from './CostingOptions';
+import type { DirectionsOptions } from './DirectionsOptions';
+import {
+    DirectionsOptionsFromJSON,
+    DirectionsOptionsFromJSONTyped,
+    DirectionsOptionsToJSON,
+} from './DirectionsOptions';
 import type { RoutingWaypoint } from './RoutingWaypoint';
 import {
     RoutingWaypointFromJSON,
     RoutingWaypointFromJSONTyped,
     RoutingWaypointToJSON,
 } from './RoutingWaypoint';
-import type { ValhallaLanguages } from './ValhallaLanguages';
-import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
 
 /**
  * 
@@ -44,24 +44,6 @@ import {
  * @interface RouteRequest
  */
 export interface RouteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteRequest
-     */
-    units?: RouteRequestUnitsEnum;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof RouteRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof RouteRequest
-     */
-    directionsType?: RouteRequestDirectionsTypeEnum;
     /**
      * An identifier to disambiguate requests (echoed by the server).
      * @type {string}
@@ -98,28 +80,13 @@ export interface RouteRequest {
      * @memberof RouteRequest
      */
     avoidPolygons?: Array<Array<Array<number>>>;
+    /**
+     * 
+     * @type {DirectionsOptions}
+     * @memberof RouteRequest
+     */
+    directionsOptions?: DirectionsOptions;
 }
-
-
-/**
- * @export
- */
-export const RouteRequestUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type RouteRequestUnitsEnum = typeof RouteRequestUnitsEnum[keyof typeof RouteRequestUnitsEnum];
-
-/**
- * @export
- */
-export const RouteRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
-} as const;
-export type RouteRequestDirectionsTypeEnum = typeof RouteRequestDirectionsTypeEnum[keyof typeof RouteRequestDirectionsTypeEnum];
-
 
 /**
  * Check if a given object implements the RouteRequest interface.
@@ -142,15 +109,13 @@ export function RouteRequestFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
-        'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'locations': ((json['locations'] as Array<any>).map(RoutingWaypointFromJSON)),
         'costing': CostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'avoidLocations': !exists(json, 'avoid_locations') ? undefined : ((json['avoid_locations'] as Array<any>).map(RoutingWaypointFromJSON)),
         'avoidPolygons': !exists(json, 'avoid_polygons') ? undefined : json['avoid_polygons'],
+        'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
     };
 }
 
@@ -163,15 +128,13 @@ export function RouteRequestToJSON(value?: RouteRequest | null): any {
     }
     return {
         
-        'units': value.units,
-        'language': ValhallaLanguagesToJSON(value.language),
-        'directions_type': value.directionsType,
         'id': value.id,
         'locations': ((value.locations as Array<any>).map(RoutingWaypointToJSON)),
         'costing': CostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),
         'avoid_locations': value.avoidLocations === undefined ? undefined : ((value.avoidLocations as Array<any>).map(RoutingWaypointToJSON)),
         'avoid_polygons': value.avoidPolygons,
+        'directions_options': DirectionsOptionsToJSON(value.directionsOptions),
     };
 }
 

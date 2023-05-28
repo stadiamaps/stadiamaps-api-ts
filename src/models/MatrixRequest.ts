@@ -25,18 +25,18 @@ import {
     CostingOptionsFromJSONTyped,
     CostingOptionsToJSON,
 } from './CostingOptions';
+import type { DirectionsOptions } from './DirectionsOptions';
+import {
+    DirectionsOptionsFromJSON,
+    DirectionsOptionsFromJSONTyped,
+    DirectionsOptionsToJSON,
+} from './DirectionsOptions';
 import type { MatrixCostingModel } from './MatrixCostingModel';
 import {
     MatrixCostingModelFromJSON,
     MatrixCostingModelFromJSONTyped,
     MatrixCostingModelToJSON,
 } from './MatrixCostingModel';
-import type { ValhallaLanguages } from './ValhallaLanguages';
-import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
 
 /**
  * 
@@ -44,24 +44,6 @@ import {
  * @interface MatrixRequest
  */
 export interface MatrixRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof MatrixRequest
-     */
-    units?: MatrixRequestUnitsEnum;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof MatrixRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof MatrixRequest
-     */
-    directionsType?: MatrixRequestDirectionsTypeEnum;
     /**
      * An identifier to disambiguate requests (echoed by the server).
      * @type {string}
@@ -98,28 +80,13 @@ export interface MatrixRequest {
      * @memberof MatrixRequest
      */
     matrixLocations?: number;
+    /**
+     * 
+     * @type {DirectionsOptions}
+     * @memberof MatrixRequest
+     */
+    directionsOptions?: DirectionsOptions;
 }
-
-
-/**
- * @export
- */
-export const MatrixRequestUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type MatrixRequestUnitsEnum = typeof MatrixRequestUnitsEnum[keyof typeof MatrixRequestUnitsEnum];
-
-/**
- * @export
- */
-export const MatrixRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
-} as const;
-export type MatrixRequestDirectionsTypeEnum = typeof MatrixRequestDirectionsTypeEnum[keyof typeof MatrixRequestDirectionsTypeEnum];
-
 
 /**
  * Check if a given object implements the MatrixRequest interface.
@@ -143,15 +110,13 @@ export function MatrixRequestFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
-        'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'sources': ((json['sources'] as Array<any>).map(CoordinateFromJSON)),
         'targets': ((json['targets'] as Array<any>).map(CoordinateFromJSON)),
         'costing': MatrixCostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'matrixLocations': !exists(json, 'matrix_locations') ? undefined : json['matrix_locations'],
+        'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
     };
 }
 
@@ -164,15 +129,13 @@ export function MatrixRequestToJSON(value?: MatrixRequest | null): any {
     }
     return {
         
-        'units': value.units,
-        'language': ValhallaLanguagesToJSON(value.language),
-        'directions_type': value.directionsType,
         'id': value.id,
         'sources': ((value.sources as Array<any>).map(CoordinateToJSON)),
         'targets': ((value.targets as Array<any>).map(CoordinateToJSON)),
         'costing': MatrixCostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),
         'matrix_locations': value.matrixLocations,
+        'directions_options': DirectionsOptionsToJSON(value.directionsOptions),
     };
 }
 

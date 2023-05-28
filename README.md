@@ -49,4 +49,4 @@ details and a compact [API reference](https://docs.stadiamaps.com/api-reference/
 
 ## Developing
 
-Refer to [DEVELOPING.md](DEVELOPING.md) for details on local development.
+Refer to [DEVELOPING.md](https://github.com/stadiamaps/stadiamaps-api-ts/blob/main/DEVELOPING.md) for details on local development.
