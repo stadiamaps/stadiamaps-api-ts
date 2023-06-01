@@ -75,7 +75,7 @@ export interface IsochroneRequest {
      */
     contours: Array<Contour>;
     /**
-     * If true, the generated GeoJSON will use polygons. The default is to use linestrings. Polygon output makes it easier to render overlapping areas in some visualization tools (such as MapLibre renderers).
+     * If true, the generated GeoJSON will use polygons. The default is to use LineStrings. Polygon output makes it easier to render overlapping areas in some visualization tools (such as MapLibre renderers).
      * @type {boolean}
      * @memberof IsochroneRequest
      */

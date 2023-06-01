@@ -26,13 +26,20 @@ import {
     GeoJSONPointFromJSONTyped,
     GeoJSONPointToJSON,
 } from './GeoJSONPoint';
+import {
+    GeoJSONPolygon,
+    instanceOfGeoJSONPolygon,
+    GeoJSONPolygonFromJSON,
+    GeoJSONPolygonFromJSONTyped,
+    GeoJSONPolygonToJSON,
+} from './GeoJSONPolygon';
 
 /**
  * @type GeoJSONGeometry
  * 
  * @export
  */
-export type GeoJSONGeometry = { type: 'LineString' } & GeoJSONLineString | { type: 'Point' } & GeoJSONPoint;
+export type GeoJSONGeometry = { type: 'LineString' } & GeoJSONLineString | { type: 'Point' } & GeoJSONPoint | { type: 'Polygon' } & GeoJSONPolygon;
 
 export function GeoJSONGeometryFromJSON(json: any): GeoJSONGeometry {
     return GeoJSONGeometryFromJSONTyped(json, false);
@@ -47,6 +54,8 @@ export function GeoJSONGeometryFromJSONTyped(json: any, ignoreDiscriminator: boo
             return {...GeoJSONLineStringFromJSONTyped(json, true), type: 'LineString'};
         case 'Point':
             return {...GeoJSONPointFromJSONTyped(json, true), type: 'Point'};
+        case 'Polygon':
+            return {...GeoJSONPolygonFromJSONTyped(json, true), type: 'Polygon'};
         default:
             throw new Error(`No variant of GeoJSONGeometry exists with 'type=${json['type']}'`);
     }
@@ -64,6 +73,8 @@ export function GeoJSONGeometryToJSON(value?: GeoJSONGeometry | null): any {
             return GeoJSONLineStringToJSON(value);
         case 'Point':
             return GeoJSONPointToJSON(value);
+        case 'Polygon':
+            return GeoJSONPolygonToJSON(value);
         default:
             throw new Error(`No variant of GeoJSONGeometry exists with 'type=${value['type']}'`);
     }

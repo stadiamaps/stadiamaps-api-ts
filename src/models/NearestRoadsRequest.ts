@@ -45,12 +45,6 @@ import {
  */
 export interface NearestRoadsRequest {
     /**
-     * An identifier to disambiguate requests (echoed by the server).
-     * @type {string}
-     * @memberof NearestRoadsRequest
-     */
-    id?: string;
-    /**
      * 
      * @type {Array<Coordinate>}
      * @memberof NearestRoadsRequest
@@ -61,7 +55,7 @@ export interface NearestRoadsRequest {
      * @type {CostingModel}
      * @memberof NearestRoadsRequest
      */
-    costing: CostingModel;
+    costing?: CostingModel;
     /**
      * 
      * @type {CostingOptions}
@@ -88,7 +82,6 @@ export interface NearestRoadsRequest {
 export function instanceOfNearestRoadsRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "locations" in value;
-    isInstance = isInstance && "costing" in value;
 
     return isInstance;
 }
@@ -103,9 +96,8 @@ export function NearestRoadsRequestFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
         'locations': ((json['locations'] as Array<any>).map(CoordinateFromJSON)),
-        'costing': CostingModelFromJSON(json['costing']),
+        'costing': !exists(json, 'costing') ? undefined : CostingModelFromJSON(json['costing']),
         'costingOptions': !exists(json, 'costing_options') ? undefined : CostingOptionsFromJSON(json['costing_options']),
         'verbose': !exists(json, 'verbose') ? undefined : json['verbose'],
         'directionsOptions': !exists(json, 'directions_options') ? undefined : DirectionsOptionsFromJSON(json['directions_options']),
@@ -121,7 +113,6 @@ export function NearestRoadsRequestToJSON(value?: NearestRoadsRequest | null): a
     }
     return {
         
-        'id': value.id,
         'locations': ((value.locations as Array<any>).map(CoordinateToJSON)),
         'costing': CostingModelToJSON(value.costing),
         'costing_options': CostingOptionsToJSON(value.costingOptions),

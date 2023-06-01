@@ -19,6 +19,12 @@ import {
     IntersectingEdgeFromJSONTyped,
     IntersectingEdgeToJSON,
 } from './IntersectingEdge';
+import type { NodeType } from './NodeType';
+import {
+    NodeTypeFromJSON,
+    NodeTypeFromJSONTyped,
+    NodeTypeToJSON,
+} from './NodeType';
 
 /**
  * The node at the end of this edge
@@ -46,10 +52,10 @@ export interface EndNode {
     adminIndex?: number;
     /**
      * 
-     * @type {string}
+     * @type {NodeType}
      * @memberof EndNode
      */
-    type?: EndNodeTypeEnum;
+    type?: NodeType;
     /**
      * True if this node is a fork.
      * @type {boolean}
@@ -63,24 +69,6 @@ export interface EndNode {
      */
     timeZone?: string;
 }
-
-
-/**
- * @export
- */
-export const EndNodeTypeEnum = {
-    StreetIntersection: 'street_intersection',
-    Gate: 'gate',
-    Bollard: 'bollard',
-    TollBooth: 'toll_booth',
-    MultiUseTransitStop: 'multi_use_transit_stop',
-    BikeShare: 'bike_share',
-    Parking: 'parking',
-    MotorWayJunction: 'motor_way_junction',
-    BorderControl: 'border_control'
-} as const;
-export type EndNodeTypeEnum = typeof EndNodeTypeEnum[keyof typeof EndNodeTypeEnum];
-
 
 /**
  * Check if a given object implements the EndNode interface.
@@ -104,7 +92,7 @@ export function EndNodeFromJSONTyped(json: any, ignoreDiscriminator: boolean): E
         'intersectingEdges': !exists(json, 'intersecting_edges') ? undefined : ((json['intersecting_edges'] as Array<any>).map(IntersectingEdgeFromJSON)),
         'elapsedTime': !exists(json, 'elapsed_time') ? undefined : json['elapsed_time'],
         'adminIndex': !exists(json, 'admin_index') ? undefined : json['admin_index'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
+        'type': !exists(json, 'type') ? undefined : NodeTypeFromJSON(json['type']),
         'fork': !exists(json, 'fork') ? undefined : json['fork'],
         'timeZone': !exists(json, 'time_zone') ? undefined : json['time_zone'],
     };
@@ -122,7 +110,7 @@ export function EndNodeToJSON(value?: EndNode | null): any {
         'intersecting_edges': value.intersectingEdges === undefined ? undefined : ((value.intersectingEdges as Array<any>).map(IntersectingEdgeToJSON)),
         'elapsed_time': value.elapsedTime,
         'admin_index': value.adminIndex,
-        'type': value.type,
+        'type': NodeTypeToJSON(value.type),
         'fork': value.fork,
         'time_zone': value.timeZone,
     };

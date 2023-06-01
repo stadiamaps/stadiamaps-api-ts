@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { DistanceUnit } from './DistanceUnit';
+import {
+    DistanceUnitFromJSON,
+    DistanceUnitFromJSONTyped,
+    DistanceUnitToJSON,
+} from './DistanceUnit';
 import type { ValhallaLanguages } from './ValhallaLanguages';
 import {
     ValhallaLanguagesFromJSON,
@@ -28,10 +34,10 @@ import {
 export interface DirectionsOptions {
     /**
      * 
-     * @type {string}
+     * @type {DistanceUnit}
      * @memberof DirectionsOptions
      */
-    units?: DirectionsOptionsUnitsEnum;
+    units?: DistanceUnit;
     /**
      * 
      * @type {ValhallaLanguages}
@@ -46,15 +52,6 @@ export interface DirectionsOptions {
     directionsType?: DirectionsOptionsDirectionsTypeEnum;
 }
 
-
-/**
- * @export
- */
-export const DirectionsOptionsUnitsEnum = {
-    Km: 'km',
-    Mi: 'mi'
-} as const;
-export type DirectionsOptionsUnitsEnum = typeof DirectionsOptionsUnitsEnum[keyof typeof DirectionsOptionsUnitsEnum];
 
 /**
  * @export
@@ -86,7 +83,7 @@ export function DirectionsOptionsFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'units': !exists(json, 'units') ? undefined : json['units'],
+        'units': !exists(json, 'units') ? undefined : DistanceUnitFromJSON(json['units']),
         'language': !exists(json, 'language') ? undefined : ValhallaLanguagesFromJSON(json['language']),
         'directionsType': !exists(json, 'directions_type') ? undefined : json['directions_type'],
     };
@@ -101,7 +98,7 @@ export function DirectionsOptionsToJSON(value?: DirectionsOptions | null): any {
     }
     return {
         
-        'units': value.units,
+        'units': DistanceUnitToJSON(value.units),
         'language': ValhallaLanguagesToJSON(value.language),
         'directions_type': value.directionsType,
     };

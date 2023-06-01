@@ -16,6 +16,8 @@
 import * as runtime from '../runtime';
 import type {
   IsochroneRequest,
+  IsochroneResponse,
+  LocateObject,
   MapMatchRequest,
   MapMatchRouteResponse,
   MatrixRequest,
@@ -30,6 +32,10 @@ import type {
 import {
     IsochroneRequestFromJSON,
     IsochroneRequestToJSON,
+    IsochroneResponseFromJSON,
+    IsochroneResponseToJSON,
+    LocateObjectFromJSON,
+    LocateObjectToJSON,
     MapMatchRequestFromJSON,
     MapMatchRequestToJSON,
     MapMatchRouteResponseFromJSON,
@@ -89,7 +95,7 @@ export class RoutingApi extends runtime.BaseAPI {
      * The isochrone API lets you compute or visualize areas of roughly equal travel time based on the routing graph. The resulting polygon can be rendered on a map and shaded much like elevation contours and used for exploring urban mobility.
      * Calculate areas of equal travel time from a location.
      */
-    async isochroneRaw(requestParameters: IsochroneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async isochroneRaw(requestParameters: IsochroneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IsochroneResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -108,15 +114,16 @@ export class RoutingApi extends runtime.BaseAPI {
             body: IsochroneRequestToJSON(requestParameters.isochroneRequest),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => IsochroneResponseFromJSON(jsonValue));
     }
 
     /**
      * The isochrone API lets you compute or visualize areas of roughly equal travel time based on the routing graph. The resulting polygon can be rendered on a map and shaded much like elevation contours and used for exploring urban mobility.
      * Calculate areas of equal travel time from a location.
      */
-    async isochrone(requestParameters: IsochroneOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.isochroneRaw(requestParameters, initOverrides);
+    async isochrone(requestParameters: IsochroneOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IsochroneResponse> {
+        const response = await this.isochroneRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -158,7 +165,7 @@ export class RoutingApi extends runtime.BaseAPI {
      * The nearest roads API allows you query for detailed information about streets and intersections near the input locations.
      * Find the nearest roads to the set of input locations.
      */
-    async nearestRoadsRaw(requestParameters: NearestRoadsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async nearestRoadsRaw(requestParameters: NearestRoadsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocateObject>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -177,15 +184,16 @@ export class RoutingApi extends runtime.BaseAPI {
             body: NearestRoadsRequestToJSON(requestParameters.nearestRoadsRequest),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(LocateObjectFromJSON));
     }
 
     /**
      * The nearest roads API allows you query for detailed information about streets and intersections near the input locations.
      * Find the nearest roads to the set of input locations.
      */
-    async nearestRoads(requestParameters: NearestRoadsOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.nearestRoadsRaw(requestParameters, initOverrides);
+    async nearestRoads(requestParameters: NearestRoadsOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocateObject>> {
+        const response = await this.nearestRoadsRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
