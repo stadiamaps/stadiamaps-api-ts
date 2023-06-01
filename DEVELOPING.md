@@ -35,3 +35,7 @@ Finally, you can do a dist build as you might expect:
 ```shell
 npm run build
 ```
+
+## Release
+
+GitHub releases drive everything automatically. Create one and the rest should trigger automatically.
