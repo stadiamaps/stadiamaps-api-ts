@@ -1,6 +1,6 @@
 {
   "name": "@stadiamaps/api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Stadia Maps Geospatial APIs",
   "keywords": [
     "stadia maps",
@@ -10,6 +10,7 @@
     "elevation"
   ],
   "homepage": "https://docs.stadiamaps.com/",
+  "repository": "https://github.com/stadiamaps/stadiamaps-api-ts",
   "files": [
     "dist"
   ],

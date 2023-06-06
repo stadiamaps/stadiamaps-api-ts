@@ -1,6 +1,6 @@
 # Stadia Maps TypeScript APIs
 
-This SDK helps you access the full range of geospatial APIs from Stadia Maps.
+This SDK helps you access the full range of geospatial APIs from Stadia Maps using JavaScript, TypeScript, etc.
 
 ## Getting started
 
@@ -43,10 +43,11 @@ const res = await api.search({ text: "Põhja pst 27a" });
 
 ## Documentation
 
-TypeScript hints and autocomplete only go so far. Check out our official documentation at
-[docs.stadiamaps.com](https://docs.stadiamaps.com/) for both long-form prose explanation of the finer
-details and a compact [API reference](https://docs.stadiamaps.com/api-reference/).
+Official documentation lives at [docs.stadiamaps.com](https://docs.stadiamaps.com/), where you can read
+both long-form prose explanations of the finer details of each endpoint and a
+compact [API reference](https://docs.stadiamaps.com/api-reference/).
 
 ## Developing
 
-Refer to [DEVELOPING.md](https://github.com/stadiamaps/stadiamaps-api-ts/blob/main/DEVELOPING.md) for details on local development.
+Refer to [DEVELOPING.md](https://github.com/stadiamaps/stadiamaps-api-ts/blob/main/DEVELOPING.md) for details on
+local development.
