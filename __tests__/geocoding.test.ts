@@ -52,7 +52,7 @@ describe('GeocodingApi unit tests', () => {
         expect(fetchMock.mock.calls.length).toEqual(1);
 
         const res2 = await api.autocomplete({ text: "foobar" });
-        // Second call should not increase the counter!
+        // Second call should not trigger an additional network fetch!
         expect(fetchMock.mock.calls.length).toEqual(1);
 
         expect(res1).toEqual(res2);

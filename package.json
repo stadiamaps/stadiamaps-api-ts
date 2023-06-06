@@ -1,6 +1,6 @@
 {
   "name": "@stadiamaps/api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stadia Maps Geospatial APIs",
   "keywords": [
     "stadia maps",
@@ -18,7 +18,7 @@
   "exports": {
     ".": {
       "import": "./dist/stadiamaps-api.mjs",
-      "require": "./dist/stadiamaps-api.umd.cjs"
+      "require": "./dist/stadiamaps-api.umd.js"
     }
   },
   "types": "dist/index.d.ts",
