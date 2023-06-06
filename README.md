@@ -53,7 +53,7 @@ functions exactly like if you used `npm` package tooling.
 
 Here's a quick usage example of a webpage that makes a geocoding query and displays the result.
 
-```jsfiddle-html
+```html
 <!DOCTYPE html>
 <html>
     <head>
