@@ -17,7 +17,7 @@ describe('GeocodingApi unit tests', () => {
 
     beforeEach(() => {
         fetchMock.resetMocks();
-        fetchMock.mockResponseOnce(JSON.stringify(mockRes));
+        fetchMock.mockResponse(JSON.stringify(mockRes));
     });
 
     afterAll(() => {
@@ -45,6 +45,17 @@ describe('GeocodingApi unit tests', () => {
         expect(url).toContain(`text=${encodeURIComponent(address)}`);
 
         assertResponseEqualsMock(res);
+    });
+
+    test('autocomplete endpoint memoization', async () => {
+        const res1 = await api.autocomplete({ text: "foobar" });
+        expect(fetchMock.mock.calls.length).toEqual(1);
+
+        const res2 = await api.autocomplete({ text: "foobar" });
+        // Second call should not increase the counter!
+        expect(fetchMock.mock.calls.length).toEqual(1);
+
+        expect(res1).toEqual(res2);
     });
 
     test('search endpoint data parsing', async () => {

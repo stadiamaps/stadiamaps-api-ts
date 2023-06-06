@@ -66,6 +66,3 @@ models/*.js
 
 # IntelliJ IDEs
 .idea
-
-# Parcel cache
-.parcel-cache/

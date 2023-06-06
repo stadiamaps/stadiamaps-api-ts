@@ -7,7 +7,7 @@ Regenerating the generated portions of the codebase can be done simply with this
 (run this whenever new features / changes to the OpenAPI spec are released).
 
 ```shell
-openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o src
+openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o src/generated
 ```
 
 ## Tests
