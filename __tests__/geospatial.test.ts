@@ -78,6 +78,7 @@ describe('GeospatialApi unit tests', () => {
 
     test('elevation endpoint integration test (Seoul)', async () => {
         const res = await api.elevation({heightRequest: heightReq});
+        expect(res.id).toEqual(heightReq.id);
         expect(res.height?.length).toBeGreaterThanOrEqual(1);
         expect(res.height![0]).toBeGreaterThanOrEqual(0);
         expect(res.shape).toEqual(heightReq.shape);

@@ -138,6 +138,12 @@ describe('GeocodingApi unit tests', () => {
         expect(res.features[0]?.properties?.layer).toEqual("address");
     })
 
+    test('reverse endpoint uncommon layer integration test', async () => {
+        const res = await api.reverse({ pointLat: kultuurikatel.geometry.coordinates[0], pointLon: kultuurikatel.geometry.coordinates[1] });
+        expect(res.features.length).toBeGreaterThanOrEqual(1);
+        expect(res.features[0]?.properties?.layer).toEqual("marinearea");
+    })
+
     test('place endpoint integration test', async () => {
         const res = await api.place({ ids: [kultuurikatel.properties.gid] });
         expect(res.features).toHaveLength(1);

@@ -111,7 +111,6 @@ const isochroneMockRes = {"features":[{"properties":{"fill":"#ff0000","fillOpaci
 const mapMatchRequest: MapMatchRequest = {
     id: "mapMatch",
     encodedPolyline: "_grbgAh~{nhF?lBAzBFvBHxBEtBKdB?fB@dBZdBb@hBh@jBb@x@\\|@x@pB\\x@v@hBl@nBPbCXtBn@|@z@ZbAEbAa@~@q@z@QhA]pAUpAVhAPlAWtASpAAdA[dASdAQhAIlARjANnAZhAf@n@`A?lB^nCRbA\\xB`@vBf@tBTbCFbARzBZvBThBRnBNrBP`CHbCF`CNdCb@vBX`ARlAJfADhA@dAFdAP`AR`Ah@hBd@bBl@rBV|B?vB]tBCvBBhAF`CFnBXtAVxAVpAVtAb@|AZ`Bd@~BJfA@fAHdADhADhABjAGzAInAAjAB|BNbCR|BTjBZtB`@lBh@lB\\|Bl@rBXtBN`Al@g@t@?nAA~AKvACvAAlAMdAU`Ac@hAShAI`AJ`AIdAi@bAu@|@k@p@]p@a@bAc@z@g@~@Ot@Bz@f@X`BFtBXdCLbAf@zBh@fBb@xAb@nATjAKjAW`BI|AEpAHjAPdAAfAGdAFjAv@p@XlAVnA?~A?jAInAPtAVxAXnAf@tBDpBJpBXhBJfBDpAZ|Ax@pAz@h@~@lA|@bAnAd@hAj@tAR~AKxAc@xAShA]hAIdAAjA]~A[v@BhB?dBSv@Ct@CvAI~@Oz@Pv@dAz@lAj@~A^`B^|AXvAVpAXdBh@~Ap@fCh@hB\\zBN`Aj@xBFdA@jALbAPbAJdAHdAJbAHbAHfAJhALbA\\lBTvBAdC@bC@jCKjASbC?`CM`CDpB\\xAj@tB\\fA\\bAVfAJdAJbAXz@L|BO`AOdCDdA@~B\\z@l@v@l@v@l@r@j@t@b@x@b@r@z@jBVfCJdAJdANbCPfCF|BRhBS~BS`AYbAe@~BQdA",
-    shapeMatch: MapMatchRequestShapeMatchEnum.MapSnap,
     costing: "pedestrian",
     directionsOptions: {
         units: DistanceUnit.Mi
@@ -233,7 +232,7 @@ describe('GeospatialApi unit tests', () => {
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
-        expect(res.trip.legs.length).toBeGreaterThanOrEqual(1);
+        expect(res.trip.legs.length).toEqual(1);
     });
 
     test('optimized_route endpoint integration test', async () => {
@@ -242,15 +241,7 @@ describe('GeospatialApi unit tests', () => {
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
-        expect(res.trip.legs.length).toBeGreaterThanOrEqual(1);
-    });
-
-    test('nearest_roads endpoint integration test', async () => {
-        const res = await api.nearestRoads({nearestRoadsRequest: nearestRoadsRequest});
-
-        // @ts-ignore
-        expect(res[0]?.edges.length).toBeGreaterThanOrEqual(1);
-        expect(res.length).toBeGreaterThanOrEqual(1);
+        expect(res.trip.legs.length).toEqual(1);
     });
 
     test('matrix endpoint integration test', async () => {
@@ -261,6 +252,14 @@ describe('GeospatialApi unit tests', () => {
         expect(res.targets).toEqual([matrixRequest.targets]);
         expect(res.sourcesToTargets.length).toBeGreaterThanOrEqual(1);
         expect(res.units).toEqual("kilometers");
+    });
+
+    test('nearest_roads endpoint integration test', async () => {
+        const res = await api.nearestRoads({nearestRoadsRequest: nearestRoadsRequest});
+
+        expect(res.length).toBeGreaterThanOrEqual(1);
+        // @ts-ignore
+        expect(res[0]?.edges.length).toBeGreaterThanOrEqual(1);
     });
 
     test('isochrone endpoint integration test', async () => {
