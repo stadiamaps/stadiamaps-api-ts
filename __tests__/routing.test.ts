@@ -84,7 +84,7 @@ const matrixRequest: MatrixRequest = {
         }
     ],
     costing: "pedestrian"
-}
+};
 
 const matrixMockRes = {"units":"kilometers","sources":[[{"lon":-73.990508,"lat":40.744014}]],"targets":[[{"lon":-73.990508,"lat":40.744014},{"lon":-73.979713,"lat":40.739735},{"lon":-73.985015,"lat":40.752522},{"lon":-73.983704,"lat":40.750117},{"lon":-73.993519,"lat":40.750552}]],"sources_to_targets":[[{"distance":0,"time":0,"to_index":0,"from_index":0},{"distance":1.126,"time":829,"to_index":1,"from_index":0},{"distance":1.327,"time":969,"to_index":2,"from_index":0},{"distance":1.134,"time":840,"to_index":3,"from_index":0},{"distance":1.355,"time":986,"to_index":4,"from_index":0}]]};
 
