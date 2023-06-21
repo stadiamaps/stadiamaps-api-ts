@@ -287,6 +287,7 @@ describe('GeospatialApi unit tests', () => {
         const res = await api.isochrone({isochroneRequest: isochroneRequest});
 
         expect(res.id).toEqual(isochroneRequest.id);
+        expect(res.type).toEqual("FeatureCollection");
         expect(res.features.length).toBeGreaterThanOrEqual(1);
     });
 
