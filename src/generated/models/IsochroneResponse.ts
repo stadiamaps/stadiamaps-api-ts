@@ -43,7 +43,7 @@ export interface IsochroneResponse {
      * @type {string}
      * @memberof IsochroneResponse
      */
-    type?: IsochroneResponseTypeEnum;
+    type: IsochroneResponseTypeEnum;
 }
 
 
@@ -62,6 +62,7 @@ export type IsochroneResponseTypeEnum = typeof IsochroneResponseTypeEnum[keyof t
 export function instanceOfIsochroneResponse(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -78,7 +79,7 @@ export function IsochroneResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'id': !exists(json, 'id') ? undefined : json['id'],
         'features': ((json['features'] as Array<any>).map(IsochroneFeatureFromJSON)),
-        'type': !exists(json, 'type') ? undefined : json['type'],
+        'type': json['type'],
     };
 }
 
