@@ -8,20 +8,24 @@ import {
     MatrixRequest,
     IsochroneRequest,
     MapMatchRequest,
-    MapMatchRequestShapeMatchEnum, TraceAttributesRequest, DistanceUnit
+    MapMatchRequestShapeMatchEnum, TraceAttributesRequest, DistanceUnit, OptimizedRouteRequest
 } from '../src';
 import {shouldRunIntegrationTests, apiKey} from "./utils";
 import {disableFetchMocks, enableFetchMocks} from "jest-fetch-mock";
 
 const locationA = {
-    "lon": -149.543469,
-    "lat": 60.5347155,
+    "lon": -76.306572,
+    "lat": 40.042072,
     "type": RoutingWaypointTypeEnum.Break
 };
 const locationB = {
-    "lon": -149.5485806,
-    "lat": 60.5349908,
+    "lon": -76.781559,
+    "lat": 39.992115,
     "type": RoutingWaypointTypeEnum.Break
+};
+const locationC = {
+    "lon": -76.6956,
+    "lat": 39.984519
 };
 const routeRequest: RouteRequest = {
     locations: [
@@ -33,6 +37,23 @@ const routeRequest: RouteRequest = {
         auto: {
             useTolls: 1,
             useHighways: 0,
+        }
+    },
+    directionsOptions: {
+        units: DistanceUnit.Mi
+    }
+};
+const optimizedRouteRequest: OptimizedRouteRequest = {
+    locations: [
+        locationA,
+        locationB,
+        locationC,
+        locationA
+    ],
+    costing: "auto",
+    costingOptions: {
+        auto: {
+            useTolls: 0.7
         }
     },
     directionsOptions: {
@@ -197,7 +218,7 @@ describe('GeospatialApi unit tests', () => {
     test('optimized_route endpoint data parsing', async () => {
         fetchMock.mockResponseOnce(JSON.stringify(mockRouteRes));
 
-        const res = await api.optimizedRoute({optimizedRouteRequest: routeRequest});
+        const res = await api.optimizedRoute({optimizedRouteRequest: optimizedRouteRequest});
         expect(fetchMock.mock.calls.length).toEqual(1);
 
         expect(res).toBeApproximatelyEquivalent(mockRouteRes);
@@ -236,12 +257,12 @@ describe('GeospatialApi unit tests', () => {
     });
 
     test('optimized_route endpoint integration test', async () => {
-        const res = await api.optimizedRoute({optimizedRouteRequest: routeRequest});
+        const res = await api.optimizedRoute({optimizedRouteRequest: optimizedRouteRequest});
 
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
-        expect(res.trip.legs.length).toEqual(1);
+        expect(res.trip.legs.length).toEqual(3);
     });
 
     test('matrix endpoint integration test', async () => {
