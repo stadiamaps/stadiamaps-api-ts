@@ -35,8 +35,7 @@ const routeRequest: RouteRequest = {
     costing: "auto",
     costingOptions: {
         auto: {
-            useTolls: 1,
-            useHighways: 0,
+            useHighways: 0.3,
         }
     },
     directionsOptions: {
@@ -53,7 +52,7 @@ const optimizedRouteRequest: OptimizedRouteRequest = {
     costing: "auto",
     costingOptions: {
         auto: {
-            useTolls: 0.7
+            useHighways: 0.3
         }
     },
     directionsOptions: {
