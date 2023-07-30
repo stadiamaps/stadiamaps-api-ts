@@ -255,6 +255,33 @@ describe('GeospatialApi unit tests', () => {
         expect(res.trip.legs.length).toEqual(1);
     });
 
+    test('route endpoint integration test using a special bicycle type', async () => {
+        // Regression test for user-reported issue
+        const hybridBicycleRouteRequest: RouteRequest = {
+            locations: [
+                locationA,
+                locationB
+            ],
+            costing: "bicycle",
+            costingOptions: {
+                bicycle: {
+                    bicycleType: "Hybrid",
+                    useRoads: 0.4,
+                    useHills: 0.6
+                }
+            },
+            directionsOptions: {
+                units: DistanceUnit.Km
+            }
+        };
+        const res = await api.route({routeRequest: hybridBicycleRouteRequest});
+
+        expect(res.id).toEqual(hybridBicycleRouteRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("kilometers");
+        expect(res.trip.legs.length).toEqual(1);
+    });
+
     test('optimized_route endpoint integration test', async () => {
         const res = await api.optimizedRoute({optimizedRouteRequest: optimizedRouteRequest});
 
