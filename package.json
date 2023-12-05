@@ -18,6 +18,7 @@
   "module": "dist/stadiamaps-api.mjs",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/stadiamaps-api.mjs",
       "require": "./dist/stadiamaps-api.umd.js"
     }
