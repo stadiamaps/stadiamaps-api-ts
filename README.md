@@ -42,7 +42,7 @@ api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
 });
 
 // ... or the await keyword in an async context
-const res = await api.search({ text: "Põhja pst 27a" });
+const res = await api.search({ text: "Põhja pst 27" });
 ```
 
 ## Getting started with unpkg
@@ -66,7 +66,7 @@ Here's a quick usage example of a webpage that makes a geocoding query and displ
             const api = new stadiaMapsApi.GeocodingApi();
             window.onload = async function() {
                 // You can use either the async interface or the other Promise API functions like .then; the choice is yours.
-                const res = await api.autocomplete({ text: "Põhja pst 27a" });
+                const res = await api.autocomplete({ text: "Põhja pst 27" });
                 document.getElementById("pre").innerHTML = JSON.stringify(res, null, 2);
             }
         </script>
