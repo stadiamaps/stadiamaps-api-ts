@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `ignore_` options for ignoring various restrictions (useful for certain map matching applications)
 
+### Changed
+
+- Mark package as pure to enable [`webpack` tree shaking](https://webpack.js.org/guides/tree-shaking/)
+
 ## Version 2.0.0 - 2024-03-19
 
 ### Changed
