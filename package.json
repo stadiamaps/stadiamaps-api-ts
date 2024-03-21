@@ -32,6 +32,7 @@
     "name": "Ian Wagner",
     "email": "ian.wagner@stadiamaps.com"
   },
+  "sideEffects": false,
   "license": "BSD-3-Clause",
   "dependencies": {
     "isomorphic-fetch": "^3.0.0"
