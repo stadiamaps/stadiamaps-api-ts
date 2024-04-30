@@ -25,6 +25,10 @@ export const Traversability = {
 export type Traversability = typeof Traversability[keyof typeof Traversability];
 
 
+export function instanceOfTraversability(value: any): boolean {
+    return Object.values(Traversability).includes(value);
+}
+
 export function TraversabilityFromJSON(json: any): Traversability {
     return TraversabilityFromJSONTyped(json, false);
 }

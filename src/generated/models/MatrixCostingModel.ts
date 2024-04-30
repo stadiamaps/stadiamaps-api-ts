@@ -32,6 +32,10 @@ export const MatrixCostingModel = {
 export type MatrixCostingModel = typeof MatrixCostingModel[keyof typeof MatrixCostingModel];
 
 
+export function instanceOfMatrixCostingModel(value: any): boolean {
+    return Object.values(MatrixCostingModel).includes(value);
+}
+
 export function MatrixCostingModelFromJSON(json: any): MatrixCostingModel {
     return MatrixCostingModelFromJSONTyped(json, false);
 }

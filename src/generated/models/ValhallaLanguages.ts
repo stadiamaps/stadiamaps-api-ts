@@ -51,6 +51,10 @@ export const ValhallaLanguages = {
 export type ValhallaLanguages = typeof ValhallaLanguages[keyof typeof ValhallaLanguages];
 
 
+export function instanceOfValhallaLanguages(value: any): boolean {
+    return Object.values(ValhallaLanguages).includes(value);
+}
+
 export function ValhallaLanguagesFromJSON(json: any): ValhallaLanguages {
     return ValhallaLanguagesFromJSONTyped(json, false);
 }

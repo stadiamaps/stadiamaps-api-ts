@@ -53,6 +53,10 @@ export const EdgeUse = {
 export type EdgeUse = typeof EdgeUse[keyof typeof EdgeUse];
 
 
+export function instanceOfEdgeUse(value: any): boolean {
+    return Object.values(EdgeUse).includes(value);
+}
+
 export function EdgeUseFromJSON(json: any): EdgeUse {
     return EdgeUseFromJSONTyped(json, false);
 }

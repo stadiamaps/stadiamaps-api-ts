@@ -31,6 +31,10 @@ export const NodeType = {
 export type NodeType = typeof NodeType[keyof typeof NodeType];
 
 
+export function instanceOfNodeType(value: any): boolean {
+    return Object.values(NodeType).includes(value);
+}
+
 export function NodeTypeFromJSON(json: any): NodeType {
     return NodeTypeFromJSONTyped(json, false);
 }

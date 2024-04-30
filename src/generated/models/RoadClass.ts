@@ -30,6 +30,10 @@ export const RoadClass = {
 export type RoadClass = typeof RoadClass[keyof typeof RoadClass];
 
 
+export function instanceOfRoadClass(value: any): boolean {
+    return Object.values(RoadClass).includes(value);
+}
+
 export function RoadClassFromJSON(json: any): RoadClass {
     return RoadClassFromJSONTyped(json, false);
 }

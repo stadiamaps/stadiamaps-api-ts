@@ -24,6 +24,10 @@ export const ValhallaLongUnits = {
 export type ValhallaLongUnits = typeof ValhallaLongUnits[keyof typeof ValhallaLongUnits];
 
 
+export function instanceOfValhallaLongUnits(value: any): boolean {
+    return Object.values(ValhallaLongUnits).includes(value);
+}
+
 export function ValhallaLongUnitsFromJSON(json: any): ValhallaLongUnits {
     return ValhallaLongUnitsFromJSONTyped(json, false);
 }

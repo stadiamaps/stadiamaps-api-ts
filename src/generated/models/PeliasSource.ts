@@ -26,6 +26,10 @@ export const PeliasSource = {
 export type PeliasSource = typeof PeliasSource[keyof typeof PeliasSource];
 
 
+export function instanceOfPeliasSource(value: any): boolean {
+    return Object.values(PeliasSource).includes(value);
+}
+
 export function PeliasSourceFromJSON(json: any): PeliasSource {
     return PeliasSourceFromJSONTyped(json, false);
 }

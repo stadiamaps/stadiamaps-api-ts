@@ -25,6 +25,10 @@ export const IsochroneCostingModel = {
 export type IsochroneCostingModel = typeof IsochroneCostingModel[keyof typeof IsochroneCostingModel];
 
 
+export function instanceOfIsochroneCostingModel(value: any): boolean {
+    return Object.values(IsochroneCostingModel).includes(value);
+}
+
 export function IsochroneCostingModelFromJSON(json: any): IsochroneCostingModel {
     return IsochroneCostingModelFromJSONTyped(json, false);
 }

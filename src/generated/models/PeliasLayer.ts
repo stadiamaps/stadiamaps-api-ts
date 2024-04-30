@@ -61,6 +61,10 @@ export const PeliasLayer = {
 export type PeliasLayer = typeof PeliasLayer[keyof typeof PeliasLayer];
 
 
+export function instanceOfPeliasLayer(value: any): boolean {
+    return Object.values(PeliasLayer).includes(value);
+}
+
 export function PeliasLayerFromJSON(json: any): PeliasLayer {
     return PeliasLayerFromJSONTyped(json, false);
 }

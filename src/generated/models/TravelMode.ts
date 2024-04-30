@@ -26,6 +26,10 @@ export const TravelMode = {
 export type TravelMode = typeof TravelMode[keyof typeof TravelMode];
 
 
+export function instanceOfTravelMode(value: any): boolean {
+    return Object.values(TravelMode).includes(value);
+}
+
 export function TravelModeFromJSON(json: any): TravelMode {
     return TravelModeFromJSONTyped(json, false);
 }

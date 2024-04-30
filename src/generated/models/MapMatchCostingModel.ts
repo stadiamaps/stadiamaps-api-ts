@@ -26,6 +26,10 @@ export const MapMatchCostingModel = {
 export type MapMatchCostingModel = typeof MapMatchCostingModel[keyof typeof MapMatchCostingModel];
 
 
+export function instanceOfMapMatchCostingModel(value: any): boolean {
+    return Object.values(MapMatchCostingModel).includes(value);
+}
+
 export function MapMatchCostingModelFromJSON(json: any): MapMatchCostingModel {
     return MapMatchCostingModelFromJSONTyped(json, false);
 }

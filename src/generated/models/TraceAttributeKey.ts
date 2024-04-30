@@ -90,6 +90,10 @@ export const TraceAttributeKey = {
 export type TraceAttributeKey = typeof TraceAttributeKey[keyof typeof TraceAttributeKey];
 
 
+export function instanceOfTraceAttributeKey(value: any): boolean {
+    return Object.values(TraceAttributeKey).includes(value);
+}
+
 export function TraceAttributeKeyFromJSON(json: any): TraceAttributeKey {
     return TraceAttributeKeyFromJSONTyped(json, false);
 }

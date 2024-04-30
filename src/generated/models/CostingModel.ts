@@ -33,6 +33,10 @@ export const CostingModel = {
 export type CostingModel = typeof CostingModel[keyof typeof CostingModel];
 
 
+export function instanceOfCostingModel(value: any): boolean {
+    return Object.values(CostingModel).includes(value);
+}
+
 export function CostingModelFromJSON(json: any): CostingModel {
     return CostingModelFromJSONTyped(json, false);
 }

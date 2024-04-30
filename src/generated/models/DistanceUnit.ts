@@ -24,6 +24,10 @@ export const DistanceUnit = {
 export type DistanceUnit = typeof DistanceUnit[keyof typeof DistanceUnit];
 
 
+export function instanceOfDistanceUnit(value: any): boolean {
+    return Object.values(DistanceUnit).includes(value);
+}
+
 export function DistanceUnitFromJSON(json: any): DistanceUnit {
     return DistanceUnitFromJSONTyped(json, false);
 }
