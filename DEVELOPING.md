@@ -38,4 +38,5 @@ npm run build
 
 ## Release
 
-GitHub releases drive everything automatically. Create one and the rest should trigger automatically.
+GitHub releases drive everything automatically except bumping the version number.
+Create one and if all goes well, you'll have a release up on npm shortly.

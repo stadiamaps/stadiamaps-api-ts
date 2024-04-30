@@ -138,6 +138,13 @@ describe('GeocodingApi unit tests', () => {
         expect(res.features[0]?.properties?.layer).toEqual("address");
     })
 
+    test('reverse endpoint explicit layer integration test', async () => {
+        const res = await api.reverse({ pointLat: kultuurikatel.geometry.coordinates[1], pointLon: kultuurikatel.geometry.coordinates[0], layers: ["address"] });
+        expect(res.features.length).toBeGreaterThanOrEqual(1);
+        expect(res.features[0]?.properties?.country).toEqual("Estonia");
+        expect(res.features[0]?.properties?.layer).toEqual("address");
+    })
+
     test('reverse endpoint uncommon layer integration test', async () => {
         const res = await api.reverse({ pointLat: kultuurikatel.geometry.coordinates[0], pointLon: kultuurikatel.geometry.coordinates[1] });
         expect(res.features.length).toBeGreaterThanOrEqual(1);

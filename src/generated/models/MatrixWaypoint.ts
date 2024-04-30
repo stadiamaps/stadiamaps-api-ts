@@ -16,37 +16,43 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Coordinate
+ * @interface MatrixWaypoint
  */
-export interface Coordinate {
+export interface MatrixWaypoint {
     /**
      * The latitude of a point in the shape.
      * @type {number}
-     * @memberof Coordinate
+     * @memberof MatrixWaypoint
      */
     lat: number;
     /**
      * The longitude of a point in the shape.
      * @type {number}
-     * @memberof Coordinate
+     * @memberof MatrixWaypoint
      */
     lon: number;
+    /**
+     * The cutoff (in meters) at which we will assume the input is too far away from civilisation to be worth correlating to the nearest graph elements. The default is 35 km.
+     * @type {number}
+     * @memberof MatrixWaypoint
+     */
+    searchCutoff?: number;
 }
 
 /**
- * Check if a given object implements the Coordinate interface.
+ * Check if a given object implements the MatrixWaypoint interface.
  */
-export function instanceOfCoordinate(value: object): boolean {
+export function instanceOfMatrixWaypoint(value: object): boolean {
     if (!('lat' in value)) return false;
     if (!('lon' in value)) return false;
     return true;
 }
 
-export function CoordinateFromJSON(json: any): Coordinate {
-    return CoordinateFromJSONTyped(json, false);
+export function MatrixWaypointFromJSON(json: any): MatrixWaypoint {
+    return MatrixWaypointFromJSONTyped(json, false);
 }
 
-export function CoordinateFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coordinate {
+export function MatrixWaypointFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatrixWaypoint {
     if (json == null) {
         return json;
     }
@@ -54,10 +60,11 @@ export function CoordinateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'lat': json['lat'],
         'lon': json['lon'],
+        'searchCutoff': json['search_cutoff'] == null ? undefined : json['search_cutoff'],
     };
 }
 
-export function CoordinateToJSON(value?: Coordinate | null): any {
+export function MatrixWaypointToJSON(value?: MatrixWaypoint | null): any {
     if (value == null) {
         return value;
     }
@@ -65,6 +72,7 @@ export function CoordinateToJSON(value?: Coordinate | null): any {
         
         'lat': value['lat'],
         'lon': value['lon'],
+        'search_cutoff': value['searchCutoff'],
     };
 }
 

@@ -41,6 +41,7 @@ models/LocateEdge.ts
 models/LocateEdgeInfo.ts
 models/LocateNode.ts
 models/LocateObject.ts
+models/LowSpeedVehicleCostingOptions.ts
 models/ManeuverSign.ts
 models/ManeuverSignElement.ts
 models/MapMatchCostingModel.ts
@@ -53,6 +54,7 @@ models/MatrixCostingModel.ts
 models/MatrixDistance.ts
 models/MatrixRequest.ts
 models/MatrixResponse.ts
+models/MatrixWaypoint.ts
 models/MotorScooterCostingOptions.ts
 models/MotorcycleCostingOptions.ts
 models/NearestRoadsRequest.ts

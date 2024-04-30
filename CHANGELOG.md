@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 3.0.0 - 2024-04-30
+
+### Added
+
+- Add support for low-speed vehicle routing
+- The matrix endpoint now accepts its own model rather than coordinate. This includes a search cutoff and paves the way for future expansion.
+
+### Changed
+
+- Improved the documentation of the matrix endpoint failure modes
+
+### Fixed
+
+- The time and distance field on matrix source to target models are now marked as nullable
+
 ## Version 2.1.0 - 2024-03-21
 
 ### Added
