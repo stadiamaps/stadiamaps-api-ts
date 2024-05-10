@@ -57,7 +57,7 @@ export interface RouteLeg {
      */
     elevationInterval?: number;
     /**
-     * An array of elevation values sampled every `elevation_interval` `units`.
+     * An array of elevation values sampled every `elevation_interval`. Units are either metric or imperial depending on the value of `units`.
      * @type {Array<number>}
      * @memberof RouteLeg
      */
