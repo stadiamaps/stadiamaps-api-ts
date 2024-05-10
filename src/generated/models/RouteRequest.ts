@@ -110,6 +110,19 @@ export interface RouteRequest {
      * @memberof RouteRequest
      */
     alternates?: number;
+    /**
+     * If greater than zero, attempts to include elevation along the route at regular intervals. The "native" internal resolution is 30m, so we recommend you use this when possible. This number is interpreted in the same units as the directions request.
+     * Elevation for route sections containing a bridge or tunnel is interpolated linearly. This doesn't always match the true elevation of the bridge/tunnel, but it prevents sharp artifacts from the surrounding terrain. This functionality is unique to the route endpoint and is not available via the elevation API.
+     * @type {number}
+     * @memberof RouteRequest
+     */
+    elevationInterval?: number;
+    /**
+     * Determines whether the output should include roundabout exit instructions.
+     * @type {boolean}
+     * @memberof RouteRequest
+     */
+    roundaboutExits?: boolean;
 }
 
 
@@ -153,6 +166,8 @@ export function RouteRequestFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'excludeLocations': json['exclude_locations'] == null ? undefined : ((json['exclude_locations'] as Array<any>).map(RoutingWaypointFromJSON)),
         'excludePolygons': json['exclude_polygons'] == null ? undefined : json['exclude_polygons'],
         'alternates': json['alternates'] == null ? undefined : json['alternates'],
+        'elevationInterval': json['elevation_interval'] == null ? undefined : json['elevation_interval'],
+        'roundaboutExits': json['roundabout_exits'] == null ? undefined : json['roundabout_exits'],
     };
 }
 
@@ -172,6 +187,8 @@ export function RouteRequestToJSON(value?: RouteRequest | null): any {
         'exclude_locations': value['excludeLocations'] == null ? undefined : ((value['excludeLocations'] as Array<any>).map(RoutingWaypointToJSON)),
         'exclude_polygons': value['excludePolygons'],
         'alternates': value['alternates'],
+        'elevation_interval': value['elevationInterval'],
+        'roundabout_exits': value['roundaboutExits'],
     };
 }
 

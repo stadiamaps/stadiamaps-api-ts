@@ -50,6 +50,18 @@ export interface RouteLeg {
      * @memberof RouteLeg
      */
     summary: RouteSummary;
+    /**
+     * The sampling distance between elevation values along the route. This echoes the request parameter having the same name.
+     * @type {number}
+     * @memberof RouteLeg
+     */
+    elevationInterval?: number;
+    /**
+     * An array of elevation values sampled every `elevation_interval` `units`.
+     * @type {Array<number>}
+     * @memberof RouteLeg
+     */
+    elevation?: Array<number>;
 }
 
 /**
@@ -75,6 +87,8 @@ export function RouteLegFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'maneuvers': ((json['maneuvers'] as Array<any>).map(RouteManeuverFromJSON)),
         'shape': json['shape'],
         'summary': RouteSummaryFromJSON(json['summary']),
+        'elevationInterval': json['elevation_interval'] == null ? undefined : json['elevation_interval'],
+        'elevation': json['elevation'] == null ? undefined : json['elevation'],
     };
 }
 
@@ -87,6 +101,8 @@ export function RouteLegToJSON(value?: RouteLeg | null): any {
         'maneuvers': ((value['maneuvers'] as Array<any>).map(RouteManeuverToJSON)),
         'shape': value['shape'],
         'summary': RouteSummaryToJSON(value['summary']),
+        'elevation_interval': value['elevationInterval'],
+        'elevation': value['elevation'],
     };
 }
 

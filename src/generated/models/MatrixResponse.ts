@@ -51,13 +51,13 @@ export interface MatrixResponse {
      */
     id?: string;
     /**
-     * The list of starting locations
+     * The list of starting locations determined by snapping to the nearest appropriate point on the road network for the costing model. All locations appear in the same order as the input.
      * @type {Array<Coordinate>}
      * @memberof MatrixResponse
      */
     sources: Array<Coordinate>;
     /**
-     * The list of ending locations
+     * The list of ending locations determined by snapping to the nearest appropriate point on the road network for the costing model. All locations appear in the same order as the input.
      * @type {Array<Coordinate>}
      * @memberof MatrixResponse
      */

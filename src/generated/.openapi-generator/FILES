@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/GeocodingApi.ts
 apis/GeospatialApi.ts
 apis/RoutingApi.ts

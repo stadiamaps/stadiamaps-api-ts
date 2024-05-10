@@ -250,6 +250,16 @@ describe('GeospatialApi unit tests', () => {
         expect(res.alternates?.length || 0).toEqual(1);
     });
 
+    test('route endpoint integration test with elevation', async () => {
+        const res = await api.route({routeRequest: {elevationInterval: 30, ...routeRequest}});
+
+        expect(res.id).toEqual(routeRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("miles");
+        expect(res.trip.legs.length).toEqual(1);
+        expect(res.trip.legs[0].elevation?.length || 0).toBeGreaterThan(1);
+    });
+
     test('route endpoint integration test using a special bicycle type', async () => {
         // Regression test for user-reported issue
         const hybridBicycleRouteRequest: RouteRequest = {

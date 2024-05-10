@@ -267,7 +267,7 @@ export class RoutingApi extends runtime.BaseAPI {
     }
 
     /**
-     * The time distance matrix API lets you compare travel times between a set of possible start and end points. Note that this endpoint has a limit of 22,500 elements, regardless of the costing/mode of travel. A matrix request with 3 inputs and 5 outputs has 3 x 5 = 15 elements. For example, a matrix request with 3 inputs and 5 outputs has 3 x 5 = 15 elements. This means you could send a 150 x 150 or 30 x 750 matrix request (each having 22,500 elements), but not a 500 x 500 matrix (250,000 elements).
+     * The time distance matrix API lets you compare travel times between a set of possible start and end points. See https://docs.stadiamaps.com/limits/ for documentation of our latest limits.
      * Calculate a time distance matrix for use in an optimizer.
      */
     async timeDistanceMatrixRaw(requestParameters: TimeDistanceMatrixRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MatrixResponse>> {
@@ -293,7 +293,7 @@ export class RoutingApi extends runtime.BaseAPI {
     }
 
     /**
-     * The time distance matrix API lets you compare travel times between a set of possible start and end points. Note that this endpoint has a limit of 22,500 elements, regardless of the costing/mode of travel. A matrix request with 3 inputs and 5 outputs has 3 x 5 = 15 elements. For example, a matrix request with 3 inputs and 5 outputs has 3 x 5 = 15 elements. This means you could send a 150 x 150 or 30 x 750 matrix request (each having 22,500 elements), but not a 500 x 500 matrix (250,000 elements).
+     * The time distance matrix API lets you compare travel times between a set of possible start and end points. See https://docs.stadiamaps.com/limits/ for documentation of our latest limits.
      * Calculate a time distance matrix for use in an optimizer.
      */
     async timeDistanceMatrix(requestParameters: TimeDistanceMatrixRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MatrixResponse> {
