@@ -82,9 +82,8 @@ Here's a quick usage example of a webpage that makes a geocoding query and displ
 
 ## Documentation
 
-Official documentation lives at [docs.stadiamaps.com](https://docs.stadiamaps.com/), where you can read
-both long-form prose explanations of the finer details of each endpoint and a
-compact [API reference](https://docs.stadiamaps.com/api-reference/).
+Official documentation lives at [docs.stadiamaps.com](https://docs.stadiamaps.com/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme),
+where we have both long-form prose explanations of each endpoint and an interactive [API reference](https://docs.stadiamaps.com/api-reference/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme).
 
 ## Developing
 
