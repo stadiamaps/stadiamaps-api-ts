@@ -12,46 +12,52 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const MatrixCostingModel = {
-    Auto: 'auto',
-    Bus: 'bus',
-    Taxi: 'taxi',
-    Truck: 'truck',
-    Bicycle: 'bicycle',
-    Bikeshare: 'bikeshare',
-    MotorScooter: 'motor_scooter',
-    Motorcycle: 'motorcycle',
-    Pedestrian: 'pedestrian',
-    LowSpeedVehicle: 'low_speed_vehicle'
+  Auto: "auto",
+  Bus: "bus",
+  Taxi: "taxi",
+  Truck: "truck",
+  Bicycle: "bicycle",
+  Bikeshare: "bikeshare",
+  MotorScooter: "motor_scooter",
+  Motorcycle: "motorcycle",
+  Pedestrian: "pedestrian",
+  LowSpeedVehicle: "low_speed_vehicle",
 } as const;
-export type MatrixCostingModel = typeof MatrixCostingModel[keyof typeof MatrixCostingModel];
-
+export type MatrixCostingModel =
+  (typeof MatrixCostingModel)[keyof typeof MatrixCostingModel];
 
 export function instanceOfMatrixCostingModel(value: any): boolean {
-    for (const key in MatrixCostingModel) {
-        if (Object.prototype.hasOwnProperty.call(MatrixCostingModel, key)) {
-            if ((MatrixCostingModel as Record<string, MatrixCostingModel>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in MatrixCostingModel) {
+    if (Object.prototype.hasOwnProperty.call(MatrixCostingModel, key)) {
+      if (
+        (MatrixCostingModel as Record<string, MatrixCostingModel>)[key] ===
+        value
+      ) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function MatrixCostingModelFromJSON(json: any): MatrixCostingModel {
-    return MatrixCostingModelFromJSONTyped(json, false);
+  return MatrixCostingModelFromJSONTyped(json, false);
 }
 
-export function MatrixCostingModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatrixCostingModel {
-    return json as MatrixCostingModel;
+export function MatrixCostingModelFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): MatrixCostingModel {
+  return json as MatrixCostingModel;
 }
 
-export function MatrixCostingModelToJSON(value?: MatrixCostingModel | null): any {
-    return value as any;
+export function MatrixCostingModelToJSON(
+  value?: MatrixCostingModel | null,
+): any {
+  return value as any;
 }
-

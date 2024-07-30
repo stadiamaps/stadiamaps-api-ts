@@ -12,40 +12,40 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Our database contains info from multiple sources. These identifiers can be used to either limit search results or to determine the relevance of a result.
  * @export
  */
 export const PeliasSource = {
-    Openstreetmap: 'openstreetmap',
-    Openaddresses: 'openaddresses',
-    Whosonfirst: 'whosonfirst',
-    Geonames: 'geonames'
+  Openstreetmap: "openstreetmap",
+  Openaddresses: "openaddresses",
+  Whosonfirst: "whosonfirst",
+  Geonames: "geonames",
 } as const;
-export type PeliasSource = typeof PeliasSource[keyof typeof PeliasSource];
-
+export type PeliasSource = (typeof PeliasSource)[keyof typeof PeliasSource];
 
 export function instanceOfPeliasSource(value: any): boolean {
-    for (const key in PeliasSource) {
-        if (Object.prototype.hasOwnProperty.call(PeliasSource, key)) {
-            if ((PeliasSource as Record<string, PeliasSource>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in PeliasSource) {
+    if (Object.prototype.hasOwnProperty.call(PeliasSource, key)) {
+      if ((PeliasSource as Record<string, PeliasSource>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function PeliasSourceFromJSON(json: any): PeliasSource {
-    return PeliasSourceFromJSONTyped(json, false);
+  return PeliasSourceFromJSONTyped(json, false);
 }
 
-export function PeliasSourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): PeliasSource {
-    return json as PeliasSource;
+export function PeliasSourceFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PeliasSource {
+  return json as PeliasSource;
 }
 
 export function PeliasSourceToJSON(value?: PeliasSource | null): any {
-    return value as any;
+  return value as any;
 }
-

@@ -12,159 +12,167 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CostingOptions } from './CostingOptions';
+import { mapValues } from "../runtime";
+import type { CostingOptions } from "./CostingOptions";
 import {
-    CostingOptionsFromJSON,
-    CostingOptionsFromJSONTyped,
-    CostingOptionsToJSON,
-} from './CostingOptions';
-import type { MatrixWaypoint } from './MatrixWaypoint';
+  CostingOptionsFromJSON,
+  CostingOptionsFromJSONTyped,
+  CostingOptionsToJSON,
+} from "./CostingOptions";
+import type { MatrixWaypoint } from "./MatrixWaypoint";
 import {
-    MatrixWaypointFromJSON,
-    MatrixWaypointFromJSONTyped,
-    MatrixWaypointToJSON,
-} from './MatrixWaypoint';
-import type { MatrixCostingModel } from './MatrixCostingModel';
+  MatrixWaypointFromJSON,
+  MatrixWaypointFromJSONTyped,
+  MatrixWaypointToJSON,
+} from "./MatrixWaypoint";
+import type { MatrixCostingModel } from "./MatrixCostingModel";
 import {
-    MatrixCostingModelFromJSON,
-    MatrixCostingModelFromJSONTyped,
-    MatrixCostingModelToJSON,
-} from './MatrixCostingModel';
-import type { ValhallaLanguages } from './ValhallaLanguages';
+  MatrixCostingModelFromJSON,
+  MatrixCostingModelFromJSONTyped,
+  MatrixCostingModelToJSON,
+} from "./MatrixCostingModel";
+import type { ValhallaLanguages } from "./ValhallaLanguages";
 import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
-import type { DistanceUnit } from './DistanceUnit';
+  ValhallaLanguagesFromJSON,
+  ValhallaLanguagesFromJSONTyped,
+  ValhallaLanguagesToJSON,
+} from "./ValhallaLanguages";
+import type { DistanceUnit } from "./DistanceUnit";
 import {
-    DistanceUnitFromJSON,
-    DistanceUnitFromJSONTyped,
-    DistanceUnitToJSON,
-} from './DistanceUnit';
+  DistanceUnitFromJSON,
+  DistanceUnitFromJSONTyped,
+  DistanceUnitToJSON,
+} from "./DistanceUnit";
 
 /**
- * 
+ *
  * @export
  * @interface MatrixRequest
  */
 export interface MatrixRequest {
-    /**
-     * 
-     * @type {DistanceUnit}
-     * @memberof MatrixRequest
-     */
-    units?: DistanceUnit;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof MatrixRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof MatrixRequest
-     */
-    directionsType?: MatrixRequestDirectionsTypeEnum;
-    /**
-     * An identifier to disambiguate requests (echoed by the server).
-     * @type {string}
-     * @memberof MatrixRequest
-     */
-    id?: string;
-    /**
-     * The list of starting locations
-     * @type {Array<MatrixWaypoint>}
-     * @memberof MatrixRequest
-     */
-    sources: Array<MatrixWaypoint>;
-    /**
-     * The list of ending locations
-     * @type {Array<MatrixWaypoint>}
-     * @memberof MatrixRequest
-     */
-    targets: Array<MatrixWaypoint>;
-    /**
-     * 
-     * @type {MatrixCostingModel}
-     * @memberof MatrixRequest
-     */
-    costing: MatrixCostingModel;
-    /**
-     * 
-     * @type {CostingOptions}
-     * @memberof MatrixRequest
-     */
-    costingOptions?: CostingOptions;
-    /**
-     * Only applicable to one-to-many or many-to-one requests. This defaults to all locations. When specified explicitly, this option allows a partial result to be returned. This is basically equivalent to "find the closest/best locations out of the full set." This can have a dramatic improvement for large requests.
-     * @type {number}
-     * @memberof MatrixRequest
-     */
-    matrixLocations?: number;
+  /**
+   *
+   * @type {DistanceUnit}
+   * @memberof MatrixRequest
+   */
+  units?: DistanceUnit;
+  /**
+   *
+   * @type {ValhallaLanguages}
+   * @memberof MatrixRequest
+   */
+  language?: ValhallaLanguages;
+  /**
+   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
+   * @type {string}
+   * @memberof MatrixRequest
+   */
+  directionsType?: MatrixRequestDirectionsTypeEnum;
+  /**
+   * An identifier to disambiguate requests (echoed by the server).
+   * @type {string}
+   * @memberof MatrixRequest
+   */
+  id?: string;
+  /**
+   * The list of starting locations
+   * @type {Array<MatrixWaypoint>}
+   * @memberof MatrixRequest
+   */
+  sources: Array<MatrixWaypoint>;
+  /**
+   * The list of ending locations
+   * @type {Array<MatrixWaypoint>}
+   * @memberof MatrixRequest
+   */
+  targets: Array<MatrixWaypoint>;
+  /**
+   *
+   * @type {MatrixCostingModel}
+   * @memberof MatrixRequest
+   */
+  costing: MatrixCostingModel;
+  /**
+   *
+   * @type {CostingOptions}
+   * @memberof MatrixRequest
+   */
+  costingOptions?: CostingOptions;
+  /**
+   * Only applicable to one-to-many or many-to-one requests. This defaults to all locations. When specified explicitly, this option allows a partial result to be returned. This is basically equivalent to "find the closest/best locations out of the full set." This can have a dramatic improvement for large requests.
+   * @type {number}
+   * @memberof MatrixRequest
+   */
+  matrixLocations?: number;
 }
-
 
 /**
  * @export
  */
 export const MatrixRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
+  None: "none",
+  Maneuvers: "maneuvers",
+  Instructions: "instructions",
 } as const;
-export type MatrixRequestDirectionsTypeEnum = typeof MatrixRequestDirectionsTypeEnum[keyof typeof MatrixRequestDirectionsTypeEnum];
-
+export type MatrixRequestDirectionsTypeEnum =
+  (typeof MatrixRequestDirectionsTypeEnum)[keyof typeof MatrixRequestDirectionsTypeEnum];
 
 /**
  * Check if a given object implements the MatrixRequest interface.
  */
 export function instanceOfMatrixRequest(value: object): value is MatrixRequest {
-    if (!('sources' in value) || value['sources'] === undefined) return false;
-    if (!('targets' in value) || value['targets'] === undefined) return false;
-    if (!('costing' in value) || value['costing'] === undefined) return false;
-    return true;
+  if (!("sources" in value) || value["sources"] === undefined) return false;
+  if (!("targets" in value) || value["targets"] === undefined) return false;
+  if (!("costing" in value) || value["costing"] === undefined) return false;
+  return true;
 }
 
 export function MatrixRequestFromJSON(json: any): MatrixRequest {
-    return MatrixRequestFromJSONTyped(json, false);
+  return MatrixRequestFromJSONTyped(json, false);
 }
 
-export function MatrixRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatrixRequest {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'units': json['units'] == null ? undefined : DistanceUnitFromJSON(json['units']),
-        'language': json['language'] == null ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': json['directions_type'] == null ? undefined : json['directions_type'],
-        'id': json['id'] == null ? undefined : json['id'],
-        'sources': ((json['sources'] as Array<any>).map(MatrixWaypointFromJSON)),
-        'targets': ((json['targets'] as Array<any>).map(MatrixWaypointFromJSON)),
-        'costing': MatrixCostingModelFromJSON(json['costing']),
-        'costingOptions': json['costing_options'] == null ? undefined : CostingOptionsFromJSON(json['costing_options']),
-        'matrixLocations': json['matrix_locations'] == null ? undefined : json['matrix_locations'],
-    };
+export function MatrixRequestFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): MatrixRequest {
+  if (json == null) {
+    return json;
+  }
+  return {
+    units:
+      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
+    language:
+      json["language"] == null
+        ? undefined
+        : ValhallaLanguagesFromJSON(json["language"]),
+    directionsType:
+      json["directions_type"] == null ? undefined : json["directions_type"],
+    id: json["id"] == null ? undefined : json["id"],
+    sources: (json["sources"] as Array<any>).map(MatrixWaypointFromJSON),
+    targets: (json["targets"] as Array<any>).map(MatrixWaypointFromJSON),
+    costing: MatrixCostingModelFromJSON(json["costing"]),
+    costingOptions:
+      json["costing_options"] == null
+        ? undefined
+        : CostingOptionsFromJSON(json["costing_options"]),
+    matrixLocations:
+      json["matrix_locations"] == null ? undefined : json["matrix_locations"],
+  };
 }
 
 export function MatrixRequestToJSON(value?: MatrixRequest | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'units': DistanceUnitToJSON(value['units']),
-        'language': ValhallaLanguagesToJSON(value['language']),
-        'directions_type': value['directionsType'],
-        'id': value['id'],
-        'sources': ((value['sources'] as Array<any>).map(MatrixWaypointToJSON)),
-        'targets': ((value['targets'] as Array<any>).map(MatrixWaypointToJSON)),
-        'costing': MatrixCostingModelToJSON(value['costing']),
-        'costing_options': CostingOptionsToJSON(value['costingOptions']),
-        'matrix_locations': value['matrixLocations'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    units: DistanceUnitToJSON(value["units"]),
+    language: ValhallaLanguagesToJSON(value["language"]),
+    directions_type: value["directionsType"],
+    id: value["id"],
+    sources: (value["sources"] as Array<any>).map(MatrixWaypointToJSON),
+    targets: (value["targets"] as Array<any>).map(MatrixWaypointToJSON),
+    costing: MatrixCostingModelToJSON(value["costing"]),
+    costing_options: CostingOptionsToJSON(value["costingOptions"]),
+    matrix_locations: value["matrixLocations"],
+  };
 }
-

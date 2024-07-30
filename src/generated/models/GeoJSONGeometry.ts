@@ -12,69 +12,83 @@
  * Do not edit the class manually.
  */
 
-import type { GeoJSONLineString } from './GeoJSONLineString';
+import type { GeoJSONLineString } from "./GeoJSONLineString";
 import {
-    instanceOfGeoJSONLineString,
-    GeoJSONLineStringFromJSON,
-    GeoJSONLineStringFromJSONTyped,
-    GeoJSONLineStringToJSON,
-} from './GeoJSONLineString';
-import type { GeoJSONPoint } from './GeoJSONPoint';
+  instanceOfGeoJSONLineString,
+  GeoJSONLineStringFromJSON,
+  GeoJSONLineStringFromJSONTyped,
+  GeoJSONLineStringToJSON,
+} from "./GeoJSONLineString";
+import type { GeoJSONPoint } from "./GeoJSONPoint";
 import {
-    instanceOfGeoJSONPoint,
-    GeoJSONPointFromJSON,
-    GeoJSONPointFromJSONTyped,
-    GeoJSONPointToJSON,
-} from './GeoJSONPoint';
-import type { GeoJSONPolygon } from './GeoJSONPolygon';
+  instanceOfGeoJSONPoint,
+  GeoJSONPointFromJSON,
+  GeoJSONPointFromJSONTyped,
+  GeoJSONPointToJSON,
+} from "./GeoJSONPoint";
+import type { GeoJSONPolygon } from "./GeoJSONPolygon";
 import {
-    instanceOfGeoJSONPolygon,
-    GeoJSONPolygonFromJSON,
-    GeoJSONPolygonFromJSONTyped,
-    GeoJSONPolygonToJSON,
-} from './GeoJSONPolygon';
+  instanceOfGeoJSONPolygon,
+  GeoJSONPolygonFromJSON,
+  GeoJSONPolygonFromJSONTyped,
+  GeoJSONPolygonToJSON,
+} from "./GeoJSONPolygon";
 
 /**
  * @type GeoJSONGeometry
- * 
+ *
  * @export
  */
-export type GeoJSONGeometry = { type: 'LineString' } & GeoJSONLineString | { type: 'Point' } & GeoJSONPoint | { type: 'Polygon' } & GeoJSONPolygon;
+export type GeoJSONGeometry =
+  | ({ type: "LineString" } & GeoJSONLineString)
+  | ({ type: "Point" } & GeoJSONPoint)
+  | ({ type: "Polygon" } & GeoJSONPolygon);
 
 export function GeoJSONGeometryFromJSON(json: any): GeoJSONGeometry {
-    return GeoJSONGeometryFromJSONTyped(json, false);
+  return GeoJSONGeometryFromJSONTyped(json, false);
 }
 
-export function GeoJSONGeometryFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJSONGeometry {
-    if (json == null) {
-        return json;
-    }
-    switch (json['type']) {
-        case 'LineString':
-            return {...GeoJSONLineStringFromJSONTyped(json, true), type: 'LineString'};
-        case 'Point':
-            return {...GeoJSONPointFromJSONTyped(json, true), type: 'Point'};
-        case 'Polygon':
-            return {...GeoJSONPolygonFromJSONTyped(json, true), type: 'Polygon'};
-        default:
-            throw new Error(`No variant of GeoJSONGeometry exists with 'type=${json['type']}'`);
-    }
+export function GeoJSONGeometryFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeoJSONGeometry {
+  if (json == null) {
+    return json;
+  }
+  switch (json["type"]) {
+    case "LineString":
+      return Object.assign({}, GeoJSONLineStringFromJSONTyped(json, true), {
+        type: "LineString",
+      } as const);
+    case "Point":
+      return Object.assign({}, GeoJSONPointFromJSONTyped(json, true), {
+        type: "Point",
+      } as const);
+    case "Polygon":
+      return Object.assign({}, GeoJSONPolygonFromJSONTyped(json, true), {
+        type: "Polygon",
+      } as const);
+    default:
+      throw new Error(
+        `No variant of GeoJSONGeometry exists with 'type=${json["type"]}'`,
+      );
+  }
 }
 
 export function GeoJSONGeometryToJSON(value?: GeoJSONGeometry | null): any {
-    if (value == null) {
-        return value;
-    }
-    switch (value['type']) {
-        case 'LineString':
-            return GeoJSONLineStringToJSON(value);
-        case 'Point':
-            return GeoJSONPointToJSON(value);
-        case 'Polygon':
-            return GeoJSONPolygonToJSON(value);
-        default:
-            throw new Error(`No variant of GeoJSONGeometry exists with 'type=${value['type']}'`);
-    }
-
+  if (value == null) {
+    return value;
+  }
+  switch (value["type"]) {
+    case "LineString":
+      return GeoJSONLineStringToJSON(value);
+    case "Point":
+      return GeoJSONPointToJSON(value);
+    case "Polygon":
+      return GeoJSONPolygonToJSON(value);
+    default:
+      throw new Error(
+        `No variant of GeoJSONGeometry exists with 'type=${value["type"]}'`,
+      );
+  }
 }
-

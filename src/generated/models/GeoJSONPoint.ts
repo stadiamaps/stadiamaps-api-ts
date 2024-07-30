@@ -12,74 +12,74 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface GeoJSONPoint
  */
 export interface GeoJSONPoint {
-    /**
-     * 
-     * @type {string}
-     * @memberof GeoJSONPoint
-     */
-    type: GeoJSONPointTypeEnum;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof GeoJSONPoint
-     */
-    coordinates: Array<number>;
+  /**
+   *
+   * @type {string}
+   * @memberof GeoJSONPoint
+   */
+  type: GeoJSONPointTypeEnum;
+  /**
+   *
+   * @type {Array<number>}
+   * @memberof GeoJSONPoint
+   */
+  coordinates: Array<number>;
 }
-
 
 /**
  * @export
  */
 export const GeoJSONPointTypeEnum = {
-    Point: 'Point',
-    MultiPoint: 'MultiPoint',
-    LineString: 'LineString',
-    MultiLineString: 'MultiLineString',
-    Polygon: 'Polygon',
-    MultiPolygon: 'MultiPolygon'
+  Point: "Point",
+  MultiPoint: "MultiPoint",
+  LineString: "LineString",
+  MultiLineString: "MultiLineString",
+  Polygon: "Polygon",
+  MultiPolygon: "MultiPolygon",
 } as const;
-export type GeoJSONPointTypeEnum = typeof GeoJSONPointTypeEnum[keyof typeof GeoJSONPointTypeEnum];
-
+export type GeoJSONPointTypeEnum =
+  (typeof GeoJSONPointTypeEnum)[keyof typeof GeoJSONPointTypeEnum];
 
 /**
  * Check if a given object implements the GeoJSONPoint interface.
  */
 export function instanceOfGeoJSONPoint(value: object): value is GeoJSONPoint {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
-    return true;
+  if (!("type" in value) || value["type"] === undefined) return false;
+  if (!("coordinates" in value) || value["coordinates"] === undefined)
+    return false;
+  return true;
 }
 
 export function GeoJSONPointFromJSON(json: any): GeoJSONPoint {
-    return GeoJSONPointFromJSONTyped(json, false);
+  return GeoJSONPointFromJSONTyped(json, false);
 }
 
-export function GeoJSONPointFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJSONPoint {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'type': json['type'],
-        'coordinates': json['coordinates'],
-    };
+export function GeoJSONPointFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeoJSONPoint {
+  if (json == null) {
+    return json;
+  }
+  return {
+    type: json["type"],
+    coordinates: json["coordinates"],
+  };
 }
 
 export function GeoJSONPointToJSON(value?: GeoJSONPoint | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'type': value['type'],
-        'coordinates': value['coordinates'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    type: value["type"],
+    coordinates: value["coordinates"],
+  };
 }
-

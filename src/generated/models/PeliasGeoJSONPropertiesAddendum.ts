@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { PeliasGeoJSONPropertiesAddendumOsm } from './PeliasGeoJSONPropertiesAddendumOsm';
+import { mapValues } from "../runtime";
+import type { PeliasGeoJSONPropertiesAddendumOsm } from "./PeliasGeoJSONPropertiesAddendumOsm";
 import {
-    PeliasGeoJSONPropertiesAddendumOsmFromJSON,
-    PeliasGeoJSONPropertiesAddendumOsmFromJSONTyped,
-    PeliasGeoJSONPropertiesAddendumOsmToJSON,
-} from './PeliasGeoJSONPropertiesAddendumOsm';
+  PeliasGeoJSONPropertiesAddendumOsmFromJSON,
+  PeliasGeoJSONPropertiesAddendumOsmFromJSONTyped,
+  PeliasGeoJSONPropertiesAddendumOsmToJSON,
+} from "./PeliasGeoJSONPropertiesAddendumOsm";
 
 /**
  * Optional additional information from the underlying data source (ex: OSM). This includes select fields. The most useful fields are mapped in the definition here, but others may be available.
@@ -26,45 +26,54 @@ import {
  * @interface PeliasGeoJSONPropertiesAddendum
  */
 export interface PeliasGeoJSONPropertiesAddendum {
-    [key: string]: any | any;
-    /**
-     * 
-     * @type {PeliasGeoJSONPropertiesAddendumOsm}
-     * @memberof PeliasGeoJSONPropertiesAddendum
-     */
-    osm?: PeliasGeoJSONPropertiesAddendumOsm;
+  [key: string]: any | any;
+  /**
+   *
+   * @type {PeliasGeoJSONPropertiesAddendumOsm}
+   * @memberof PeliasGeoJSONPropertiesAddendum
+   */
+  osm?: PeliasGeoJSONPropertiesAddendumOsm;
 }
 
 /**
  * Check if a given object implements the PeliasGeoJSONPropertiesAddendum interface.
  */
-export function instanceOfPeliasGeoJSONPropertiesAddendum(value: object): value is PeliasGeoJSONPropertiesAddendum {
-    return true;
+export function instanceOfPeliasGeoJSONPropertiesAddendum(
+  value: object,
+): value is PeliasGeoJSONPropertiesAddendum {
+  return true;
 }
 
-export function PeliasGeoJSONPropertiesAddendumFromJSON(json: any): PeliasGeoJSONPropertiesAddendum {
-    return PeliasGeoJSONPropertiesAddendumFromJSONTyped(json, false);
+export function PeliasGeoJSONPropertiesAddendumFromJSON(
+  json: any,
+): PeliasGeoJSONPropertiesAddendum {
+  return PeliasGeoJSONPropertiesAddendumFromJSONTyped(json, false);
 }
 
-export function PeliasGeoJSONPropertiesAddendumFromJSONTyped(json: any, ignoreDiscriminator: boolean): PeliasGeoJSONPropertiesAddendum {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-            ...json,
-        'osm': json['osm'] == null ? undefined : PeliasGeoJSONPropertiesAddendumOsmFromJSON(json['osm']),
-    };
+export function PeliasGeoJSONPropertiesAddendumFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PeliasGeoJSONPropertiesAddendum {
+  if (json == null) {
+    return json;
+  }
+  return {
+    ...json,
+    osm:
+      json["osm"] == null
+        ? undefined
+        : PeliasGeoJSONPropertiesAddendumOsmFromJSON(json["osm"]),
+  };
 }
 
-export function PeliasGeoJSONPropertiesAddendumToJSON(value?: PeliasGeoJSONPropertiesAddendum | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-            ...value,
-        'osm': PeliasGeoJSONPropertiesAddendumOsmToJSON(value['osm']),
-    };
+export function PeliasGeoJSONPropertiesAddendumToJSON(
+  value?: PeliasGeoJSONPropertiesAddendum | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    ...value,
+    osm: PeliasGeoJSONPropertiesAddendumOsmToJSON(value["osm"]),
+  };
 }
-

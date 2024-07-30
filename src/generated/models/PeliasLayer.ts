@@ -12,10 +12,9 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Our database is organized into several layers (in the GIS sense of the term) as follows:
- * 
+ *
  * - `venue`: Points of interest, businesses, and things with walls
  * - `address`: Places with a street address
  * - `street`: Streets, roads, highways
@@ -32,55 +31,56 @@
  * - `coarse`: An alias for simultaneously using all administrative layers (everything except `venue` and `address`)
  * - `marinearea`: Places with fishes and boats.
  * - `ocean`: A really big marine area.
- * 
+ *
  * @export
  */
 export const PeliasLayer = {
-    Venue: 'venue',
-    Address: 'address',
-    Street: 'street',
-    Country: 'country',
-    Macroregion: 'macroregion',
-    Region: 'region',
-    Macrocounty: 'macrocounty',
-    County: 'county',
-    Locality: 'locality',
-    Localadmin: 'localadmin',
-    Borough: 'borough',
-    Neighbourhood: 'neighbourhood',
-    Postalcode: 'postalcode',
-    Coarse: 'coarse',
-    Dependency: 'dependency',
-    Macrohood: 'macrohood',
-    Marinearea: 'marinearea',
-    Disputed: 'disputed',
-    Empire: 'empire',
-    Continent: 'continent',
-    Ocean: 'ocean'
+  Venue: "venue",
+  Address: "address",
+  Street: "street",
+  Country: "country",
+  Macroregion: "macroregion",
+  Region: "region",
+  Macrocounty: "macrocounty",
+  County: "county",
+  Locality: "locality",
+  Localadmin: "localadmin",
+  Borough: "borough",
+  Neighbourhood: "neighbourhood",
+  Postalcode: "postalcode",
+  Coarse: "coarse",
+  Dependency: "dependency",
+  Macrohood: "macrohood",
+  Marinearea: "marinearea",
+  Disputed: "disputed",
+  Empire: "empire",
+  Continent: "continent",
+  Ocean: "ocean",
 } as const;
-export type PeliasLayer = typeof PeliasLayer[keyof typeof PeliasLayer];
-
+export type PeliasLayer = (typeof PeliasLayer)[keyof typeof PeliasLayer];
 
 export function instanceOfPeliasLayer(value: any): boolean {
-    for (const key in PeliasLayer) {
-        if (Object.prototype.hasOwnProperty.call(PeliasLayer, key)) {
-            if ((PeliasLayer as Record<string, PeliasLayer>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in PeliasLayer) {
+    if (Object.prototype.hasOwnProperty.call(PeliasLayer, key)) {
+      if ((PeliasLayer as Record<string, PeliasLayer>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function PeliasLayerFromJSON(json: any): PeliasLayer {
-    return PeliasLayerFromJSONTyped(json, false);
+  return PeliasLayerFromJSONTyped(json, false);
 }
 
-export function PeliasLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): PeliasLayer {
-    return json as PeliasLayer;
+export function PeliasLayerFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PeliasLayer {
+  return json as PeliasLayer;
 }
 
 export function PeliasLayerToJSON(value?: PeliasLayer | null): any {
-    return value as any;
+  return value as any;
 }
-

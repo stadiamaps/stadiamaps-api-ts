@@ -12,73 +12,75 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface GeocodingObject
  */
 export interface GeocodingObject {
-    /**
-     * A URL containing attribution information. If you are not using Stadia Maps and our standard attribution already for your basemaps, you must include this attribution link somewhere in your website/app.
-     * @type {string}
-     * @memberof GeocodingObject
-     */
-    attribution?: string;
-    /**
-     * Technical details of the query. This is most useful for debugging during development. See the full example for the list of properties; these should be self-explanatory, so we don't enumerate them in the spec.
-     * @type {{ [key: string]: any; }}
-     * @memberof GeocodingObject
-     */
-    query?: { [key: string]: any; };
-    /**
-     * An array of non-critical warnings. This is normally for informational/debugging purposes and not a serious problem.
-     * @type {Array<string>}
-     * @memberof GeocodingObject
-     */
-    warnings?: Array<string>;
-    /**
-     * An array of more serious errors (for example, omitting a required parameter). Don’t ignore these.
-     * @type {Array<string>}
-     * @memberof GeocodingObject
-     */
-    errors?: Array<string>;
+  /**
+   * A URL containing attribution information. If you are not using Stadia Maps and our standard attribution already for your basemaps, you must include this attribution link somewhere in your website/app.
+   * @type {string}
+   * @memberof GeocodingObject
+   */
+  attribution?: string;
+  /**
+   * Technical details of the query. This is most useful for debugging during development. See the full example for the list of properties; these should be self-explanatory, so we don't enumerate them in the spec.
+   * @type {{ [key: string]: any; }}
+   * @memberof GeocodingObject
+   */
+  query?: { [key: string]: any };
+  /**
+   * An array of non-critical warnings. This is normally for informational/debugging purposes and not a serious problem.
+   * @type {Array<string>}
+   * @memberof GeocodingObject
+   */
+  warnings?: Array<string>;
+  /**
+   * An array of more serious errors (for example, omitting a required parameter). Don’t ignore these.
+   * @type {Array<string>}
+   * @memberof GeocodingObject
+   */
+  errors?: Array<string>;
 }
 
 /**
  * Check if a given object implements the GeocodingObject interface.
  */
-export function instanceOfGeocodingObject(value: object): value is GeocodingObject {
-    return true;
+export function instanceOfGeocodingObject(
+  value: object,
+): value is GeocodingObject {
+  return true;
 }
 
 export function GeocodingObjectFromJSON(json: any): GeocodingObject {
-    return GeocodingObjectFromJSONTyped(json, false);
+  return GeocodingObjectFromJSONTyped(json, false);
 }
 
-export function GeocodingObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeocodingObject {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'attribution': json['attribution'] == null ? undefined : json['attribution'],
-        'query': json['query'] == null ? undefined : json['query'],
-        'warnings': json['warnings'] == null ? undefined : json['warnings'],
-        'errors': json['errors'] == null ? undefined : json['errors'],
-    };
+export function GeocodingObjectFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeocodingObject {
+  if (json == null) {
+    return json;
+  }
+  return {
+    attribution: json["attribution"] == null ? undefined : json["attribution"],
+    query: json["query"] == null ? undefined : json["query"],
+    warnings: json["warnings"] == null ? undefined : json["warnings"],
+    errors: json["errors"] == null ? undefined : json["errors"],
+  };
 }
 
 export function GeocodingObjectToJSON(value?: GeocodingObject | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'attribution': value['attribution'],
-        'query': value['query'],
-        'warnings': value['warnings'],
-        'errors': value['errors'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    attribution: value["attribution"],
+    query: value["query"],
+    warnings: value["warnings"],
+    errors: value["errors"],
+  };
 }
-

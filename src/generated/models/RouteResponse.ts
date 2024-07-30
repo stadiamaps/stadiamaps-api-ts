@@ -12,79 +12,89 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { RouteResponseAlternatesInner } from './RouteResponseAlternatesInner';
+import { mapValues } from "../runtime";
+import type { RouteResponseAlternatesInner } from "./RouteResponseAlternatesInner";
 import {
-    RouteResponseAlternatesInnerFromJSON,
-    RouteResponseAlternatesInnerFromJSONTyped,
-    RouteResponseAlternatesInnerToJSON,
-} from './RouteResponseAlternatesInner';
-import type { RouteTrip } from './RouteTrip';
+  RouteResponseAlternatesInnerFromJSON,
+  RouteResponseAlternatesInnerFromJSONTyped,
+  RouteResponseAlternatesInnerToJSON,
+} from "./RouteResponseAlternatesInner";
+import type { RouteTrip } from "./RouteTrip";
 import {
-    RouteTripFromJSON,
-    RouteTripFromJSONTyped,
-    RouteTripToJSON,
-} from './RouteTrip';
+  RouteTripFromJSON,
+  RouteTripFromJSONTyped,
+  RouteTripToJSON,
+} from "./RouteTrip";
 
 /**
- * 
+ *
  * @export
  * @interface RouteResponse
  */
 export interface RouteResponse {
-    /**
-     * An identifier to disambiguate requests (echoed by the server).
-     * @type {string}
-     * @memberof RouteResponse
-     */
-    id?: string;
-    /**
-     * 
-     * @type {RouteTrip}
-     * @memberof RouteResponse
-     */
-    trip: RouteTrip;
-    /**
-     * 
-     * @type {Array<RouteResponseAlternatesInner>}
-     * @memberof RouteResponse
-     */
-    alternates?: Array<RouteResponseAlternatesInner>;
+  /**
+   * An identifier to disambiguate requests (echoed by the server).
+   * @type {string}
+   * @memberof RouteResponse
+   */
+  id?: string;
+  /**
+   *
+   * @type {RouteTrip}
+   * @memberof RouteResponse
+   */
+  trip: RouteTrip;
+  /**
+   *
+   * @type {Array<RouteResponseAlternatesInner>}
+   * @memberof RouteResponse
+   */
+  alternates?: Array<RouteResponseAlternatesInner>;
 }
 
 /**
  * Check if a given object implements the RouteResponse interface.
  */
 export function instanceOfRouteResponse(value: object): value is RouteResponse {
-    if (!('trip' in value) || value['trip'] === undefined) return false;
-    return true;
+  if (!("trip" in value) || value["trip"] === undefined) return false;
+  return true;
 }
 
 export function RouteResponseFromJSON(json: any): RouteResponse {
-    return RouteResponseFromJSONTyped(json, false);
+  return RouteResponseFromJSONTyped(json, false);
 }
 
-export function RouteResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): RouteResponse {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'id': json['id'] == null ? undefined : json['id'],
-        'trip': RouteTripFromJSON(json['trip']),
-        'alternates': json['alternates'] == null ? undefined : ((json['alternates'] as Array<any>).map(RouteResponseAlternatesInnerFromJSON)),
-    };
+export function RouteResponseFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): RouteResponse {
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"] == null ? undefined : json["id"],
+    trip: RouteTripFromJSON(json["trip"]),
+    alternates:
+      json["alternates"] == null
+        ? undefined
+        : (json["alternates"] as Array<any>).map(
+            RouteResponseAlternatesInnerFromJSON,
+          ),
+  };
 }
 
 export function RouteResponseToJSON(value?: RouteResponse | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'id': value['id'],
-        'trip': RouteTripToJSON(value['trip']),
-        'alternates': value['alternates'] == null ? undefined : ((value['alternates'] as Array<any>).map(RouteResponseAlternatesInnerToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    trip: RouteTripToJSON(value["trip"]),
+    alternates:
+      value["alternates"] == null
+        ? undefined
+        : (value["alternates"] as Array<any>).map(
+            RouteResponseAlternatesInnerToJSON,
+          ),
+  };
 }
-

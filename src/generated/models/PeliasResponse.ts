@@ -12,80 +12,84 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { PeliasGeoJSONFeature } from './PeliasGeoJSONFeature';
+import { mapValues } from "../runtime";
+import type { PeliasGeoJSONFeature } from "./PeliasGeoJSONFeature";
 import {
-    PeliasGeoJSONFeatureFromJSON,
-    PeliasGeoJSONFeatureFromJSONTyped,
-    PeliasGeoJSONFeatureToJSON,
-} from './PeliasGeoJSONFeature';
-import type { GeocodingObject } from './GeocodingObject';
+  PeliasGeoJSONFeatureFromJSON,
+  PeliasGeoJSONFeatureFromJSONTyped,
+  PeliasGeoJSONFeatureToJSON,
+} from "./PeliasGeoJSONFeature";
+import type { GeocodingObject } from "./GeocodingObject";
 import {
-    GeocodingObjectFromJSON,
-    GeocodingObjectFromJSONTyped,
-    GeocodingObjectToJSON,
-} from './GeocodingObject';
+  GeocodingObjectFromJSON,
+  GeocodingObjectFromJSONTyped,
+  GeocodingObjectToJSON,
+} from "./GeocodingObject";
 
 /**
- * 
+ *
  * @export
  * @interface PeliasResponse
  */
 export interface PeliasResponse {
-    /**
-     * 
-     * @type {GeocodingObject}
-     * @memberof PeliasResponse
-     */
-    geocoding: GeocodingObject;
-    /**
-     * An array of 4 floating point numbers representing the (W, S, E, N) extremes of the features found.
-     * @type {Array<number>}
-     * @memberof PeliasResponse
-     */
-    bbox?: Array<number>;
-    /**
-     * 
-     * @type {Array<PeliasGeoJSONFeature>}
-     * @memberof PeliasResponse
-     */
-    features: Array<PeliasGeoJSONFeature>;
+  /**
+   *
+   * @type {GeocodingObject}
+   * @memberof PeliasResponse
+   */
+  geocoding: GeocodingObject;
+  /**
+   * An array of 4 floating point numbers representing the (W, S, E, N) extremes of the features found.
+   * @type {Array<number>}
+   * @memberof PeliasResponse
+   */
+  bbox?: Array<number>;
+  /**
+   *
+   * @type {Array<PeliasGeoJSONFeature>}
+   * @memberof PeliasResponse
+   */
+  features: Array<PeliasGeoJSONFeature>;
 }
 
 /**
  * Check if a given object implements the PeliasResponse interface.
  */
-export function instanceOfPeliasResponse(value: object): value is PeliasResponse {
-    if (!('geocoding' in value) || value['geocoding'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    return true;
+export function instanceOfPeliasResponse(
+  value: object,
+): value is PeliasResponse {
+  if (!("geocoding" in value) || value["geocoding"] === undefined) return false;
+  if (!("features" in value) || value["features"] === undefined) return false;
+  return true;
 }
 
 export function PeliasResponseFromJSON(json: any): PeliasResponse {
-    return PeliasResponseFromJSONTyped(json, false);
+  return PeliasResponseFromJSONTyped(json, false);
 }
 
-export function PeliasResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PeliasResponse {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'geocoding': GeocodingObjectFromJSON(json['geocoding']),
-        'bbox': json['bbox'] == null ? undefined : json['bbox'],
-        'features': ((json['features'] as Array<any>).map(PeliasGeoJSONFeatureFromJSON)),
-    };
+export function PeliasResponseFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PeliasResponse {
+  if (json == null) {
+    return json;
+  }
+  return {
+    geocoding: GeocodingObjectFromJSON(json["geocoding"]),
+    bbox: json["bbox"] == null ? undefined : json["bbox"],
+    features: (json["features"] as Array<any>).map(
+      PeliasGeoJSONFeatureFromJSON,
+    ),
+  };
 }
 
 export function PeliasResponseToJSON(value?: PeliasResponse | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'geocoding': GeocodingObjectToJSON(value['geocoding']),
-        'bbox': value['bbox'],
-        'features': ((value['features'] as Array<any>).map(PeliasGeoJSONFeatureToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    geocoding: GeocodingObjectToJSON(value["geocoding"]),
+    bbox: value["bbox"],
+    features: (value["features"] as Array<any>).map(PeliasGeoJSONFeatureToJSON),
+  };
 }
-

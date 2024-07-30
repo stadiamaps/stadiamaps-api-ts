@@ -12,56 +12,62 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { RouteTrip } from './RouteTrip';
+import { mapValues } from "../runtime";
+import type { RouteTrip } from "./RouteTrip";
 import {
-    RouteTripFromJSON,
-    RouteTripFromJSONTyped,
-    RouteTripToJSON,
-} from './RouteTrip';
+  RouteTripFromJSON,
+  RouteTripFromJSONTyped,
+  RouteTripToJSON,
+} from "./RouteTrip";
 
 /**
- * 
+ *
  * @export
  * @interface RouteResponseAlternatesInner
  */
 export interface RouteResponseAlternatesInner {
-    /**
-     * 
-     * @type {RouteTrip}
-     * @memberof RouteResponseAlternatesInner
-     */
-    trip?: RouteTrip;
+  /**
+   *
+   * @type {RouteTrip}
+   * @memberof RouteResponseAlternatesInner
+   */
+  trip?: RouteTrip;
 }
 
 /**
  * Check if a given object implements the RouteResponseAlternatesInner interface.
  */
-export function instanceOfRouteResponseAlternatesInner(value: object): value is RouteResponseAlternatesInner {
-    return true;
+export function instanceOfRouteResponseAlternatesInner(
+  value: object,
+): value is RouteResponseAlternatesInner {
+  return true;
 }
 
-export function RouteResponseAlternatesInnerFromJSON(json: any): RouteResponseAlternatesInner {
-    return RouteResponseAlternatesInnerFromJSONTyped(json, false);
+export function RouteResponseAlternatesInnerFromJSON(
+  json: any,
+): RouteResponseAlternatesInner {
+  return RouteResponseAlternatesInnerFromJSONTyped(json, false);
 }
 
-export function RouteResponseAlternatesInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): RouteResponseAlternatesInner {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'trip': json['trip'] == null ? undefined : RouteTripFromJSON(json['trip']),
-    };
+export function RouteResponseAlternatesInnerFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): RouteResponseAlternatesInner {
+  if (json == null) {
+    return json;
+  }
+  return {
+    trip: json["trip"] == null ? undefined : RouteTripFromJSON(json["trip"]),
+  };
 }
 
-export function RouteResponseAlternatesInnerToJSON(value?: RouteResponseAlternatesInner | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'trip': RouteTripToJSON(value['trip']),
-    };
+export function RouteResponseAlternatesInnerToJSON(
+  value?: RouteResponseAlternatesInner | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    trip: RouteTripToJSON(value["trip"]),
+  };
 }
-

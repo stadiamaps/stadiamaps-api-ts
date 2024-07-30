@@ -12,59 +12,59 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface Coordinate
  */
 export interface Coordinate {
-    /**
-     * The latitude of a point in the shape.
-     * @type {number}
-     * @memberof Coordinate
-     */
-    lat: number;
-    /**
-     * The longitude of a point in the shape.
-     * @type {number}
-     * @memberof Coordinate
-     */
-    lon: number;
+  /**
+   * The latitude of a point in the shape.
+   * @type {number}
+   * @memberof Coordinate
+   */
+  lat: number;
+  /**
+   * The longitude of a point in the shape.
+   * @type {number}
+   * @memberof Coordinate
+   */
+  lon: number;
 }
 
 /**
  * Check if a given object implements the Coordinate interface.
  */
 export function instanceOfCoordinate(value: object): value is Coordinate {
-    if (!('lat' in value) || value['lat'] === undefined) return false;
-    if (!('lon' in value) || value['lon'] === undefined) return false;
-    return true;
+  if (!("lat" in value) || value["lat"] === undefined) return false;
+  if (!("lon" in value) || value["lon"] === undefined) return false;
+  return true;
 }
 
 export function CoordinateFromJSON(json: any): Coordinate {
-    return CoordinateFromJSONTyped(json, false);
+  return CoordinateFromJSONTyped(json, false);
 }
 
-export function CoordinateFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coordinate {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'lat': json['lat'],
-        'lon': json['lon'],
-    };
+export function CoordinateFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): Coordinate {
+  if (json == null) {
+    return json;
+  }
+  return {
+    lat: json["lat"],
+    lon: json["lon"],
+  };
 }
 
 export function CoordinateToJSON(value?: Coordinate | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'lat': value['lat'],
-        'lon': value['lon'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    lat: value["lat"],
+    lon: value["lon"],
+  };
 }
-

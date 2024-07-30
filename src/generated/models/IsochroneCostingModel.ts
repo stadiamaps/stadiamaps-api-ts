@@ -12,39 +12,48 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const IsochroneCostingModel = {
-    Auto: 'auto',
-    Bicycle: 'bicycle',
-    Pedestrian: 'pedestrian'
+  Auto: "auto",
+  Bicycle: "bicycle",
+  Pedestrian: "pedestrian",
 } as const;
-export type IsochroneCostingModel = typeof IsochroneCostingModel[keyof typeof IsochroneCostingModel];
-
+export type IsochroneCostingModel =
+  (typeof IsochroneCostingModel)[keyof typeof IsochroneCostingModel];
 
 export function instanceOfIsochroneCostingModel(value: any): boolean {
-    for (const key in IsochroneCostingModel) {
-        if (Object.prototype.hasOwnProperty.call(IsochroneCostingModel, key)) {
-            if ((IsochroneCostingModel as Record<string, IsochroneCostingModel>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in IsochroneCostingModel) {
+    if (Object.prototype.hasOwnProperty.call(IsochroneCostingModel, key)) {
+      if (
+        (IsochroneCostingModel as Record<string, IsochroneCostingModel>)[
+          key
+        ] === value
+      ) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
-export function IsochroneCostingModelFromJSON(json: any): IsochroneCostingModel {
-    return IsochroneCostingModelFromJSONTyped(json, false);
+export function IsochroneCostingModelFromJSON(
+  json: any,
+): IsochroneCostingModel {
+  return IsochroneCostingModelFromJSONTyped(json, false);
 }
 
-export function IsochroneCostingModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): IsochroneCostingModel {
-    return json as IsochroneCostingModel;
+export function IsochroneCostingModelFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): IsochroneCostingModel {
+  return json as IsochroneCostingModel;
 }
 
-export function IsochroneCostingModelToJSON(value?: IsochroneCostingModel | null): any {
-    return value as any;
+export function IsochroneCostingModelToJSON(
+  value?: IsochroneCostingModel | null,
+): any {
+  return value as any;
 }
-

@@ -12,65 +12,68 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const ValhallaLanguages = {
-    BgBg: 'bg-BG',
-    CaEs: 'ca-ES',
-    CsCz: 'cs-CZ',
-    DaDk: 'da-DK',
-    DeDe: 'de-DE',
-    ElGr: 'el-GR',
-    EnGb: 'en-GB',
-    EnUsXPirate: 'en-US-x-pirate',
-    EnUs: 'en-US',
-    EsEs: 'es-ES',
-    EtEe: 'et-EE',
-    FiFi: 'fi-FI',
-    FrFr: 'fr-FR',
-    HiIn: 'hi-IN',
-    HuHu: 'hu-HU',
-    ItIt: 'it-IT',
-    JaJp: 'ja-JP',
-    NbNo: 'nb-NO',
-    NlNl: 'nl-NL',
-    PlPl: 'pl-PL',
-    PtBr: 'pt-BR',
-    PtPt: 'pt-PT',
-    RoRo: 'ro-RO',
-    RuRu: 'ru-RU',
-    SkSk: 'sk-SK',
-    SlSi: 'sl-SI',
-    SvSe: 'sv-SE',
-    TrTr: 'tr-TR',
-    UkUa: 'uk-UA'
+  BgBg: "bg-BG",
+  CaEs: "ca-ES",
+  CsCz: "cs-CZ",
+  DaDk: "da-DK",
+  DeDe: "de-DE",
+  ElGr: "el-GR",
+  EnGb: "en-GB",
+  EnUsXPirate: "en-US-x-pirate",
+  EnUs: "en-US",
+  EsEs: "es-ES",
+  EtEe: "et-EE",
+  FiFi: "fi-FI",
+  FrFr: "fr-FR",
+  HiIn: "hi-IN",
+  HuHu: "hu-HU",
+  ItIt: "it-IT",
+  JaJp: "ja-JP",
+  NbNo: "nb-NO",
+  NlNl: "nl-NL",
+  PlPl: "pl-PL",
+  PtBr: "pt-BR",
+  PtPt: "pt-PT",
+  RoRo: "ro-RO",
+  RuRu: "ru-RU",
+  SkSk: "sk-SK",
+  SlSi: "sl-SI",
+  SvSe: "sv-SE",
+  TrTr: "tr-TR",
+  UkUa: "uk-UA",
 } as const;
-export type ValhallaLanguages = typeof ValhallaLanguages[keyof typeof ValhallaLanguages];
-
+export type ValhallaLanguages =
+  (typeof ValhallaLanguages)[keyof typeof ValhallaLanguages];
 
 export function instanceOfValhallaLanguages(value: any): boolean {
-    for (const key in ValhallaLanguages) {
-        if (Object.prototype.hasOwnProperty.call(ValhallaLanguages, key)) {
-            if ((ValhallaLanguages as Record<string, ValhallaLanguages>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in ValhallaLanguages) {
+    if (Object.prototype.hasOwnProperty.call(ValhallaLanguages, key)) {
+      if (
+        (ValhallaLanguages as Record<string, ValhallaLanguages>)[key] === value
+      ) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function ValhallaLanguagesFromJSON(json: any): ValhallaLanguages {
-    return ValhallaLanguagesFromJSONTyped(json, false);
+  return ValhallaLanguagesFromJSONTyped(json, false);
 }
 
-export function ValhallaLanguagesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValhallaLanguages {
-    return json as ValhallaLanguages;
+export function ValhallaLanguagesFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ValhallaLanguages {
+  return json as ValhallaLanguages;
 }
 
 export function ValhallaLanguagesToJSON(value?: ValhallaLanguages | null): any {
-    return value as any;
+  return value as any;
 }
-

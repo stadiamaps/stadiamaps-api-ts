@@ -12,39 +12,40 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * The directions in which the edge is traversable.
  * @export
  */
 export const Traversability = {
-    Forward: 'forward',
-    Backward: 'backward',
-    Both: 'both'
+  Forward: "forward",
+  Backward: "backward",
+  Both: "both",
 } as const;
-export type Traversability = typeof Traversability[keyof typeof Traversability];
-
+export type Traversability =
+  (typeof Traversability)[keyof typeof Traversability];
 
 export function instanceOfTraversability(value: any): boolean {
-    for (const key in Traversability) {
-        if (Object.prototype.hasOwnProperty.call(Traversability, key)) {
-            if ((Traversability as Record<string, Traversability>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in Traversability) {
+    if (Object.prototype.hasOwnProperty.call(Traversability, key)) {
+      if ((Traversability as Record<string, Traversability>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function TraversabilityFromJSON(json: any): Traversability {
-    return TraversabilityFromJSONTyped(json, false);
+  return TraversabilityFromJSONTyped(json, false);
 }
 
-export function TraversabilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): Traversability {
-    return json as Traversability;
+export function TraversabilityFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): Traversability {
+  return json as Traversability;
 }
 
 export function TraversabilityToJSON(value?: Traversability | null): any {
-    return value as any;
+  return value as any;
 }
-

@@ -12,95 +12,95 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface RouteSummary
  */
 export interface RouteSummary {
-    /**
-     * The estimated travel time, in seconds
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    time: number;
-    /**
-     * The estimated travel distance, in `units` (km or mi)
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    length: number;
-    /**
-     * The minimum latitude of the bounding box containing the route.
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    minLat: number;
-    /**
-     * The maximum latitude of the bounding box containing the route.
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    maxLat: number;
-    /**
-     * The minimum longitude of the bounding box containing the route.
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    minLon: number;
-    /**
-     * The maximum longitude of the bounding box containing the route.
-     * @type {number}
-     * @memberof RouteSummary
-     */
-    maxLon: number;
+  /**
+   * The estimated travel time, in seconds
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  time: number;
+  /**
+   * The estimated travel distance, in `units` (km or mi)
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  length: number;
+  /**
+   * The minimum latitude of the bounding box containing the route.
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  minLat: number;
+  /**
+   * The maximum latitude of the bounding box containing the route.
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  maxLat: number;
+  /**
+   * The minimum longitude of the bounding box containing the route.
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  minLon: number;
+  /**
+   * The maximum longitude of the bounding box containing the route.
+   * @type {number}
+   * @memberof RouteSummary
+   */
+  maxLon: number;
 }
 
 /**
  * Check if a given object implements the RouteSummary interface.
  */
 export function instanceOfRouteSummary(value: object): value is RouteSummary {
-    if (!('time' in value) || value['time'] === undefined) return false;
-    if (!('length' in value) || value['length'] === undefined) return false;
-    if (!('minLat' in value) || value['minLat'] === undefined) return false;
-    if (!('maxLat' in value) || value['maxLat'] === undefined) return false;
-    if (!('minLon' in value) || value['minLon'] === undefined) return false;
-    if (!('maxLon' in value) || value['maxLon'] === undefined) return false;
-    return true;
+  if (!("time" in value) || value["time"] === undefined) return false;
+  if (!("length" in value) || value["length"] === undefined) return false;
+  if (!("minLat" in value) || value["minLat"] === undefined) return false;
+  if (!("maxLat" in value) || value["maxLat"] === undefined) return false;
+  if (!("minLon" in value) || value["minLon"] === undefined) return false;
+  if (!("maxLon" in value) || value["maxLon"] === undefined) return false;
+  return true;
 }
 
 export function RouteSummaryFromJSON(json: any): RouteSummary {
-    return RouteSummaryFromJSONTyped(json, false);
+  return RouteSummaryFromJSONTyped(json, false);
 }
 
-export function RouteSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): RouteSummary {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'time': json['time'],
-        'length': json['length'],
-        'minLat': json['min_lat'],
-        'maxLat': json['max_lat'],
-        'minLon': json['min_lon'],
-        'maxLon': json['max_lon'],
-    };
+export function RouteSummaryFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): RouteSummary {
+  if (json == null) {
+    return json;
+  }
+  return {
+    time: json["time"],
+    length: json["length"],
+    minLat: json["min_lat"],
+    maxLat: json["max_lat"],
+    minLon: json["min_lon"],
+    maxLon: json["max_lon"],
+  };
 }
 
 export function RouteSummaryToJSON(value?: RouteSummary | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'time': value['time'],
-        'length': value['length'],
-        'min_lat': value['minLat'],
-        'max_lat': value['maxLat'],
-        'min_lon': value['minLon'],
-        'max_lon': value['maxLon'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    time: value["time"],
+    length: value["length"],
+    min_lat: value["minLat"],
+    max_lat: value["maxLat"],
+    min_lon: value["minLon"],
+    max_lon: value["maxLon"],
+  };
 }
-

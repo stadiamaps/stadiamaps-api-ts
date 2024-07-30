@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { IntersectingEdge } from './IntersectingEdge';
+import { mapValues } from "../runtime";
+import type { IntersectingEdge } from "./IntersectingEdge";
 import {
-    IntersectingEdgeFromJSON,
-    IntersectingEdgeFromJSONTyped,
-    IntersectingEdgeToJSON,
-} from './IntersectingEdge';
-import type { NodeType } from './NodeType';
+  IntersectingEdgeFromJSON,
+  IntersectingEdgeFromJSONTyped,
+  IntersectingEdgeToJSON,
+} from "./IntersectingEdge";
+import type { NodeType } from "./NodeType";
 import {
-    NodeTypeFromJSON,
-    NodeTypeFromJSONTyped,
-    NodeTypeToJSON,
-} from './NodeType';
+  NodeTypeFromJSON,
+  NodeTypeFromJSONTyped,
+  NodeTypeToJSON,
+} from "./NodeType";
 
 /**
  * The node at the end of this edge
@@ -32,82 +32,93 @@ import {
  * @interface EndNode
  */
 export interface EndNode {
-    /**
-     * A set of edges intersecting this node.
-     * @type {Array<IntersectingEdge>}
-     * @memberof EndNode
-     */
-    intersectingEdges?: Array<IntersectingEdge>;
-    /**
-     * The elapsed time along the path to arrive at this node.
-     * @type {number}
-     * @memberof EndNode
-     */
-    elapsedTime?: number;
-    /**
-     * The index into the `admins` list in which this node lies.
-     * @type {number}
-     * @memberof EndNode
-     */
-    adminIndex?: number;
-    /**
-     * 
-     * @type {NodeType}
-     * @memberof EndNode
-     */
-    type?: NodeType;
-    /**
-     * True if this node is a fork.
-     * @type {boolean}
-     * @memberof EndNode
-     */
-    fork?: boolean;
-    /**
-     * The canonical TZDB identifier for the node's time zone.
-     * @type {string}
-     * @memberof EndNode
-     */
-    timeZone?: string;
+  /**
+   * A set of edges intersecting this node.
+   * @type {Array<IntersectingEdge>}
+   * @memberof EndNode
+   */
+  intersectingEdges?: Array<IntersectingEdge>;
+  /**
+   * The elapsed time along the path to arrive at this node.
+   * @type {number}
+   * @memberof EndNode
+   */
+  elapsedTime?: number;
+  /**
+   * The index into the `admins` list in which this node lies.
+   * @type {number}
+   * @memberof EndNode
+   */
+  adminIndex?: number;
+  /**
+   *
+   * @type {NodeType}
+   * @memberof EndNode
+   */
+  type?: NodeType;
+  /**
+   * True if this node is a fork.
+   * @type {boolean}
+   * @memberof EndNode
+   */
+  fork?: boolean;
+  /**
+   * The canonical TZDB identifier for the node's time zone.
+   * @type {string}
+   * @memberof EndNode
+   */
+  timeZone?: string;
 }
 
 /**
  * Check if a given object implements the EndNode interface.
  */
 export function instanceOfEndNode(value: object): value is EndNode {
-    return true;
+  return true;
 }
 
 export function EndNodeFromJSON(json: any): EndNode {
-    return EndNodeFromJSONTyped(json, false);
+  return EndNodeFromJSONTyped(json, false);
 }
 
-export function EndNodeFromJSONTyped(json: any, ignoreDiscriminator: boolean): EndNode {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'intersectingEdges': json['intersecting_edges'] == null ? undefined : ((json['intersecting_edges'] as Array<any>).map(IntersectingEdgeFromJSON)),
-        'elapsedTime': json['elapsed_time'] == null ? undefined : json['elapsed_time'],
-        'adminIndex': json['admin_index'] == null ? undefined : json['admin_index'],
-        'type': json['type'] == null ? undefined : NodeTypeFromJSON(json['type']),
-        'fork': json['fork'] == null ? undefined : json['fork'],
-        'timeZone': json['time_zone'] == null ? undefined : json['time_zone'],
-    };
+export function EndNodeFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): EndNode {
+  if (json == null) {
+    return json;
+  }
+  return {
+    intersectingEdges:
+      json["intersecting_edges"] == null
+        ? undefined
+        : (json["intersecting_edges"] as Array<any>).map(
+            IntersectingEdgeFromJSON,
+          ),
+    elapsedTime:
+      json["elapsed_time"] == null ? undefined : json["elapsed_time"],
+    adminIndex: json["admin_index"] == null ? undefined : json["admin_index"],
+    type: json["type"] == null ? undefined : NodeTypeFromJSON(json["type"]),
+    fork: json["fork"] == null ? undefined : json["fork"],
+    timeZone: json["time_zone"] == null ? undefined : json["time_zone"],
+  };
 }
 
 export function EndNodeToJSON(value?: EndNode | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'intersecting_edges': value['intersectingEdges'] == null ? undefined : ((value['intersectingEdges'] as Array<any>).map(IntersectingEdgeToJSON)),
-        'elapsed_time': value['elapsedTime'],
-        'admin_index': value['adminIndex'],
-        'type': NodeTypeToJSON(value['type']),
-        'fork': value['fork'],
-        'time_zone': value['timeZone'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    intersecting_edges:
+      value["intersectingEdges"] == null
+        ? undefined
+        : (value["intersectingEdges"] as Array<any>).map(
+            IntersectingEdgeToJSON,
+          ),
+    elapsed_time: value["elapsedTime"],
+    admin_index: value["adminIndex"],
+    type: NodeTypeToJSON(value["type"]),
+    fork: value["fork"],
+    time_zone: value["timeZone"],
+  };
 }
-

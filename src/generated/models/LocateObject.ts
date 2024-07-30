@@ -12,94 +12,106 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { LocateEdge } from './LocateEdge';
+import { mapValues } from "../runtime";
+import type { LocateEdge } from "./LocateEdge";
 import {
-    LocateEdgeFromJSON,
-    LocateEdgeFromJSONTyped,
-    LocateEdgeToJSON,
-} from './LocateEdge';
-import type { LocateNode } from './LocateNode';
+  LocateEdgeFromJSON,
+  LocateEdgeFromJSONTyped,
+  LocateEdgeToJSON,
+} from "./LocateEdge";
+import type { LocateNode } from "./LocateNode";
 import {
-    LocateNodeFromJSON,
-    LocateNodeFromJSONTyped,
-    LocateNodeToJSON,
-} from './LocateNode';
+  LocateNodeFromJSON,
+  LocateNodeFromJSONTyped,
+  LocateNodeToJSON,
+} from "./LocateNode";
 
 /**
- * 
+ *
  * @export
  * @interface LocateObject
  */
 export interface LocateObject {
-    /**
-     * An identifier to disambiguate requests (echoed by the server).
-     * @type {string}
-     * @memberof LocateObject
-     */
-    id?: string;
-    /**
-     * The input (searched) latitude.
-     * @type {number}
-     * @memberof LocateObject
-     */
-    inputLat?: number;
-    /**
-     * The input (searched) longitude.
-     * @type {number}
-     * @memberof LocateObject
-     */
-    inputLon?: number;
-    /**
-     * 
-     * @type {Array<LocateNode>}
-     * @memberof LocateObject
-     */
-    nodes?: Array<LocateNode>;
-    /**
-     * 
-     * @type {Array<LocateEdge>}
-     * @memberof LocateObject
-     */
-    edges?: Array<LocateEdge>;
+  /**
+   * An identifier to disambiguate requests (echoed by the server).
+   * @type {string}
+   * @memberof LocateObject
+   */
+  id?: string;
+  /**
+   * The input (searched) latitude.
+   * @type {number}
+   * @memberof LocateObject
+   */
+  inputLat?: number;
+  /**
+   * The input (searched) longitude.
+   * @type {number}
+   * @memberof LocateObject
+   */
+  inputLon?: number;
+  /**
+   *
+   * @type {Array<LocateNode>}
+   * @memberof LocateObject
+   */
+  nodes?: Array<LocateNode>;
+  /**
+   *
+   * @type {Array<LocateEdge>}
+   * @memberof LocateObject
+   */
+  edges?: Array<LocateEdge>;
 }
 
 /**
  * Check if a given object implements the LocateObject interface.
  */
 export function instanceOfLocateObject(value: object): value is LocateObject {
-    return true;
+  return true;
 }
 
 export function LocateObjectFromJSON(json: any): LocateObject {
-    return LocateObjectFromJSONTyped(json, false);
+  return LocateObjectFromJSONTyped(json, false);
 }
 
-export function LocateObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): LocateObject {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'id': json['id'] == null ? undefined : json['id'],
-        'inputLat': json['input_lat'] == null ? undefined : json['input_lat'],
-        'inputLon': json['input_lon'] == null ? undefined : json['input_lon'],
-        'nodes': json['nodes'] == null ? undefined : ((json['nodes'] as Array<any>).map(LocateNodeFromJSON)),
-        'edges': json['edges'] == null ? undefined : ((json['edges'] as Array<any>).map(LocateEdgeFromJSON)),
-    };
+export function LocateObjectFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): LocateObject {
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"] == null ? undefined : json["id"],
+    inputLat: json["input_lat"] == null ? undefined : json["input_lat"],
+    inputLon: json["input_lon"] == null ? undefined : json["input_lon"],
+    nodes:
+      json["nodes"] == null
+        ? undefined
+        : (json["nodes"] as Array<any>).map(LocateNodeFromJSON),
+    edges:
+      json["edges"] == null
+        ? undefined
+        : (json["edges"] as Array<any>).map(LocateEdgeFromJSON),
+  };
 }
 
 export function LocateObjectToJSON(value?: LocateObject | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'id': value['id'],
-        'input_lat': value['inputLat'],
-        'input_lon': value['inputLon'],
-        'nodes': value['nodes'] == null ? undefined : ((value['nodes'] as Array<any>).map(LocateNodeToJSON)),
-        'edges': value['edges'] == null ? undefined : ((value['edges'] as Array<any>).map(LocateEdgeToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    input_lat: value["inputLat"],
+    input_lon: value["inputLon"],
+    nodes:
+      value["nodes"] == null
+        ? undefined
+        : (value["nodes"] as Array<any>).map(LocateNodeToJSON),
+    edges:
+      value["edges"] == null
+        ? undefined
+        : (value["edges"] as Array<any>).map(LocateEdgeToJSON),
+  };
 }
-

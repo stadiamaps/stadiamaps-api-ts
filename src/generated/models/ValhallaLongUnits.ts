@@ -12,38 +12,41 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const ValhallaLongUnits = {
-    Miles: 'miles',
-    Kilometers: 'kilometers'
+  Miles: "miles",
+  Kilometers: "kilometers",
 } as const;
-export type ValhallaLongUnits = typeof ValhallaLongUnits[keyof typeof ValhallaLongUnits];
-
+export type ValhallaLongUnits =
+  (typeof ValhallaLongUnits)[keyof typeof ValhallaLongUnits];
 
 export function instanceOfValhallaLongUnits(value: any): boolean {
-    for (const key in ValhallaLongUnits) {
-        if (Object.prototype.hasOwnProperty.call(ValhallaLongUnits, key)) {
-            if ((ValhallaLongUnits as Record<string, ValhallaLongUnits>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in ValhallaLongUnits) {
+    if (Object.prototype.hasOwnProperty.call(ValhallaLongUnits, key)) {
+      if (
+        (ValhallaLongUnits as Record<string, ValhallaLongUnits>)[key] === value
+      ) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function ValhallaLongUnitsFromJSON(json: any): ValhallaLongUnits {
-    return ValhallaLongUnitsFromJSONTyped(json, false);
+  return ValhallaLongUnitsFromJSONTyped(json, false);
 }
 
-export function ValhallaLongUnitsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValhallaLongUnits {
-    return json as ValhallaLongUnits;
+export function ValhallaLongUnitsFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ValhallaLongUnits {
+  return json as ValhallaLongUnits;
 }
 
 export function ValhallaLongUnitsToJSON(value?: ValhallaLongUnits | null): any {
-    return value as any;
+  return value as any;
 }
-

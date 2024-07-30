@@ -12,79 +12,81 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface MatrixDistance
  */
 export interface MatrixDistance {
-    /**
-     * The distance (in `units`) between the location in `sources` at `from_index` and the location in `targets` at `to_index`.
-     * This value may be 0 in the case that the source and destination are the same, and `null` if no route was found between the locations.
-     * @type {number}
-     * @memberof MatrixDistance
-     */
-    distance: number | null;
-    /**
-     * The travel time (in seconds) between the location in `sources` at `from_index` and the location in `targets` at `to_index`.
-     * This value may be 0 in the case that the source and destination are the same, and `null` if no route was found between the locations.
-     * @type {number}
-     * @memberof MatrixDistance
-     */
-    time: number | null;
-    /**
-     * The index of the start location in the `sources` array.
-     * @type {number}
-     * @memberof MatrixDistance
-     */
-    fromIndex: number;
-    /**
-     * The index of the end location in the `targets` array.
-     * @type {number}
-     * @memberof MatrixDistance
-     */
-    toIndex: number;
+  /**
+   * The distance (in `units`) between the location in `sources` at `from_index` and the location in `targets` at `to_index`.
+   * This value may be 0 in the case that the source and destination are the same, and `null` if no route was found between the locations.
+   * @type {number}
+   * @memberof MatrixDistance
+   */
+  distance: number | null;
+  /**
+   * The travel time (in seconds) between the location in `sources` at `from_index` and the location in `targets` at `to_index`.
+   * This value may be 0 in the case that the source and destination are the same, and `null` if no route was found between the locations.
+   * @type {number}
+   * @memberof MatrixDistance
+   */
+  time: number | null;
+  /**
+   * The index of the start location in the `sources` array.
+   * @type {number}
+   * @memberof MatrixDistance
+   */
+  fromIndex: number;
+  /**
+   * The index of the end location in the `targets` array.
+   * @type {number}
+   * @memberof MatrixDistance
+   */
+  toIndex: number;
 }
 
 /**
  * Check if a given object implements the MatrixDistance interface.
  */
-export function instanceOfMatrixDistance(value: object): value is MatrixDistance {
-    if (!('distance' in value) || value['distance'] === undefined) return false;
-    if (!('time' in value) || value['time'] === undefined) return false;
-    if (!('fromIndex' in value) || value['fromIndex'] === undefined) return false;
-    if (!('toIndex' in value) || value['toIndex'] === undefined) return false;
-    return true;
+export function instanceOfMatrixDistance(
+  value: object,
+): value is MatrixDistance {
+  if (!("distance" in value) || value["distance"] === undefined) return false;
+  if (!("time" in value) || value["time"] === undefined) return false;
+  if (!("fromIndex" in value) || value["fromIndex"] === undefined) return false;
+  if (!("toIndex" in value) || value["toIndex"] === undefined) return false;
+  return true;
 }
 
 export function MatrixDistanceFromJSON(json: any): MatrixDistance {
-    return MatrixDistanceFromJSONTyped(json, false);
+  return MatrixDistanceFromJSONTyped(json, false);
 }
 
-export function MatrixDistanceFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatrixDistance {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'distance': json['distance'],
-        'time': json['time'],
-        'fromIndex': json['from_index'],
-        'toIndex': json['to_index'],
-    };
+export function MatrixDistanceFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): MatrixDistance {
+  if (json == null) {
+    return json;
+  }
+  return {
+    distance: json["distance"],
+    time: json["time"],
+    fromIndex: json["from_index"],
+    toIndex: json["to_index"],
+  };
 }
 
 export function MatrixDistanceToJSON(value?: MatrixDistance | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'distance': value['distance'],
-        'time': value['time'],
-        'from_index': value['fromIndex'],
-        'to_index': value['toIndex'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    distance: value["distance"],
+    time: value["time"],
+    from_index: value["fromIndex"],
+    to_index: value["toIndex"],
+  };
 }
-

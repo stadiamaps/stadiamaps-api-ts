@@ -12,73 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface EdgeSign
  */
 export interface EdgeSign {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EdgeSign
-     */
-    exitNumber?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EdgeSign
-     */
-    exitBranch?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EdgeSign
-     */
-    exitToward?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EdgeSign
-     */
-    exitName?: Array<string>;
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EdgeSign
+   */
+  exitNumber?: Array<string>;
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EdgeSign
+   */
+  exitBranch?: Array<string>;
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EdgeSign
+   */
+  exitToward?: Array<string>;
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EdgeSign
+   */
+  exitName?: Array<string>;
 }
 
 /**
  * Check if a given object implements the EdgeSign interface.
  */
 export function instanceOfEdgeSign(value: object): value is EdgeSign {
-    return true;
+  return true;
 }
 
 export function EdgeSignFromJSON(json: any): EdgeSign {
-    return EdgeSignFromJSONTyped(json, false);
+  return EdgeSignFromJSONTyped(json, false);
 }
 
-export function EdgeSignFromJSONTyped(json: any, ignoreDiscriminator: boolean): EdgeSign {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'exitNumber': json['exit_number'] == null ? undefined : json['exit_number'],
-        'exitBranch': json['exit_branch'] == null ? undefined : json['exit_branch'],
-        'exitToward': json['exit_toward'] == null ? undefined : json['exit_toward'],
-        'exitName': json['exit_name'] == null ? undefined : json['exit_name'],
-    };
+export function EdgeSignFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): EdgeSign {
+  if (json == null) {
+    return json;
+  }
+  return {
+    exitNumber: json["exit_number"] == null ? undefined : json["exit_number"],
+    exitBranch: json["exit_branch"] == null ? undefined : json["exit_branch"],
+    exitToward: json["exit_toward"] == null ? undefined : json["exit_toward"],
+    exitName: json["exit_name"] == null ? undefined : json["exit_name"],
+  };
 }
 
 export function EdgeSignToJSON(value?: EdgeSign | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'exit_number': value['exitNumber'],
-        'exit_branch': value['exitBranch'],
-        'exit_toward': value['exitToward'],
-        'exit_name': value['exitName'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    exit_number: value["exitNumber"],
+    exit_branch: value["exitBranch"],
+    exit_toward: value["exitToward"],
+    exit_name: value["exitName"],
+  };
 }
-

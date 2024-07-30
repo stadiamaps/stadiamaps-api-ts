@@ -12,46 +12,52 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const MapMatchCostingModel = {
-    Auto: 'auto',
-    Bus: 'bus',
-    Taxi: 'taxi',
-    Truck: 'truck',
-    Bicycle: 'bicycle',
-    Bikeshare: 'bikeshare',
-    MotorScooter: 'motor_scooter',
-    Motorcycle: 'motorcycle',
-    Pedestrian: 'pedestrian',
-    LowSpeedVehicle: 'low_speed_vehicle'
+  Auto: "auto",
+  Bus: "bus",
+  Taxi: "taxi",
+  Truck: "truck",
+  Bicycle: "bicycle",
+  Bikeshare: "bikeshare",
+  MotorScooter: "motor_scooter",
+  Motorcycle: "motorcycle",
+  Pedestrian: "pedestrian",
+  LowSpeedVehicle: "low_speed_vehicle",
 } as const;
-export type MapMatchCostingModel = typeof MapMatchCostingModel[keyof typeof MapMatchCostingModel];
-
+export type MapMatchCostingModel =
+  (typeof MapMatchCostingModel)[keyof typeof MapMatchCostingModel];
 
 export function instanceOfMapMatchCostingModel(value: any): boolean {
-    for (const key in MapMatchCostingModel) {
-        if (Object.prototype.hasOwnProperty.call(MapMatchCostingModel, key)) {
-            if ((MapMatchCostingModel as Record<string, MapMatchCostingModel>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in MapMatchCostingModel) {
+    if (Object.prototype.hasOwnProperty.call(MapMatchCostingModel, key)) {
+      if (
+        (MapMatchCostingModel as Record<string, MapMatchCostingModel>)[key] ===
+        value
+      ) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function MapMatchCostingModelFromJSON(json: any): MapMatchCostingModel {
-    return MapMatchCostingModelFromJSONTyped(json, false);
+  return MapMatchCostingModelFromJSONTyped(json, false);
 }
 
-export function MapMatchCostingModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): MapMatchCostingModel {
-    return json as MapMatchCostingModel;
+export function MapMatchCostingModelFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): MapMatchCostingModel {
+  return json as MapMatchCostingModel;
 }
 
-export function MapMatchCostingModelToJSON(value?: MapMatchCostingModel | null): any {
-    return value as any;
+export function MapMatchCostingModelToJSON(
+  value?: MapMatchCostingModel | null,
+): any {
+  return value as any;
 }
-

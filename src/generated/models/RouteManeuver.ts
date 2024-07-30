@@ -12,353 +12,391 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ManeuverSign } from './ManeuverSign';
+import { mapValues } from "../runtime";
+import type { ManeuverSign } from "./ManeuverSign";
 import {
-    ManeuverSignFromJSON,
-    ManeuverSignFromJSONTyped,
-    ManeuverSignToJSON,
-} from './ManeuverSign';
-import type { TravelMode } from './TravelMode';
+  ManeuverSignFromJSON,
+  ManeuverSignFromJSONTyped,
+  ManeuverSignToJSON,
+} from "./ManeuverSign";
+import type { TravelMode } from "./TravelMode";
 import {
-    TravelModeFromJSON,
-    TravelModeFromJSONTyped,
-    TravelModeToJSON,
-} from './TravelMode';
+  TravelModeFromJSON,
+  TravelModeFromJSONTyped,
+  TravelModeToJSON,
+} from "./TravelMode";
 
 /**
- * 
+ *
  * @export
  * @interface RouteManeuver
  */
 export interface RouteManeuver {
-    /**
-     * The type of route maneuver.
-     * 
-     * | Code | Type                                |
-     * |------|-------------------------------------|
-     * | 0    | None                                |
-     * | 1    | Start                               |
-     * | 2    | Start right                         |
-     * | 3    | Start left                          |
-     * | 4    | Destination                         |
-     * | 5    | Destination right                   |
-     * | 6    | Destination left                    |
-     * | 7    | Becomes                             |
-     * | 8    | Continue                            |
-     * | 9    | Slight right                        |
-     * | 10   | Right                               |
-     * | 11   | Sharp right                         |
-     * | 12   | U-turn right                        |
-     * | 13   | U-turn left                         |
-     * | 14   | Sharp left                          |
-     * | 15   | Left                                |
-     * | 16   | Slight left                         |
-     * | 17   | Ramp straight                       |
-     * | 18   | Ramp right                          |
-     * | 19   | Ramp left                           |
-     * | 20   | Exit right                          |
-     * | 21   | Exit left                           |
-     * | 22   | Stay straight                       |
-     * | 23   | Stay right                          |
-     * | 24   | Stay left                           |
-     * | 25   | Merge                               |
-     * | 26   | Enter roundabout                    |
-     * | 27   | Exit roundabout                     |
-     * | 28   | Enter ferry                         |
-     * | 29   | Exit ferry                          |
-     * | 30   | Transit                             |
-     * | 31   | Transit transfer                    |
-     * | 32   | Transit remain on                   |
-     * | 33   | Transit connection start            |
-     * | 34   | Transit connection transfer         |
-     * | 35   | Transit connection destination      |
-     * | 36   | Post-transit connection destination |
-     * | 37   | Merge right                         |
-     * | 38   | Merge left                          |
-     * 
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    type: number;
-    /**
-     * The written maneuver instruction.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    instruction: string;
-    /**
-     * Text suitable for use as a verbal navigation alert.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    verbalTransitionAlertInstruction?: string;
-    /**
-     * Text suitable for use as a verbal navigation alert immediately prior to the maneuver transition.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    verbalPreTransitionInstruction?: string;
-    /**
-     * Text suitable for use as a verbal navigation alert immediately after to the maneuver transition.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    verbalPostTransitionInstruction?: string;
-    /**
-     * A list of street names that are consistent along the entire maneuver.
-     * @type {Array<string>}
-     * @memberof RouteManeuver
-     */
-    streetNames?: Array<string>;
-    /**
-     * A list of street names at the beginning of the maneuver, if they are different from the names at the end.
-     * @type {Array<string>}
-     * @memberof RouteManeuver
-     */
-    beginStreetNames?: Array<string>;
-    /**
-     * The estimated time to complete the entire maneuver, in seconds.
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    time: number;
-    /**
-     * The length of the maneuver, in `units`.
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    length: number;
-    /**
-     * The index into the list of shape points for the start of the maneuver.
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    beginShapeIndex: number;
-    /**
-     * The index into the list of shape points for the end of the maneuver.
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    endShapeIndex: number;
-    /**
-     * True any portion of the maneuver is subject to a toll.
-     * @type {boolean}
-     * @memberof RouteManeuver
-     */
-    toll?: boolean;
-    /**
-     * True any portion of the maneuver is unpaved or has portions of rough pavement.
-     * @type {boolean}
-     * @memberof RouteManeuver
-     */
-    rough?: boolean;
-    /**
-     * True if a gate is encountered in the course of this maneuver.
-     * @type {boolean}
-     * @memberof RouteManeuver
-     */
-    gate?: boolean;
-    /**
-     * True if a ferry is encountered in the course of this maneuver.
-     * @type {boolean}
-     * @memberof RouteManeuver
-     */
-    ferry?: boolean;
-    /**
-     * 
-     * @type {ManeuverSign}
-     * @memberof RouteManeuver
-     */
-    sign?: ManeuverSign;
-    /**
-     * The exit number of the roundabout to take after entering.
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    roundaboutExitCount?: number;
-    /**
-     * The written departure time instruction (typically used in a transit maneuver).
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    departInstruction?: number;
-    /**
-     * Text suitable for use as a verbal departure time instruction (typically used in a transit maneuver).
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    verbalDepartInstruction?: number;
-    /**
-     * The written arrival time instruction (typically used in a transit maneuver).
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    arriveInstruction?: number;
-    /**
-     * Text suitable for use as a verbal departure time instruction (typically used in a transit maneuver).
-     * @type {number}
-     * @memberof RouteManeuver
-     */
-    verbalArriveInstruction?: number;
-    /**
-     * Public transit info (not currently supported).
-     * @type {{ [key: string]: any; }}
-     * @memberof RouteManeuver
-     */
-    transitInfo?: { [key: string]: any; };
-    /**
-     * True if the `verbal_pre_transition_instruction` has been appended with the verbal instruction of the next maneuver.
-     * @type {boolean}
-     * @memberof RouteManeuver
-     */
-    verbalMultiCue?: boolean;
-    /**
-     * 
-     * @type {TravelMode}
-     * @memberof RouteManeuver
-     */
-    travelMode: TravelMode;
-    /**
-     * The type of travel over the maneuver. This can be thought of as a specialization of the travel mode. For example, vehicular travel may be via car, motorcycle, etc.; and travel via bicycle may be via a road bike, mountain bike, etc.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    travelType: RouteManeuverTravelTypeEnum;
-    /**
-     * Describes a bike share action when using bikeshare routing.
-     * @type {string}
-     * @memberof RouteManeuver
-     */
-    bssManeuverType?: RouteManeuverBssManeuverTypeEnum;
+  /**
+   * The type of route maneuver.
+   *
+   * | Code | Type                                |
+   * |------|-------------------------------------|
+   * | 0    | None                                |
+   * | 1    | Start                               |
+   * | 2    | Start right                         |
+   * | 3    | Start left                          |
+   * | 4    | Destination                         |
+   * | 5    | Destination right                   |
+   * | 6    | Destination left                    |
+   * | 7    | Becomes                             |
+   * | 8    | Continue                            |
+   * | 9    | Slight right                        |
+   * | 10   | Right                               |
+   * | 11   | Sharp right                         |
+   * | 12   | U-turn right                        |
+   * | 13   | U-turn left                         |
+   * | 14   | Sharp left                          |
+   * | 15   | Left                                |
+   * | 16   | Slight left                         |
+   * | 17   | Ramp straight                       |
+   * | 18   | Ramp right                          |
+   * | 19   | Ramp left                           |
+   * | 20   | Exit right                          |
+   * | 21   | Exit left                           |
+   * | 22   | Stay straight                       |
+   * | 23   | Stay right                          |
+   * | 24   | Stay left                           |
+   * | 25   | Merge                               |
+   * | 26   | Enter roundabout                    |
+   * | 27   | Exit roundabout                     |
+   * | 28   | Enter ferry                         |
+   * | 29   | Exit ferry                          |
+   * | 30   | Transit                             |
+   * | 31   | Transit transfer                    |
+   * | 32   | Transit remain on                   |
+   * | 33   | Transit connection start            |
+   * | 34   | Transit connection transfer         |
+   * | 35   | Transit connection destination      |
+   * | 36   | Post-transit connection destination |
+   * | 37   | Merge right                         |
+   * | 38   | Merge left                          |
+   *
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  type: number;
+  /**
+   * The written maneuver instruction.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  instruction: string;
+  /**
+   * Text suitable for use as a verbal navigation alert.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  verbalTransitionAlertInstruction?: string;
+  /**
+   * Text suitable for use as a verbal navigation alert immediately prior to the maneuver transition.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  verbalPreTransitionInstruction?: string;
+  /**
+   * Text suitable for use as a verbal navigation alert immediately after to the maneuver transition.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  verbalPostTransitionInstruction?: string;
+  /**
+   * A list of street names that are consistent along the entire maneuver.
+   * @type {Array<string>}
+   * @memberof RouteManeuver
+   */
+  streetNames?: Array<string>;
+  /**
+   * A list of street names at the beginning of the maneuver, if they are different from the names at the end.
+   * @type {Array<string>}
+   * @memberof RouteManeuver
+   */
+  beginStreetNames?: Array<string>;
+  /**
+   * The estimated time to complete the entire maneuver, in seconds.
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  time: number;
+  /**
+   * The length of the maneuver, in `units`.
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  length: number;
+  /**
+   * The index into the list of shape points for the start of the maneuver.
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  beginShapeIndex: number;
+  /**
+   * The index into the list of shape points for the end of the maneuver.
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  endShapeIndex: number;
+  /**
+   * True any portion of the maneuver is subject to a toll.
+   * @type {boolean}
+   * @memberof RouteManeuver
+   */
+  toll?: boolean;
+  /**
+   * True any portion of the maneuver is unpaved or has portions of rough pavement.
+   * @type {boolean}
+   * @memberof RouteManeuver
+   */
+  rough?: boolean;
+  /**
+   * True if a gate is encountered in the course of this maneuver.
+   * @type {boolean}
+   * @memberof RouteManeuver
+   */
+  gate?: boolean;
+  /**
+   * True if a ferry is encountered in the course of this maneuver.
+   * @type {boolean}
+   * @memberof RouteManeuver
+   */
+  ferry?: boolean;
+  /**
+   *
+   * @type {ManeuverSign}
+   * @memberof RouteManeuver
+   */
+  sign?: ManeuverSign;
+  /**
+   * The exit number of the roundabout to take after entering.
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  roundaboutExitCount?: number;
+  /**
+   * The written departure time instruction (typically used in a transit maneuver).
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  departInstruction?: number;
+  /**
+   * Text suitable for use as a verbal departure time instruction (typically used in a transit maneuver).
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  verbalDepartInstruction?: number;
+  /**
+   * The written arrival time instruction (typically used in a transit maneuver).
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  arriveInstruction?: number;
+  /**
+   * Text suitable for use as a verbal departure time instruction (typically used in a transit maneuver).
+   * @type {number}
+   * @memberof RouteManeuver
+   */
+  verbalArriveInstruction?: number;
+  /**
+   * Public transit info (not currently supported).
+   * @type {{ [key: string]: any; }}
+   * @memberof RouteManeuver
+   */
+  transitInfo?: { [key: string]: any };
+  /**
+   * True if the `verbal_pre_transition_instruction` has been appended with the verbal instruction of the next maneuver.
+   * @type {boolean}
+   * @memberof RouteManeuver
+   */
+  verbalMultiCue?: boolean;
+  /**
+   *
+   * @type {TravelMode}
+   * @memberof RouteManeuver
+   */
+  travelMode: TravelMode;
+  /**
+   * The type of travel over the maneuver. This can be thought of as a specialization of the travel mode. For example, vehicular travel may be via car, motorcycle, etc.; and travel via bicycle may be via a road bike, mountain bike, etc.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  travelType: RouteManeuverTravelTypeEnum;
+  /**
+   * Describes a bike share action when using bikeshare routing.
+   * @type {string}
+   * @memberof RouteManeuver
+   */
+  bssManeuverType?: RouteManeuverBssManeuverTypeEnum;
 }
-
 
 /**
  * @export
  */
 export const RouteManeuverTravelTypeEnum = {
-    Car: 'car',
-    Motorcycle: 'motorcycle',
-    Bus: 'bus',
-    TractorTrailer: 'tractor_trailer',
-    MotorScooter: 'motor_scooter',
-    Foot: 'foot',
-    Wheelchair: 'wheelchair',
-    Segway: 'segway',
-    Road: 'road',
-    Cross: 'cross',
-    Hybrid: 'hybrid',
-    Mountain: 'mountain',
-    Tram: 'tram',
-    Metro: 'metro',
-    Rail: 'rail',
-    Ferry: 'ferry',
-    CableCar: 'cable_car',
-    Gondola: 'gondola',
-    Funicular: 'funicular',
-    GolfCart: 'golf_cart',
-    LowSpeedVehicle: 'low_speed_vehicle'
+  Car: "car",
+  Motorcycle: "motorcycle",
+  Bus: "bus",
+  TractorTrailer: "tractor_trailer",
+  MotorScooter: "motor_scooter",
+  Foot: "foot",
+  Wheelchair: "wheelchair",
+  Segway: "segway",
+  Road: "road",
+  Cross: "cross",
+  Hybrid: "hybrid",
+  Mountain: "mountain",
+  Tram: "tram",
+  Metro: "metro",
+  Rail: "rail",
+  Ferry: "ferry",
+  CableCar: "cable_car",
+  Gondola: "gondola",
+  Funicular: "funicular",
+  GolfCart: "golf_cart",
+  LowSpeedVehicle: "low_speed_vehicle",
 } as const;
-export type RouteManeuverTravelTypeEnum = typeof RouteManeuverTravelTypeEnum[keyof typeof RouteManeuverTravelTypeEnum];
+export type RouteManeuverTravelTypeEnum =
+  (typeof RouteManeuverTravelTypeEnum)[keyof typeof RouteManeuverTravelTypeEnum];
 
 /**
  * @export
  */
 export const RouteManeuverBssManeuverTypeEnum = {
-    NoneAction: 'NoneAction',
-    RentBikeAtBikeShare: 'RentBikeAtBikeShare',
-    ReturnBikeAtBikeShare: 'ReturnBikeAtBikeShare'
+  NoneAction: "NoneAction",
+  RentBikeAtBikeShare: "RentBikeAtBikeShare",
+  ReturnBikeAtBikeShare: "ReturnBikeAtBikeShare",
 } as const;
-export type RouteManeuverBssManeuverTypeEnum = typeof RouteManeuverBssManeuverTypeEnum[keyof typeof RouteManeuverBssManeuverTypeEnum];
-
+export type RouteManeuverBssManeuverTypeEnum =
+  (typeof RouteManeuverBssManeuverTypeEnum)[keyof typeof RouteManeuverBssManeuverTypeEnum];
 
 /**
  * Check if a given object implements the RouteManeuver interface.
  */
 export function instanceOfRouteManeuver(value: object): value is RouteManeuver {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('instruction' in value) || value['instruction'] === undefined) return false;
-    if (!('time' in value) || value['time'] === undefined) return false;
-    if (!('length' in value) || value['length'] === undefined) return false;
-    if (!('beginShapeIndex' in value) || value['beginShapeIndex'] === undefined) return false;
-    if (!('endShapeIndex' in value) || value['endShapeIndex'] === undefined) return false;
-    if (!('travelMode' in value) || value['travelMode'] === undefined) return false;
-    if (!('travelType' in value) || value['travelType'] === undefined) return false;
-    return true;
+  if (!("type" in value) || value["type"] === undefined) return false;
+  if (!("instruction" in value) || value["instruction"] === undefined)
+    return false;
+  if (!("time" in value) || value["time"] === undefined) return false;
+  if (!("length" in value) || value["length"] === undefined) return false;
+  if (!("beginShapeIndex" in value) || value["beginShapeIndex"] === undefined)
+    return false;
+  if (!("endShapeIndex" in value) || value["endShapeIndex"] === undefined)
+    return false;
+  if (!("travelMode" in value) || value["travelMode"] === undefined)
+    return false;
+  if (!("travelType" in value) || value["travelType"] === undefined)
+    return false;
+  return true;
 }
 
 export function RouteManeuverFromJSON(json: any): RouteManeuver {
-    return RouteManeuverFromJSONTyped(json, false);
+  return RouteManeuverFromJSONTyped(json, false);
 }
 
-export function RouteManeuverFromJSONTyped(json: any, ignoreDiscriminator: boolean): RouteManeuver {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'type': json['type'],
-        'instruction': json['instruction'],
-        'verbalTransitionAlertInstruction': json['verbal_transition_alert_instruction'] == null ? undefined : json['verbal_transition_alert_instruction'],
-        'verbalPreTransitionInstruction': json['verbal_pre_transition_instruction'] == null ? undefined : json['verbal_pre_transition_instruction'],
-        'verbalPostTransitionInstruction': json['verbal_post_transition_instruction'] == null ? undefined : json['verbal_post_transition_instruction'],
-        'streetNames': json['street_names'] == null ? undefined : json['street_names'],
-        'beginStreetNames': json['begin_street_names'] == null ? undefined : json['begin_street_names'],
-        'time': json['time'],
-        'length': json['length'],
-        'beginShapeIndex': json['begin_shape_index'],
-        'endShapeIndex': json['end_shape_index'],
-        'toll': json['toll'] == null ? undefined : json['toll'],
-        'rough': json['rough'] == null ? undefined : json['rough'],
-        'gate': json['gate'] == null ? undefined : json['gate'],
-        'ferry': json['ferry'] == null ? undefined : json['ferry'],
-        'sign': json['sign'] == null ? undefined : ManeuverSignFromJSON(json['sign']),
-        'roundaboutExitCount': json['roundabout_exit_count'] == null ? undefined : json['roundabout_exit_count'],
-        'departInstruction': json['depart_instruction'] == null ? undefined : json['depart_instruction'],
-        'verbalDepartInstruction': json['verbal_depart_instruction'] == null ? undefined : json['verbal_depart_instruction'],
-        'arriveInstruction': json['arrive_instruction'] == null ? undefined : json['arrive_instruction'],
-        'verbalArriveInstruction': json['verbal_arrive_instruction'] == null ? undefined : json['verbal_arrive_instruction'],
-        'transitInfo': json['transit_info'] == null ? undefined : json['transit_info'],
-        'verbalMultiCue': json['verbal_multi_cue'] == null ? undefined : json['verbal_multi_cue'],
-        'travelMode': TravelModeFromJSON(json['travel_mode']),
-        'travelType': json['travel_type'],
-        'bssManeuverType': json['bss_maneuver_type'] == null ? undefined : json['bss_maneuver_type'],
-    };
+export function RouteManeuverFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): RouteManeuver {
+  if (json == null) {
+    return json;
+  }
+  return {
+    type: json["type"],
+    instruction: json["instruction"],
+    verbalTransitionAlertInstruction:
+      json["verbal_transition_alert_instruction"] == null
+        ? undefined
+        : json["verbal_transition_alert_instruction"],
+    verbalPreTransitionInstruction:
+      json["verbal_pre_transition_instruction"] == null
+        ? undefined
+        : json["verbal_pre_transition_instruction"],
+    verbalPostTransitionInstruction:
+      json["verbal_post_transition_instruction"] == null
+        ? undefined
+        : json["verbal_post_transition_instruction"],
+    streetNames:
+      json["street_names"] == null ? undefined : json["street_names"],
+    beginStreetNames:
+      json["begin_street_names"] == null
+        ? undefined
+        : json["begin_street_names"],
+    time: json["time"],
+    length: json["length"],
+    beginShapeIndex: json["begin_shape_index"],
+    endShapeIndex: json["end_shape_index"],
+    toll: json["toll"] == null ? undefined : json["toll"],
+    rough: json["rough"] == null ? undefined : json["rough"],
+    gate: json["gate"] == null ? undefined : json["gate"],
+    ferry: json["ferry"] == null ? undefined : json["ferry"],
+    sign: json["sign"] == null ? undefined : ManeuverSignFromJSON(json["sign"]),
+    roundaboutExitCount:
+      json["roundabout_exit_count"] == null
+        ? undefined
+        : json["roundabout_exit_count"],
+    departInstruction:
+      json["depart_instruction"] == null
+        ? undefined
+        : json["depart_instruction"],
+    verbalDepartInstruction:
+      json["verbal_depart_instruction"] == null
+        ? undefined
+        : json["verbal_depart_instruction"],
+    arriveInstruction:
+      json["arrive_instruction"] == null
+        ? undefined
+        : json["arrive_instruction"],
+    verbalArriveInstruction:
+      json["verbal_arrive_instruction"] == null
+        ? undefined
+        : json["verbal_arrive_instruction"],
+    transitInfo:
+      json["transit_info"] == null ? undefined : json["transit_info"],
+    verbalMultiCue:
+      json["verbal_multi_cue"] == null ? undefined : json["verbal_multi_cue"],
+    travelMode: TravelModeFromJSON(json["travel_mode"]),
+    travelType: json["travel_type"],
+    bssManeuverType:
+      json["bss_maneuver_type"] == null ? undefined : json["bss_maneuver_type"],
+  };
 }
 
 export function RouteManeuverToJSON(value?: RouteManeuver | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'type': value['type'],
-        'instruction': value['instruction'],
-        'verbal_transition_alert_instruction': value['verbalTransitionAlertInstruction'],
-        'verbal_pre_transition_instruction': value['verbalPreTransitionInstruction'],
-        'verbal_post_transition_instruction': value['verbalPostTransitionInstruction'],
-        'street_names': value['streetNames'],
-        'begin_street_names': value['beginStreetNames'],
-        'time': value['time'],
-        'length': value['length'],
-        'begin_shape_index': value['beginShapeIndex'],
-        'end_shape_index': value['endShapeIndex'],
-        'toll': value['toll'],
-        'rough': value['rough'],
-        'gate': value['gate'],
-        'ferry': value['ferry'],
-        'sign': ManeuverSignToJSON(value['sign']),
-        'roundabout_exit_count': value['roundaboutExitCount'],
-        'depart_instruction': value['departInstruction'],
-        'verbal_depart_instruction': value['verbalDepartInstruction'],
-        'arrive_instruction': value['arriveInstruction'],
-        'verbal_arrive_instruction': value['verbalArriveInstruction'],
-        'transit_info': value['transitInfo'],
-        'verbal_multi_cue': value['verbalMultiCue'],
-        'travel_mode': TravelModeToJSON(value['travelMode']),
-        'travel_type': value['travelType'],
-        'bss_maneuver_type': value['bssManeuverType'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    type: value["type"],
+    instruction: value["instruction"],
+    verbal_transition_alert_instruction:
+      value["verbalTransitionAlertInstruction"],
+    verbal_pre_transition_instruction: value["verbalPreTransitionInstruction"],
+    verbal_post_transition_instruction:
+      value["verbalPostTransitionInstruction"],
+    street_names: value["streetNames"],
+    begin_street_names: value["beginStreetNames"],
+    time: value["time"],
+    length: value["length"],
+    begin_shape_index: value["beginShapeIndex"],
+    end_shape_index: value["endShapeIndex"],
+    toll: value["toll"],
+    rough: value["rough"],
+    gate: value["gate"],
+    ferry: value["ferry"],
+    sign: ManeuverSignToJSON(value["sign"]),
+    roundabout_exit_count: value["roundaboutExitCount"],
+    depart_instruction: value["departInstruction"],
+    verbal_depart_instruction: value["verbalDepartInstruction"],
+    arrive_instruction: value["arriveInstruction"],
+    verbal_arrive_instruction: value["verbalArriveInstruction"],
+    transit_info: value["transitInfo"],
+    verbal_multi_cue: value["verbalMultiCue"],
+    travel_mode: TravelModeToJSON(value["travelMode"]),
+    travel_type: value["travelType"],
+    bss_maneuver_type: value["bssManeuverType"],
+  };
 }
-

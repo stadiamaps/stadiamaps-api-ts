@@ -12,92 +12,92 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface Speeds
  */
 export interface Speeds {
-    /**
-     * Does this edge have predicted (historical) speed records?
-     * @type {boolean}
-     * @memberof Speeds
-     */
-    predicted?: boolean;
-    /**
-     * Speed when there is no traffic, in kph.
-     * @type {number}
-     * @memberof Speeds
-     */
-    constrainedFlow?: number;
-    /**
-     * Speed when there is heavy traffic, in kph.
-     * @type {number}
-     * @memberof Speeds
-     */
-    freeFlow?: number;
-    /**
-     * The type of speed which is used when setting default speeds. When `tagged`, the explicit `max_speed` tags from OpenStreetMap are being used. When `classified`, the values are being inferred from the highway classification.
-     * @type {string}
-     * @memberof Speeds
-     */
-    type?: SpeedsTypeEnum;
-    /**
-     * The default speed used for calculations. NOTE: Values greater than 250 are used for special cases and should not be treated as literal.
-     * @type {number}
-     * @memberof Speeds
-     */
-    _default?: number;
+  /**
+   * Does this edge have predicted (historical) speed records?
+   * @type {boolean}
+   * @memberof Speeds
+   */
+  predicted?: boolean;
+  /**
+   * Speed when there is no traffic, in kph.
+   * @type {number}
+   * @memberof Speeds
+   */
+  constrainedFlow?: number;
+  /**
+   * Speed when there is heavy traffic, in kph.
+   * @type {number}
+   * @memberof Speeds
+   */
+  freeFlow?: number;
+  /**
+   * The type of speed which is used when setting default speeds. When `tagged`, the explicit `max_speed` tags from OpenStreetMap are being used. When `classified`, the values are being inferred from the highway classification.
+   * @type {string}
+   * @memberof Speeds
+   */
+  type?: SpeedsTypeEnum;
+  /**
+   * The default speed used for calculations. NOTE: Values greater than 250 are used for special cases and should not be treated as literal.
+   * @type {number}
+   * @memberof Speeds
+   */
+  _default?: number;
 }
-
 
 /**
  * @export
  */
 export const SpeedsTypeEnum = {
-    Classified: 'classified',
-    Tagged: 'tagged'
+  Classified: "classified",
+  Tagged: "tagged",
 } as const;
-export type SpeedsTypeEnum = typeof SpeedsTypeEnum[keyof typeof SpeedsTypeEnum];
-
+export type SpeedsTypeEnum =
+  (typeof SpeedsTypeEnum)[keyof typeof SpeedsTypeEnum];
 
 /**
  * Check if a given object implements the Speeds interface.
  */
 export function instanceOfSpeeds(value: object): value is Speeds {
-    return true;
+  return true;
 }
 
 export function SpeedsFromJSON(json: any): Speeds {
-    return SpeedsFromJSONTyped(json, false);
+  return SpeedsFromJSONTyped(json, false);
 }
 
-export function SpeedsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Speeds {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'predicted': json['predicted'] == null ? undefined : json['predicted'],
-        'constrainedFlow': json['constrained_flow'] == null ? undefined : json['constrained_flow'],
-        'freeFlow': json['free_flow'] == null ? undefined : json['free_flow'],
-        'type': json['type'] == null ? undefined : json['type'],
-        '_default': json['default'] == null ? undefined : json['default'],
-    };
+export function SpeedsFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): Speeds {
+  if (json == null) {
+    return json;
+  }
+  return {
+    predicted: json["predicted"] == null ? undefined : json["predicted"],
+    constrainedFlow:
+      json["constrained_flow"] == null ? undefined : json["constrained_flow"],
+    freeFlow: json["free_flow"] == null ? undefined : json["free_flow"],
+    type: json["type"] == null ? undefined : json["type"],
+    _default: json["default"] == null ? undefined : json["default"],
+  };
 }
 
 export function SpeedsToJSON(value?: Speeds | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'predicted': value['predicted'],
-        'constrained_flow': value['constrainedFlow'],
-        'free_flow': value['freeFlow'],
-        'type': value['type'],
-        'default': value['_default'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    predicted: value["predicted"],
+    constrained_flow: value["constrainedFlow"],
+    free_flow: value["freeFlow"],
+    type: value["type"],
+    default: value["_default"],
+  };
 }
-

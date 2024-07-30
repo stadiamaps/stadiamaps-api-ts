@@ -12,77 +12,87 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { TraceAttributeKey } from './TraceAttributeKey';
+import { mapValues } from "../runtime";
+import type { TraceAttributeKey } from "./TraceAttributeKey";
 import {
-    TraceAttributeKeyFromJSON,
-    TraceAttributeKeyFromJSONTyped,
-    TraceAttributeKeyToJSON,
-} from './TraceAttributeKey';
+  TraceAttributeKeyFromJSON,
+  TraceAttributeKeyFromJSONTyped,
+  TraceAttributeKeyToJSON,
+} from "./TraceAttributeKey";
 
 /**
- * 
+ *
  * @export
  * @interface TraceAttributeFilterOptions
  */
 export interface TraceAttributeFilterOptions {
-    /**
-     * 
-     * @type {Array<TraceAttributeKey>}
-     * @memberof TraceAttributeFilterOptions
-     */
-    attributes: Array<TraceAttributeKey>;
-    /**
-     * Determines whether the list of attributes will be used as a whitelist or a blacklist.
-     * @type {string}
-     * @memberof TraceAttributeFilterOptions
-     */
-    action: TraceAttributeFilterOptionsActionEnum;
+  /**
+   *
+   * @type {Array<TraceAttributeKey>}
+   * @memberof TraceAttributeFilterOptions
+   */
+  attributes: Array<TraceAttributeKey>;
+  /**
+   * Determines whether the list of attributes will be used as a whitelist or a blacklist.
+   * @type {string}
+   * @memberof TraceAttributeFilterOptions
+   */
+  action: TraceAttributeFilterOptionsActionEnum;
 }
-
 
 /**
  * @export
  */
 export const TraceAttributeFilterOptionsActionEnum = {
-    Include: 'include',
-    Exclude: 'exclude'
+  Include: "include",
+  Exclude: "exclude",
 } as const;
-export type TraceAttributeFilterOptionsActionEnum = typeof TraceAttributeFilterOptionsActionEnum[keyof typeof TraceAttributeFilterOptionsActionEnum];
-
+export type TraceAttributeFilterOptionsActionEnum =
+  (typeof TraceAttributeFilterOptionsActionEnum)[keyof typeof TraceAttributeFilterOptionsActionEnum];
 
 /**
  * Check if a given object implements the TraceAttributeFilterOptions interface.
  */
-export function instanceOfTraceAttributeFilterOptions(value: object): value is TraceAttributeFilterOptions {
-    if (!('attributes' in value) || value['attributes'] === undefined) return false;
-    if (!('action' in value) || value['action'] === undefined) return false;
-    return true;
+export function instanceOfTraceAttributeFilterOptions(
+  value: object,
+): value is TraceAttributeFilterOptions {
+  if (!("attributes" in value) || value["attributes"] === undefined)
+    return false;
+  if (!("action" in value) || value["action"] === undefined) return false;
+  return true;
 }
 
-export function TraceAttributeFilterOptionsFromJSON(json: any): TraceAttributeFilterOptions {
-    return TraceAttributeFilterOptionsFromJSONTyped(json, false);
+export function TraceAttributeFilterOptionsFromJSON(
+  json: any,
+): TraceAttributeFilterOptions {
+  return TraceAttributeFilterOptionsFromJSONTyped(json, false);
 }
 
-export function TraceAttributeFilterOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraceAttributeFilterOptions {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'attributes': ((json['attributes'] as Array<any>).map(TraceAttributeKeyFromJSON)),
-        'action': json['action'],
-    };
+export function TraceAttributeFilterOptionsFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): TraceAttributeFilterOptions {
+  if (json == null) {
+    return json;
+  }
+  return {
+    attributes: (json["attributes"] as Array<any>).map(
+      TraceAttributeKeyFromJSON,
+    ),
+    action: json["action"],
+  };
 }
 
-export function TraceAttributeFilterOptionsToJSON(value?: TraceAttributeFilterOptions | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'attributes': ((value['attributes'] as Array<any>).map(TraceAttributeKeyToJSON)),
-        'action': value['action'],
-    };
+export function TraceAttributeFilterOptionsToJSON(
+  value?: TraceAttributeFilterOptions | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    attributes: (value["attributes"] as Array<any>).map(
+      TraceAttributeKeyToJSON,
+    ),
+    action: value["action"],
+  };
 }
-

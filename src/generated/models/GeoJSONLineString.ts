@@ -12,74 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface GeoJSONLineString
  */
 export interface GeoJSONLineString {
-    /**
-     * 
-     * @type {string}
-     * @memberof GeoJSONLineString
-     */
-    type: GeoJSONLineStringTypeEnum;
-    /**
-     * 
-     * @type {Array<Array<number>>}
-     * @memberof GeoJSONLineString
-     */
-    coordinates: Array<Array<number>>;
+  /**
+   *
+   * @type {string}
+   * @memberof GeoJSONLineString
+   */
+  type: GeoJSONLineStringTypeEnum;
+  /**
+   *
+   * @type {Array<Array<number>>}
+   * @memberof GeoJSONLineString
+   */
+  coordinates: Array<Array<number>>;
 }
-
 
 /**
  * @export
  */
 export const GeoJSONLineStringTypeEnum = {
-    Point: 'Point',
-    MultiPoint: 'MultiPoint',
-    LineString: 'LineString',
-    MultiLineString: 'MultiLineString',
-    Polygon: 'Polygon',
-    MultiPolygon: 'MultiPolygon'
+  Point: "Point",
+  MultiPoint: "MultiPoint",
+  LineString: "LineString",
+  MultiLineString: "MultiLineString",
+  Polygon: "Polygon",
+  MultiPolygon: "MultiPolygon",
 } as const;
-export type GeoJSONLineStringTypeEnum = typeof GeoJSONLineStringTypeEnum[keyof typeof GeoJSONLineStringTypeEnum];
-
+export type GeoJSONLineStringTypeEnum =
+  (typeof GeoJSONLineStringTypeEnum)[keyof typeof GeoJSONLineStringTypeEnum];
 
 /**
  * Check if a given object implements the GeoJSONLineString interface.
  */
-export function instanceOfGeoJSONLineString(value: object): value is GeoJSONLineString {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
-    return true;
+export function instanceOfGeoJSONLineString(
+  value: object,
+): value is GeoJSONLineString {
+  if (!("type" in value) || value["type"] === undefined) return false;
+  if (!("coordinates" in value) || value["coordinates"] === undefined)
+    return false;
+  return true;
 }
 
 export function GeoJSONLineStringFromJSON(json: any): GeoJSONLineString {
-    return GeoJSONLineStringFromJSONTyped(json, false);
+  return GeoJSONLineStringFromJSONTyped(json, false);
 }
 
-export function GeoJSONLineStringFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJSONLineString {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'type': json['type'],
-        'coordinates': json['coordinates'],
-    };
+export function GeoJSONLineStringFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeoJSONLineString {
+  if (json == null) {
+    return json;
+  }
+  return {
+    type: json["type"],
+    coordinates: json["coordinates"],
+  };
 }
 
 export function GeoJSONLineStringToJSON(value?: GeoJSONLineString | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'type': value['type'],
-        'coordinates': value['coordinates'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    type: value["type"],
+    coordinates: value["coordinates"],
+  };
 }
-

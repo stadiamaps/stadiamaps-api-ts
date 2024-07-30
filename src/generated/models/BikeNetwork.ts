@@ -12,73 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface BikeNetwork
  */
 export interface BikeNetwork {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BikeNetwork
-     */
-    mountain?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BikeNetwork
-     */
-    local?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BikeNetwork
-     */
-    regional?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BikeNetwork
-     */
-    national?: boolean;
+  /**
+   *
+   * @type {boolean}
+   * @memberof BikeNetwork
+   */
+  mountain?: boolean;
+  /**
+   *
+   * @type {boolean}
+   * @memberof BikeNetwork
+   */
+  local?: boolean;
+  /**
+   *
+   * @type {boolean}
+   * @memberof BikeNetwork
+   */
+  regional?: boolean;
+  /**
+   *
+   * @type {boolean}
+   * @memberof BikeNetwork
+   */
+  national?: boolean;
 }
 
 /**
  * Check if a given object implements the BikeNetwork interface.
  */
 export function instanceOfBikeNetwork(value: object): value is BikeNetwork {
-    return true;
+  return true;
 }
 
 export function BikeNetworkFromJSON(json: any): BikeNetwork {
-    return BikeNetworkFromJSONTyped(json, false);
+  return BikeNetworkFromJSONTyped(json, false);
 }
 
-export function BikeNetworkFromJSONTyped(json: any, ignoreDiscriminator: boolean): BikeNetwork {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'mountain': json['mountain'] == null ? undefined : json['mountain'],
-        'local': json['local'] == null ? undefined : json['local'],
-        'regional': json['regional'] == null ? undefined : json['regional'],
-        'national': json['national'] == null ? undefined : json['national'],
-    };
+export function BikeNetworkFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): BikeNetwork {
+  if (json == null) {
+    return json;
+  }
+  return {
+    mountain: json["mountain"] == null ? undefined : json["mountain"],
+    local: json["local"] == null ? undefined : json["local"],
+    regional: json["regional"] == null ? undefined : json["regional"],
+    national: json["national"] == null ? undefined : json["national"],
+  };
 }
 
 export function BikeNetworkToJSON(value?: BikeNetwork | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'mountain': value['mountain'],
-        'local': value['local'],
-        'regional': value['regional'],
-        'national': value['national'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    mountain: value["mountain"],
+    local: value["local"],
+    regional: value["regional"],
+    national: value["national"],
+  };
 }
-

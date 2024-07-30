@@ -12,80 +12,85 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface SimpleRoutingWaypoint
  */
 export interface SimpleRoutingWaypoint {
-    /**
-     * The latitude of a point in the shape.
-     * @type {number}
-     * @memberof SimpleRoutingWaypoint
-     */
-    lat: number;
-    /**
-     * The longitude of a point in the shape.
-     * @type {number}
-     * @memberof SimpleRoutingWaypoint
-     */
-    lon: number;
-    /**
-     * A `break` represents the start or end of a leg, and allows reversals. A `through` location is an intermediate waypoint that must be visited between `break`s, but at which reversals are not allowed. A `via` is similar to a `through` except that reversals are allowed. A `break_through` is similar to a `break` in that it can be the start/end of a leg, but does not allow reversals.
-     * @type {string}
-     * @memberof SimpleRoutingWaypoint
-     */
-    type?: SimpleRoutingWaypointTypeEnum;
+  /**
+   * The latitude of a point in the shape.
+   * @type {number}
+   * @memberof SimpleRoutingWaypoint
+   */
+  lat: number;
+  /**
+   * The longitude of a point in the shape.
+   * @type {number}
+   * @memberof SimpleRoutingWaypoint
+   */
+  lon: number;
+  /**
+   * A `break` represents the start or end of a leg, and allows reversals. A `through` location is an intermediate waypoint that must be visited between `break`s, but at which reversals are not allowed. A `via` is similar to a `through` except that reversals are allowed. A `break_through` is similar to a `break` in that it can be the start/end of a leg, but does not allow reversals.
+   * @type {string}
+   * @memberof SimpleRoutingWaypoint
+   */
+  type?: SimpleRoutingWaypointTypeEnum;
 }
-
 
 /**
  * @export
  */
 export const SimpleRoutingWaypointTypeEnum = {
-    Break: 'break',
-    Through: 'through',
-    Via: 'via',
-    BreakThrough: 'break_through'
+  Break: "break",
+  Through: "through",
+  Via: "via",
+  BreakThrough: "break_through",
 } as const;
-export type SimpleRoutingWaypointTypeEnum = typeof SimpleRoutingWaypointTypeEnum[keyof typeof SimpleRoutingWaypointTypeEnum];
-
+export type SimpleRoutingWaypointTypeEnum =
+  (typeof SimpleRoutingWaypointTypeEnum)[keyof typeof SimpleRoutingWaypointTypeEnum];
 
 /**
  * Check if a given object implements the SimpleRoutingWaypoint interface.
  */
-export function instanceOfSimpleRoutingWaypoint(value: object): value is SimpleRoutingWaypoint {
-    if (!('lat' in value) || value['lat'] === undefined) return false;
-    if (!('lon' in value) || value['lon'] === undefined) return false;
-    return true;
+export function instanceOfSimpleRoutingWaypoint(
+  value: object,
+): value is SimpleRoutingWaypoint {
+  if (!("lat" in value) || value["lat"] === undefined) return false;
+  if (!("lon" in value) || value["lon"] === undefined) return false;
+  return true;
 }
 
-export function SimpleRoutingWaypointFromJSON(json: any): SimpleRoutingWaypoint {
-    return SimpleRoutingWaypointFromJSONTyped(json, false);
+export function SimpleRoutingWaypointFromJSON(
+  json: any,
+): SimpleRoutingWaypoint {
+  return SimpleRoutingWaypointFromJSONTyped(json, false);
 }
 
-export function SimpleRoutingWaypointFromJSONTyped(json: any, ignoreDiscriminator: boolean): SimpleRoutingWaypoint {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'lat': json['lat'],
-        'lon': json['lon'],
-        'type': json['type'] == null ? undefined : json['type'],
-    };
+export function SimpleRoutingWaypointFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): SimpleRoutingWaypoint {
+  if (json == null) {
+    return json;
+  }
+  return {
+    lat: json["lat"],
+    lon: json["lon"],
+    type: json["type"] == null ? undefined : json["type"],
+  };
 }
 
-export function SimpleRoutingWaypointToJSON(value?: SimpleRoutingWaypoint | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'lat': value['lat'],
-        'lon': value['lon'],
-        'type': value['type'],
-    };
+export function SimpleRoutingWaypointToJSON(
+  value?: SimpleRoutingWaypoint | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    lat: value["lat"],
+    lon: value["lon"],
+    type: value["type"],
+  };
 }
-

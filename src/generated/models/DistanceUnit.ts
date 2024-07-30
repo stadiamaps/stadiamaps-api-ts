@@ -12,38 +12,38 @@
  * Do not edit the class manually.
  */
 
-
 /**
- * 
+ *
  * @export
  */
 export const DistanceUnit = {
-    Km: 'km',
-    Mi: 'mi'
+  Km: "km",
+  Mi: "mi",
 } as const;
-export type DistanceUnit = typeof DistanceUnit[keyof typeof DistanceUnit];
-
+export type DistanceUnit = (typeof DistanceUnit)[keyof typeof DistanceUnit];
 
 export function instanceOfDistanceUnit(value: any): boolean {
-    for (const key in DistanceUnit) {
-        if (Object.prototype.hasOwnProperty.call(DistanceUnit, key)) {
-            if ((DistanceUnit as Record<string, DistanceUnit>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in DistanceUnit) {
+    if (Object.prototype.hasOwnProperty.call(DistanceUnit, key)) {
+      if ((DistanceUnit as Record<string, DistanceUnit>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function DistanceUnitFromJSON(json: any): DistanceUnit {
-    return DistanceUnitFromJSONTyped(json, false);
+  return DistanceUnitFromJSONTyped(json, false);
 }
 
-export function DistanceUnitFromJSONTyped(json: any, ignoreDiscriminator: boolean): DistanceUnit {
-    return json as DistanceUnit;
+export function DistanceUnitFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): DistanceUnit {
+  return json as DistanceUnit;
 }
 
 export function DistanceUnitToJSON(value?: DistanceUnit | null): any {
-    return value as any;
+  return value as any;
 }
-

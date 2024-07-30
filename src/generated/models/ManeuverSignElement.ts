@@ -12,66 +12,72 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface ManeuverSignElement
  */
 export interface ManeuverSignElement {
-    /**
-     * The interchange sign text (varies based on the context; see the `maneuverSign` schema).
-     * @type {string}
-     * @memberof ManeuverSignElement
-     */
-    text: string;
-    /**
-     * True if the sign is a route number.
-     * @type {boolean}
-     * @memberof ManeuverSignElement
-     */
-    isRouteNumber?: boolean;
-    /**
-     * The frequency of this sign element within a set a consecutive signs.
-     * @type {number}
-     * @memberof ManeuverSignElement
-     */
-    consecutiveCount?: number;
+  /**
+   * The interchange sign text (varies based on the context; see the `maneuverSign` schema).
+   * @type {string}
+   * @memberof ManeuverSignElement
+   */
+  text: string;
+  /**
+   * True if the sign is a route number.
+   * @type {boolean}
+   * @memberof ManeuverSignElement
+   */
+  isRouteNumber?: boolean;
+  /**
+   * The frequency of this sign element within a set a consecutive signs.
+   * @type {number}
+   * @memberof ManeuverSignElement
+   */
+  consecutiveCount?: number;
 }
 
 /**
  * Check if a given object implements the ManeuverSignElement interface.
  */
-export function instanceOfManeuverSignElement(value: object): value is ManeuverSignElement {
-    if (!('text' in value) || value['text'] === undefined) return false;
-    return true;
+export function instanceOfManeuverSignElement(
+  value: object,
+): value is ManeuverSignElement {
+  if (!("text" in value) || value["text"] === undefined) return false;
+  return true;
 }
 
 export function ManeuverSignElementFromJSON(json: any): ManeuverSignElement {
-    return ManeuverSignElementFromJSONTyped(json, false);
+  return ManeuverSignElementFromJSONTyped(json, false);
 }
 
-export function ManeuverSignElementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ManeuverSignElement {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'text': json['text'],
-        'isRouteNumber': json['is_route_number'] == null ? undefined : json['is_route_number'],
-        'consecutiveCount': json['consecutive_count'] == null ? undefined : json['consecutive_count'],
-    };
+export function ManeuverSignElementFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ManeuverSignElement {
+  if (json == null) {
+    return json;
+  }
+  return {
+    text: json["text"],
+    isRouteNumber:
+      json["is_route_number"] == null ? undefined : json["is_route_number"],
+    consecutiveCount:
+      json["consecutive_count"] == null ? undefined : json["consecutive_count"],
+  };
 }
 
-export function ManeuverSignElementToJSON(value?: ManeuverSignElement | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'text': value['text'],
-        'is_route_number': value['isRouteNumber'],
-        'consecutive_count': value['consecutiveCount'],
-    };
+export function ManeuverSignElementToJSON(
+  value?: ManeuverSignElement | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    text: value["text"],
+    is_route_number: value["isRouteNumber"],
+    consecutive_count: value["consecutiveCount"],
+  };
 }
-

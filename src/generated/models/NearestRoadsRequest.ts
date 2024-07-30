@@ -12,141 +12,155 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CostingModel } from './CostingModel';
+import { mapValues } from "../runtime";
+import type { CostingModel } from "./CostingModel";
 import {
-    CostingModelFromJSON,
-    CostingModelFromJSONTyped,
-    CostingModelToJSON,
-} from './CostingModel';
-import type { CostingOptions } from './CostingOptions';
+  CostingModelFromJSON,
+  CostingModelFromJSONTyped,
+  CostingModelToJSON,
+} from "./CostingModel";
+import type { CostingOptions } from "./CostingOptions";
 import {
-    CostingOptionsFromJSON,
-    CostingOptionsFromJSONTyped,
-    CostingOptionsToJSON,
-} from './CostingOptions';
-import type { Coordinate } from './Coordinate';
+  CostingOptionsFromJSON,
+  CostingOptionsFromJSONTyped,
+  CostingOptionsToJSON,
+} from "./CostingOptions";
+import type { Coordinate } from "./Coordinate";
 import {
-    CoordinateFromJSON,
-    CoordinateFromJSONTyped,
-    CoordinateToJSON,
-} from './Coordinate';
-import type { ValhallaLanguages } from './ValhallaLanguages';
+  CoordinateFromJSON,
+  CoordinateFromJSONTyped,
+  CoordinateToJSON,
+} from "./Coordinate";
+import type { ValhallaLanguages } from "./ValhallaLanguages";
 import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
-import type { DistanceUnit } from './DistanceUnit';
+  ValhallaLanguagesFromJSON,
+  ValhallaLanguagesFromJSONTyped,
+  ValhallaLanguagesToJSON,
+} from "./ValhallaLanguages";
+import type { DistanceUnit } from "./DistanceUnit";
 import {
-    DistanceUnitFromJSON,
-    DistanceUnitFromJSONTyped,
-    DistanceUnitToJSON,
-} from './DistanceUnit';
+  DistanceUnitFromJSON,
+  DistanceUnitFromJSONTyped,
+  DistanceUnitToJSON,
+} from "./DistanceUnit";
 
 /**
- * 
+ *
  * @export
  * @interface NearestRoadsRequest
  */
 export interface NearestRoadsRequest {
-    /**
-     * 
-     * @type {DistanceUnit}
-     * @memberof NearestRoadsRequest
-     */
-    units?: DistanceUnit;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof NearestRoadsRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof NearestRoadsRequest
-     */
-    directionsType?: NearestRoadsRequestDirectionsTypeEnum;
-    /**
-     * 
-     * @type {Array<Coordinate>}
-     * @memberof NearestRoadsRequest
-     */
-    locations: Array<Coordinate>;
-    /**
-     * 
-     * @type {CostingModel}
-     * @memberof NearestRoadsRequest
-     */
-    costing?: CostingModel;
-    /**
-     * 
-     * @type {CostingOptions}
-     * @memberof NearestRoadsRequest
-     */
-    costingOptions?: CostingOptions;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NearestRoadsRequest
-     */
-    verbose?: boolean;
+  /**
+   *
+   * @type {DistanceUnit}
+   * @memberof NearestRoadsRequest
+   */
+  units?: DistanceUnit;
+  /**
+   *
+   * @type {ValhallaLanguages}
+   * @memberof NearestRoadsRequest
+   */
+  language?: ValhallaLanguages;
+  /**
+   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
+   * @type {string}
+   * @memberof NearestRoadsRequest
+   */
+  directionsType?: NearestRoadsRequestDirectionsTypeEnum;
+  /**
+   *
+   * @type {Array<Coordinate>}
+   * @memberof NearestRoadsRequest
+   */
+  locations: Array<Coordinate>;
+  /**
+   *
+   * @type {CostingModel}
+   * @memberof NearestRoadsRequest
+   */
+  costing?: CostingModel;
+  /**
+   *
+   * @type {CostingOptions}
+   * @memberof NearestRoadsRequest
+   */
+  costingOptions?: CostingOptions;
+  /**
+   *
+   * @type {boolean}
+   * @memberof NearestRoadsRequest
+   */
+  verbose?: boolean;
 }
-
 
 /**
  * @export
  */
 export const NearestRoadsRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
+  None: "none",
+  Maneuvers: "maneuvers",
+  Instructions: "instructions",
 } as const;
-export type NearestRoadsRequestDirectionsTypeEnum = typeof NearestRoadsRequestDirectionsTypeEnum[keyof typeof NearestRoadsRequestDirectionsTypeEnum];
-
+export type NearestRoadsRequestDirectionsTypeEnum =
+  (typeof NearestRoadsRequestDirectionsTypeEnum)[keyof typeof NearestRoadsRequestDirectionsTypeEnum];
 
 /**
  * Check if a given object implements the NearestRoadsRequest interface.
  */
-export function instanceOfNearestRoadsRequest(value: object): value is NearestRoadsRequest {
-    if (!('locations' in value) || value['locations'] === undefined) return false;
-    return true;
+export function instanceOfNearestRoadsRequest(
+  value: object,
+): value is NearestRoadsRequest {
+  if (!("locations" in value) || value["locations"] === undefined) return false;
+  return true;
 }
 
 export function NearestRoadsRequestFromJSON(json: any): NearestRoadsRequest {
-    return NearestRoadsRequestFromJSONTyped(json, false);
+  return NearestRoadsRequestFromJSONTyped(json, false);
 }
 
-export function NearestRoadsRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): NearestRoadsRequest {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'units': json['units'] == null ? undefined : DistanceUnitFromJSON(json['units']),
-        'language': json['language'] == null ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': json['directions_type'] == null ? undefined : json['directions_type'],
-        'locations': ((json['locations'] as Array<any>).map(CoordinateFromJSON)),
-        'costing': json['costing'] == null ? undefined : CostingModelFromJSON(json['costing']),
-        'costingOptions': json['costing_options'] == null ? undefined : CostingOptionsFromJSON(json['costing_options']),
-        'verbose': json['verbose'] == null ? undefined : json['verbose'],
-    };
+export function NearestRoadsRequestFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): NearestRoadsRequest {
+  if (json == null) {
+    return json;
+  }
+  return {
+    units:
+      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
+    language:
+      json["language"] == null
+        ? undefined
+        : ValhallaLanguagesFromJSON(json["language"]),
+    directionsType:
+      json["directions_type"] == null ? undefined : json["directions_type"],
+    locations: (json["locations"] as Array<any>).map(CoordinateFromJSON),
+    costing:
+      json["costing"] == null
+        ? undefined
+        : CostingModelFromJSON(json["costing"]),
+    costingOptions:
+      json["costing_options"] == null
+        ? undefined
+        : CostingOptionsFromJSON(json["costing_options"]),
+    verbose: json["verbose"] == null ? undefined : json["verbose"],
+  };
 }
 
-export function NearestRoadsRequestToJSON(value?: NearestRoadsRequest | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'units': DistanceUnitToJSON(value['units']),
-        'language': ValhallaLanguagesToJSON(value['language']),
-        'directions_type': value['directionsType'],
-        'locations': ((value['locations'] as Array<any>).map(CoordinateToJSON)),
-        'costing': CostingModelToJSON(value['costing']),
-        'costing_options': CostingOptionsToJSON(value['costingOptions']),
-        'verbose': value['verbose'],
-    };
+export function NearestRoadsRequestToJSON(
+  value?: NearestRoadsRequest | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    units: DistanceUnitToJSON(value["units"]),
+    language: ValhallaLanguagesToJSON(value["language"]),
+    directions_type: value["directionsType"],
+    locations: (value["locations"] as Array<any>).map(CoordinateToJSON),
+    costing: CostingModelToJSON(value["costing"]),
+    costing_options: CostingOptionsToJSON(value["costingOptions"]),
+    verbose: value["verbose"],
+  };
 }
-

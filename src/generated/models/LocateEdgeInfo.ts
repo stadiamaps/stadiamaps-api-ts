@@ -12,90 +12,96 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { BikeNetwork } from './BikeNetwork';
+import { mapValues } from "../runtime";
+import type { BikeNetwork } from "./BikeNetwork";
 import {
-    BikeNetworkFromJSON,
-    BikeNetworkFromJSONTyped,
-    BikeNetworkToJSON,
-} from './BikeNetwork';
+  BikeNetworkFromJSON,
+  BikeNetworkFromJSONTyped,
+  BikeNetworkToJSON,
+} from "./BikeNetwork";
 
 /**
- * 
+ *
  * @export
  * @interface LocateEdgeInfo
  */
 export interface LocateEdgeInfo {
-    /**
-     * The mean elevation, in meters, relative to sea level.
-     * @type {number}
-     * @memberof LocateEdgeInfo
-     */
-    meanElevation?: number;
-    /**
-     * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm). Note that the polyline is always encoded with 6 digits of precision, whereas most implementations default to 5.
-     * @type {string}
-     * @memberof LocateEdgeInfo
-     */
-    shape: string;
-    /**
-     * A list of names that the edge goes by.
-     * @type {Array<string>}
-     * @memberof LocateEdgeInfo
-     */
-    names?: Array<string>;
-    /**
-     * 
-     * @type {BikeNetwork}
-     * @memberof LocateEdgeInfo
-     */
-    bikeNetwork?: BikeNetwork;
-    /**
-     * The OSM way ID associated with this edge.
-     * @type {number}
-     * @memberof LocateEdgeInfo
-     */
-    wayId: number;
+  /**
+   * The mean elevation, in meters, relative to sea level.
+   * @type {number}
+   * @memberof LocateEdgeInfo
+   */
+  meanElevation?: number;
+  /**
+   * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm). Note that the polyline is always encoded with 6 digits of precision, whereas most implementations default to 5.
+   * @type {string}
+   * @memberof LocateEdgeInfo
+   */
+  shape: string;
+  /**
+   * A list of names that the edge goes by.
+   * @type {Array<string>}
+   * @memberof LocateEdgeInfo
+   */
+  names?: Array<string>;
+  /**
+   *
+   * @type {BikeNetwork}
+   * @memberof LocateEdgeInfo
+   */
+  bikeNetwork?: BikeNetwork;
+  /**
+   * The OSM way ID associated with this edge.
+   * @type {number}
+   * @memberof LocateEdgeInfo
+   */
+  wayId: number;
 }
 
 /**
  * Check if a given object implements the LocateEdgeInfo interface.
  */
-export function instanceOfLocateEdgeInfo(value: object): value is LocateEdgeInfo {
-    if (!('shape' in value) || value['shape'] === undefined) return false;
-    if (!('wayId' in value) || value['wayId'] === undefined) return false;
-    return true;
+export function instanceOfLocateEdgeInfo(
+  value: object,
+): value is LocateEdgeInfo {
+  if (!("shape" in value) || value["shape"] === undefined) return false;
+  if (!("wayId" in value) || value["wayId"] === undefined) return false;
+  return true;
 }
 
 export function LocateEdgeInfoFromJSON(json: any): LocateEdgeInfo {
-    return LocateEdgeInfoFromJSONTyped(json, false);
+  return LocateEdgeInfoFromJSONTyped(json, false);
 }
 
-export function LocateEdgeInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LocateEdgeInfo {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'meanElevation': json['mean_elevation'] == null ? undefined : json['mean_elevation'],
-        'shape': json['shape'],
-        'names': json['names'] == null ? undefined : json['names'],
-        'bikeNetwork': json['bike_network'] == null ? undefined : BikeNetworkFromJSON(json['bike_network']),
-        'wayId': json['way_id'],
-    };
+export function LocateEdgeInfoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): LocateEdgeInfo {
+  if (json == null) {
+    return json;
+  }
+  return {
+    meanElevation:
+      json["mean_elevation"] == null ? undefined : json["mean_elevation"],
+    shape: json["shape"],
+    names: json["names"] == null ? undefined : json["names"],
+    bikeNetwork:
+      json["bike_network"] == null
+        ? undefined
+        : BikeNetworkFromJSON(json["bike_network"]),
+    wayId: json["way_id"],
+  };
 }
 
 export function LocateEdgeInfoToJSON(value?: LocateEdgeInfo | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'mean_elevation': value['meanElevation'],
-        'shape': value['shape'],
-        'names': value['names'],
-        'bike_network': BikeNetworkToJSON(value['bikeNetwork']),
-        'way_id': value['wayId'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    mean_elevation: value["meanElevation"],
+    shape: value["shape"],
+    names: value["names"],
+    bike_network: BikeNetworkToJSON(value["bikeNetwork"]),
+    way_id: value["wayId"],
+  };
 }
-

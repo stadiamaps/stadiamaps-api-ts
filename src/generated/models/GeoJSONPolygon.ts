@@ -12,74 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface GeoJSONPolygon
  */
 export interface GeoJSONPolygon {
-    /**
-     * 
-     * @type {string}
-     * @memberof GeoJSONPolygon
-     */
-    type: GeoJSONPolygonTypeEnum;
-    /**
-     * 
-     * @type {Array<Array<Array<number>>>}
-     * @memberof GeoJSONPolygon
-     */
-    coordinates: Array<Array<Array<number>>>;
+  /**
+   *
+   * @type {string}
+   * @memberof GeoJSONPolygon
+   */
+  type: GeoJSONPolygonTypeEnum;
+  /**
+   *
+   * @type {Array<Array<Array<number>>>}
+   * @memberof GeoJSONPolygon
+   */
+  coordinates: Array<Array<Array<number>>>;
 }
-
 
 /**
  * @export
  */
 export const GeoJSONPolygonTypeEnum = {
-    Point: 'Point',
-    MultiPoint: 'MultiPoint',
-    LineString: 'LineString',
-    MultiLineString: 'MultiLineString',
-    Polygon: 'Polygon',
-    MultiPolygon: 'MultiPolygon'
+  Point: "Point",
+  MultiPoint: "MultiPoint",
+  LineString: "LineString",
+  MultiLineString: "MultiLineString",
+  Polygon: "Polygon",
+  MultiPolygon: "MultiPolygon",
 } as const;
-export type GeoJSONPolygonTypeEnum = typeof GeoJSONPolygonTypeEnum[keyof typeof GeoJSONPolygonTypeEnum];
-
+export type GeoJSONPolygonTypeEnum =
+  (typeof GeoJSONPolygonTypeEnum)[keyof typeof GeoJSONPolygonTypeEnum];
 
 /**
  * Check if a given object implements the GeoJSONPolygon interface.
  */
-export function instanceOfGeoJSONPolygon(value: object): value is GeoJSONPolygon {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
-    return true;
+export function instanceOfGeoJSONPolygon(
+  value: object,
+): value is GeoJSONPolygon {
+  if (!("type" in value) || value["type"] === undefined) return false;
+  if (!("coordinates" in value) || value["coordinates"] === undefined)
+    return false;
+  return true;
 }
 
 export function GeoJSONPolygonFromJSON(json: any): GeoJSONPolygon {
-    return GeoJSONPolygonFromJSONTyped(json, false);
+  return GeoJSONPolygonFromJSONTyped(json, false);
 }
 
-export function GeoJSONPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJSONPolygon {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'type': json['type'],
-        'coordinates': json['coordinates'],
-    };
+export function GeoJSONPolygonFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeoJSONPolygon {
+  if (json == null) {
+    return json;
+  }
+  return {
+    type: json["type"],
+    coordinates: json["coordinates"],
+  };
 }
 
 export function GeoJSONPolygonToJSON(value?: GeoJSONPolygon | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'type': value['type'],
-        'coordinates': value['coordinates'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    type: value["type"],
+    coordinates: value["coordinates"],
+  };
 }
-

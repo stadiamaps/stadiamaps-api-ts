@@ -12,108 +12,134 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { TraceEdge } from './TraceEdge';
+import { mapValues } from "../runtime";
+import type { TraceEdge } from "./TraceEdge";
 import {
-    TraceEdgeFromJSON,
-    TraceEdgeFromJSONTyped,
-    TraceEdgeToJSON,
-} from './TraceEdge';
-import type { MatchedPoint } from './MatchedPoint';
+  TraceEdgeFromJSON,
+  TraceEdgeFromJSONTyped,
+  TraceEdgeToJSON,
+} from "./TraceEdge";
+import type { MatchedPoint } from "./MatchedPoint";
 import {
-    MatchedPointFromJSON,
-    MatchedPointFromJSONTyped,
-    MatchedPointToJSON,
-} from './MatchedPoint';
-import type { AdminRegion } from './AdminRegion';
+  MatchedPointFromJSON,
+  MatchedPointFromJSONTyped,
+  MatchedPointToJSON,
+} from "./MatchedPoint";
+import type { AdminRegion } from "./AdminRegion";
 import {
-    AdminRegionFromJSON,
-    AdminRegionFromJSONTyped,
-    AdminRegionToJSON,
-} from './AdminRegion';
+  AdminRegionFromJSON,
+  AdminRegionFromJSONTyped,
+  AdminRegionToJSON,
+} from "./AdminRegion";
 
 /**
- * 
+ *
  * @export
  * @interface TraceAttributesBaseResponse
  */
 export interface TraceAttributesBaseResponse {
-    /**
-     * The list of edges matched along the path.
-     * @type {Array<TraceEdge>}
-     * @memberof TraceAttributesBaseResponse
-     */
-    edges?: Array<TraceEdge>;
-    /**
-     * The set of administrative regions matched along the path. Rather than repeating this information for every end node, the admins in this list are referenced by index.
-     * @type {Array<AdminRegion>}
-     * @memberof TraceAttributesBaseResponse
-     */
-    admins?: Array<AdminRegion>;
-    /**
-     * List of match results when using the map_snap shape match algorithm. There is a one-to-one correspondence with the input set of latitude, longitude coordinates and this list of match results.
-     * @type {Array<MatchedPoint>}
-     * @memberof TraceAttributesBaseResponse
-     */
-    matchedPoints?: Array<MatchedPoint>;
-    /**
-     * 
-     * @type {number}
-     * @memberof TraceAttributesBaseResponse
-     */
-    osmChangeset?: number;
-    /**
-     * The encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm) of the matched path.
-     * @type {string}
-     * @memberof TraceAttributesBaseResponse
-     */
-    shape?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TraceAttributesBaseResponse
-     */
-    confidenceScore?: number;
+  /**
+   * The list of edges matched along the path.
+   * @type {Array<TraceEdge>}
+   * @memberof TraceAttributesBaseResponse
+   */
+  edges?: Array<TraceEdge>;
+  /**
+   * The set of administrative regions matched along the path. Rather than repeating this information for every end node, the admins in this list are referenced by index.
+   * @type {Array<AdminRegion>}
+   * @memberof TraceAttributesBaseResponse
+   */
+  admins?: Array<AdminRegion>;
+  /**
+   * List of match results when using the map_snap shape match algorithm. There is a one-to-one correspondence with the input set of latitude, longitude coordinates and this list of match results.
+   * @type {Array<MatchedPoint>}
+   * @memberof TraceAttributesBaseResponse
+   */
+  matchedPoints?: Array<MatchedPoint>;
+  /**
+   *
+   * @type {number}
+   * @memberof TraceAttributesBaseResponse
+   */
+  osmChangeset?: number;
+  /**
+   * The encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm) of the matched path.
+   * @type {string}
+   * @memberof TraceAttributesBaseResponse
+   */
+  shape?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof TraceAttributesBaseResponse
+   */
+  confidenceScore?: number;
 }
 
 /**
  * Check if a given object implements the TraceAttributesBaseResponse interface.
  */
-export function instanceOfTraceAttributesBaseResponse(value: object): value is TraceAttributesBaseResponse {
-    return true;
+export function instanceOfTraceAttributesBaseResponse(
+  value: object,
+): value is TraceAttributesBaseResponse {
+  return true;
 }
 
-export function TraceAttributesBaseResponseFromJSON(json: any): TraceAttributesBaseResponse {
-    return TraceAttributesBaseResponseFromJSONTyped(json, false);
+export function TraceAttributesBaseResponseFromJSON(
+  json: any,
+): TraceAttributesBaseResponse {
+  return TraceAttributesBaseResponseFromJSONTyped(json, false);
 }
 
-export function TraceAttributesBaseResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TraceAttributesBaseResponse {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'edges': json['edges'] == null ? undefined : ((json['edges'] as Array<any>).map(TraceEdgeFromJSON)),
-        'admins': json['admins'] == null ? undefined : ((json['admins'] as Array<any>).map(AdminRegionFromJSON)),
-        'matchedPoints': json['matched_points'] == null ? undefined : ((json['matched_points'] as Array<any>).map(MatchedPointFromJSON)),
-        'osmChangeset': json['osm_changeset'] == null ? undefined : json['osm_changeset'],
-        'shape': json['shape'] == null ? undefined : json['shape'],
-        'confidenceScore': json['confidence_score'] == null ? undefined : json['confidence_score'],
-    };
+export function TraceAttributesBaseResponseFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): TraceAttributesBaseResponse {
+  if (json == null) {
+    return json;
+  }
+  return {
+    edges:
+      json["edges"] == null
+        ? undefined
+        : (json["edges"] as Array<any>).map(TraceEdgeFromJSON),
+    admins:
+      json["admins"] == null
+        ? undefined
+        : (json["admins"] as Array<any>).map(AdminRegionFromJSON),
+    matchedPoints:
+      json["matched_points"] == null
+        ? undefined
+        : (json["matched_points"] as Array<any>).map(MatchedPointFromJSON),
+    osmChangeset:
+      json["osm_changeset"] == null ? undefined : json["osm_changeset"],
+    shape: json["shape"] == null ? undefined : json["shape"],
+    confidenceScore:
+      json["confidence_score"] == null ? undefined : json["confidence_score"],
+  };
 }
 
-export function TraceAttributesBaseResponseToJSON(value?: TraceAttributesBaseResponse | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'edges': value['edges'] == null ? undefined : ((value['edges'] as Array<any>).map(TraceEdgeToJSON)),
-        'admins': value['admins'] == null ? undefined : ((value['admins'] as Array<any>).map(AdminRegionToJSON)),
-        'matched_points': value['matchedPoints'] == null ? undefined : ((value['matchedPoints'] as Array<any>).map(MatchedPointToJSON)),
-        'osm_changeset': value['osmChangeset'],
-        'shape': value['shape'],
-        'confidence_score': value['confidenceScore'],
-    };
+export function TraceAttributesBaseResponseToJSON(
+  value?: TraceAttributesBaseResponse | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    edges:
+      value["edges"] == null
+        ? undefined
+        : (value["edges"] as Array<any>).map(TraceEdgeToJSON),
+    admins:
+      value["admins"] == null
+        ? undefined
+        : (value["admins"] as Array<any>).map(AdminRegionToJSON),
+    matched_points:
+      value["matchedPoints"] == null
+        ? undefined
+        : (value["matchedPoints"] as Array<any>).map(MatchedPointToJSON),
+    osm_changeset: value["osmChangeset"],
+    shape: value["shape"],
+    confidence_score: value["confidenceScore"],
+  };
 }
-

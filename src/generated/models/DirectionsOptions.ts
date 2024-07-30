@@ -12,90 +12,96 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ValhallaLanguages } from './ValhallaLanguages';
+import { mapValues } from "../runtime";
+import type { ValhallaLanguages } from "./ValhallaLanguages";
 import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
-import type { DistanceUnit } from './DistanceUnit';
+  ValhallaLanguagesFromJSON,
+  ValhallaLanguagesFromJSONTyped,
+  ValhallaLanguagesToJSON,
+} from "./ValhallaLanguages";
+import type { DistanceUnit } from "./DistanceUnit";
 import {
-    DistanceUnitFromJSON,
-    DistanceUnitFromJSONTyped,
-    DistanceUnitToJSON,
-} from './DistanceUnit';
+  DistanceUnitFromJSON,
+  DistanceUnitFromJSONTyped,
+  DistanceUnitToJSON,
+} from "./DistanceUnit";
 
 /**
- * 
+ *
  * @export
  * @interface DirectionsOptions
  */
 export interface DirectionsOptions {
-    /**
-     * 
-     * @type {DistanceUnit}
-     * @memberof DirectionsOptions
-     */
-    units?: DistanceUnit;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof DirectionsOptions
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof DirectionsOptions
-     */
-    directionsType?: DirectionsOptionsDirectionsTypeEnum;
+  /**
+   *
+   * @type {DistanceUnit}
+   * @memberof DirectionsOptions
+   */
+  units?: DistanceUnit;
+  /**
+   *
+   * @type {ValhallaLanguages}
+   * @memberof DirectionsOptions
+   */
+  language?: ValhallaLanguages;
+  /**
+   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
+   * @type {string}
+   * @memberof DirectionsOptions
+   */
+  directionsType?: DirectionsOptionsDirectionsTypeEnum;
 }
-
 
 /**
  * @export
  */
 export const DirectionsOptionsDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
+  None: "none",
+  Maneuvers: "maneuvers",
+  Instructions: "instructions",
 } as const;
-export type DirectionsOptionsDirectionsTypeEnum = typeof DirectionsOptionsDirectionsTypeEnum[keyof typeof DirectionsOptionsDirectionsTypeEnum];
-
+export type DirectionsOptionsDirectionsTypeEnum =
+  (typeof DirectionsOptionsDirectionsTypeEnum)[keyof typeof DirectionsOptionsDirectionsTypeEnum];
 
 /**
  * Check if a given object implements the DirectionsOptions interface.
  */
-export function instanceOfDirectionsOptions(value: object): value is DirectionsOptions {
-    return true;
+export function instanceOfDirectionsOptions(
+  value: object,
+): value is DirectionsOptions {
+  return true;
 }
 
 export function DirectionsOptionsFromJSON(json: any): DirectionsOptions {
-    return DirectionsOptionsFromJSONTyped(json, false);
+  return DirectionsOptionsFromJSONTyped(json, false);
 }
 
-export function DirectionsOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): DirectionsOptions {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'units': json['units'] == null ? undefined : DistanceUnitFromJSON(json['units']),
-        'language': json['language'] == null ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': json['directions_type'] == null ? undefined : json['directions_type'],
-    };
+export function DirectionsOptionsFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): DirectionsOptions {
+  if (json == null) {
+    return json;
+  }
+  return {
+    units:
+      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
+    language:
+      json["language"] == null
+        ? undefined
+        : ValhallaLanguagesFromJSON(json["language"]),
+    directionsType:
+      json["directions_type"] == null ? undefined : json["directions_type"],
+  };
 }
 
 export function DirectionsOptionsToJSON(value?: DirectionsOptions | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'units': DistanceUnitToJSON(value['units']),
-        'language': ValhallaLanguagesToJSON(value['language']),
-        'directions_type': value['directionsType'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    units: DistanceUnitToJSON(value["units"]),
+    language: ValhallaLanguagesToJSON(value["language"]),
+    directions_type: value["directionsType"],
+  };
 }
-

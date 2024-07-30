@@ -12,44 +12,44 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * Class of road (ranked in descending order)
  * @export
  */
 export const RoadClass = {
-    Motorway: 'motorway',
-    Trunk: 'trunk',
-    Primary: 'primary',
-    Secondary: 'secondary',
-    Tertiary: 'tertiary',
-    Unclassified: 'unclassified',
-    Residential: 'residential',
-    ServiceOther: 'service_other'
+  Motorway: "motorway",
+  Trunk: "trunk",
+  Primary: "primary",
+  Secondary: "secondary",
+  Tertiary: "tertiary",
+  Unclassified: "unclassified",
+  Residential: "residential",
+  ServiceOther: "service_other",
 } as const;
-export type RoadClass = typeof RoadClass[keyof typeof RoadClass];
-
+export type RoadClass = (typeof RoadClass)[keyof typeof RoadClass];
 
 export function instanceOfRoadClass(value: any): boolean {
-    for (const key in RoadClass) {
-        if (Object.prototype.hasOwnProperty.call(RoadClass, key)) {
-            if ((RoadClass as Record<string, RoadClass>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in RoadClass) {
+    if (Object.prototype.hasOwnProperty.call(RoadClass, key)) {
+      if ((RoadClass as Record<string, RoadClass>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function RoadClassFromJSON(json: any): RoadClass {
-    return RoadClassFromJSONTyped(json, false);
+  return RoadClassFromJSONTyped(json, false);
 }
 
-export function RoadClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoadClass {
-    return json as RoadClass;
+export function RoadClassFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): RoadClass {
+  return json as RoadClass;
 }
 
 export function RoadClassToJSON(value?: RoadClass | null): any {
-    return value as any;
+  return value as any;
 }
-

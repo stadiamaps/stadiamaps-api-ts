@@ -12,65 +12,65 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface Contour
  */
 export interface Contour {
-    /**
-     * The time in minutes for the contour. Mutually exclusive of distance.
-     * @type {number}
-     * @memberof Contour
-     */
-    time?: number;
-    /**
-     * The distance in km for the contour. Mutually exclusive of time.
-     * @type {number}
-     * @memberof Contour
-     */
-    distance?: number;
-    /**
-     * The color for the output contour, specified as a hex value (without a leading `#`). If no color is specified, one will be assigned automatically.
-     * @type {string}
-     * @memberof Contour
-     */
-    color?: string;
+  /**
+   * The time in minutes for the contour. Mutually exclusive of distance.
+   * @type {number}
+   * @memberof Contour
+   */
+  time?: number;
+  /**
+   * The distance in km for the contour. Mutually exclusive of time.
+   * @type {number}
+   * @memberof Contour
+   */
+  distance?: number;
+  /**
+   * The color for the output contour, specified as a hex value (without a leading `#`). If no color is specified, one will be assigned automatically.
+   * @type {string}
+   * @memberof Contour
+   */
+  color?: string;
 }
 
 /**
  * Check if a given object implements the Contour interface.
  */
 export function instanceOfContour(value: object): value is Contour {
-    return true;
+  return true;
 }
 
 export function ContourFromJSON(json: any): Contour {
-    return ContourFromJSONTyped(json, false);
+  return ContourFromJSONTyped(json, false);
 }
 
-export function ContourFromJSONTyped(json: any, ignoreDiscriminator: boolean): Contour {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'time': json['time'] == null ? undefined : json['time'],
-        'distance': json['distance'] == null ? undefined : json['distance'],
-        'color': json['color'] == null ? undefined : json['color'],
-    };
+export function ContourFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): Contour {
+  if (json == null) {
+    return json;
+  }
+  return {
+    time: json["time"] == null ? undefined : json["time"],
+    distance: json["distance"] == null ? undefined : json["distance"],
+    color: json["color"] == null ? undefined : json["color"],
+  };
 }
 
 export function ContourToJSON(value?: Contour | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'time': value['time'],
-        'distance': value['distance'],
-        'color': value['color'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    time: value["time"],
+    distance: value["distance"],
+    color: value["color"],
+  };
 }
-

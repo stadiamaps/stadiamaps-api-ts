@@ -12,65 +12,68 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface GeoJSONGeometryBase
  */
 export interface GeoJSONGeometryBase {
-    /**
-     * 
-     * @type {string}
-     * @memberof GeoJSONGeometryBase
-     */
-    type: GeoJSONGeometryBaseTypeEnum;
+  /**
+   *
+   * @type {string}
+   * @memberof GeoJSONGeometryBase
+   */
+  type: GeoJSONGeometryBaseTypeEnum;
 }
-
 
 /**
  * @export
  */
 export const GeoJSONGeometryBaseTypeEnum = {
-    Point: 'Point',
-    MultiPoint: 'MultiPoint',
-    LineString: 'LineString',
-    MultiLineString: 'MultiLineString',
-    Polygon: 'Polygon',
-    MultiPolygon: 'MultiPolygon'
+  Point: "Point",
+  MultiPoint: "MultiPoint",
+  LineString: "LineString",
+  MultiLineString: "MultiLineString",
+  Polygon: "Polygon",
+  MultiPolygon: "MultiPolygon",
 } as const;
-export type GeoJSONGeometryBaseTypeEnum = typeof GeoJSONGeometryBaseTypeEnum[keyof typeof GeoJSONGeometryBaseTypeEnum];
-
+export type GeoJSONGeometryBaseTypeEnum =
+  (typeof GeoJSONGeometryBaseTypeEnum)[keyof typeof GeoJSONGeometryBaseTypeEnum];
 
 /**
  * Check if a given object implements the GeoJSONGeometryBase interface.
  */
-export function instanceOfGeoJSONGeometryBase(value: object): value is GeoJSONGeometryBase {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    return true;
+export function instanceOfGeoJSONGeometryBase(
+  value: object,
+): value is GeoJSONGeometryBase {
+  if (!("type" in value) || value["type"] === undefined) return false;
+  return true;
 }
 
 export function GeoJSONGeometryBaseFromJSON(json: any): GeoJSONGeometryBase {
-    return GeoJSONGeometryBaseFromJSONTyped(json, false);
+  return GeoJSONGeometryBaseFromJSONTyped(json, false);
 }
 
-export function GeoJSONGeometryBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJSONGeometryBase {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'type': json['type'],
-    };
+export function GeoJSONGeometryBaseFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): GeoJSONGeometryBase {
+  if (json == null) {
+    return json;
+  }
+  return {
+    type: json["type"],
+  };
 }
 
-export function GeoJSONGeometryBaseToJSON(value?: GeoJSONGeometryBase | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'type': value['type'],
-    };
+export function GeoJSONGeometryBaseToJSON(
+  value?: GeoJSONGeometryBase | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    type: value["type"],
+  };
 }
-

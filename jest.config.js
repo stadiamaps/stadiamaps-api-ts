@@ -1,9 +1,9 @@
 module.exports = {
-  preset: 'ts-jest',
+  preset: "ts-jest",
 
-  roots: ['__tests__'],
+  roots: ["__tests__"],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.tsx?$": "ts-jest",
   },
-  testPathIgnorePatterns: ['/node_modules/', '__tests__/utils.ts'],
+  testPathIgnorePatterns: ["/node_modules/", "__tests__/utils.ts"],
 };

@@ -12,142 +12,155 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CostingOptions } from './CostingOptions';
+import { mapValues } from "../runtime";
+import type { CostingOptions } from "./CostingOptions";
 import {
-    CostingOptionsFromJSON,
-    CostingOptionsFromJSONTyped,
-    CostingOptionsToJSON,
-} from './CostingOptions';
-import type { Coordinate } from './Coordinate';
+  CostingOptionsFromJSON,
+  CostingOptionsFromJSONTyped,
+  CostingOptionsToJSON,
+} from "./CostingOptions";
+import type { Coordinate } from "./Coordinate";
 import {
-    CoordinateFromJSON,
-    CoordinateFromJSONTyped,
-    CoordinateToJSON,
-} from './Coordinate';
-import type { MatrixCostingModel } from './MatrixCostingModel';
+  CoordinateFromJSON,
+  CoordinateFromJSONTyped,
+  CoordinateToJSON,
+} from "./Coordinate";
+import type { MatrixCostingModel } from "./MatrixCostingModel";
 import {
-    MatrixCostingModelFromJSON,
-    MatrixCostingModelFromJSONTyped,
-    MatrixCostingModelToJSON,
-} from './MatrixCostingModel';
-import type { ValhallaLanguages } from './ValhallaLanguages';
+  MatrixCostingModelFromJSON,
+  MatrixCostingModelFromJSONTyped,
+  MatrixCostingModelToJSON,
+} from "./MatrixCostingModel";
+import type { ValhallaLanguages } from "./ValhallaLanguages";
 import {
-    ValhallaLanguagesFromJSON,
-    ValhallaLanguagesFromJSONTyped,
-    ValhallaLanguagesToJSON,
-} from './ValhallaLanguages';
-import type { DistanceUnit } from './DistanceUnit';
+  ValhallaLanguagesFromJSON,
+  ValhallaLanguagesFromJSONTyped,
+  ValhallaLanguagesToJSON,
+} from "./ValhallaLanguages";
+import type { DistanceUnit } from "./DistanceUnit";
 import {
-    DistanceUnitFromJSON,
-    DistanceUnitFromJSONTyped,
-    DistanceUnitToJSON,
-} from './DistanceUnit';
+  DistanceUnitFromJSON,
+  DistanceUnitFromJSONTyped,
+  DistanceUnitToJSON,
+} from "./DistanceUnit";
 
 /**
- * 
+ *
  * @export
  * @interface OptimizedRouteRequest
  */
 export interface OptimizedRouteRequest {
-    /**
-     * 
-     * @type {DistanceUnit}
-     * @memberof OptimizedRouteRequest
-     */
-    units?: DistanceUnit;
-    /**
-     * 
-     * @type {ValhallaLanguages}
-     * @memberof OptimizedRouteRequest
-     */
-    language?: ValhallaLanguages;
-    /**
-     * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-     * @type {string}
-     * @memberof OptimizedRouteRequest
-     */
-    directionsType?: OptimizedRouteRequestDirectionsTypeEnum;
-    /**
-     * An identifier to disambiguate requests (echoed by the server).
-     * @type {string}
-     * @memberof OptimizedRouteRequest
-     */
-    id?: string;
-    /**
-     * The list of locations. The first and last are assumed to be the start and end points, and all intermediate points are locations that you want to visit along the way.
-     * @type {Array<Coordinate>}
-     * @memberof OptimizedRouteRequest
-     */
-    locations: Array<Coordinate>;
-    /**
-     * 
-     * @type {MatrixCostingModel}
-     * @memberof OptimizedRouteRequest
-     */
-    costing: MatrixCostingModel;
-    /**
-     * 
-     * @type {CostingOptions}
-     * @memberof OptimizedRouteRequest
-     */
-    costingOptions?: CostingOptions;
+  /**
+   *
+   * @type {DistanceUnit}
+   * @memberof OptimizedRouteRequest
+   */
+  units?: DistanceUnit;
+  /**
+   *
+   * @type {ValhallaLanguages}
+   * @memberof OptimizedRouteRequest
+   */
+  language?: ValhallaLanguages;
+  /**
+   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
+   * @type {string}
+   * @memberof OptimizedRouteRequest
+   */
+  directionsType?: OptimizedRouteRequestDirectionsTypeEnum;
+  /**
+   * An identifier to disambiguate requests (echoed by the server).
+   * @type {string}
+   * @memberof OptimizedRouteRequest
+   */
+  id?: string;
+  /**
+   * The list of locations. The first and last are assumed to be the start and end points, and all intermediate points are locations that you want to visit along the way.
+   * @type {Array<Coordinate>}
+   * @memberof OptimizedRouteRequest
+   */
+  locations: Array<Coordinate>;
+  /**
+   *
+   * @type {MatrixCostingModel}
+   * @memberof OptimizedRouteRequest
+   */
+  costing: MatrixCostingModel;
+  /**
+   *
+   * @type {CostingOptions}
+   * @memberof OptimizedRouteRequest
+   */
+  costingOptions?: CostingOptions;
 }
-
 
 /**
  * @export
  */
 export const OptimizedRouteRequestDirectionsTypeEnum = {
-    None: 'none',
-    Maneuvers: 'maneuvers',
-    Instructions: 'instructions'
+  None: "none",
+  Maneuvers: "maneuvers",
+  Instructions: "instructions",
 } as const;
-export type OptimizedRouteRequestDirectionsTypeEnum = typeof OptimizedRouteRequestDirectionsTypeEnum[keyof typeof OptimizedRouteRequestDirectionsTypeEnum];
-
+export type OptimizedRouteRequestDirectionsTypeEnum =
+  (typeof OptimizedRouteRequestDirectionsTypeEnum)[keyof typeof OptimizedRouteRequestDirectionsTypeEnum];
 
 /**
  * Check if a given object implements the OptimizedRouteRequest interface.
  */
-export function instanceOfOptimizedRouteRequest(value: object): value is OptimizedRouteRequest {
-    if (!('locations' in value) || value['locations'] === undefined) return false;
-    if (!('costing' in value) || value['costing'] === undefined) return false;
-    return true;
+export function instanceOfOptimizedRouteRequest(
+  value: object,
+): value is OptimizedRouteRequest {
+  if (!("locations" in value) || value["locations"] === undefined) return false;
+  if (!("costing" in value) || value["costing"] === undefined) return false;
+  return true;
 }
 
-export function OptimizedRouteRequestFromJSON(json: any): OptimizedRouteRequest {
-    return OptimizedRouteRequestFromJSONTyped(json, false);
+export function OptimizedRouteRequestFromJSON(
+  json: any,
+): OptimizedRouteRequest {
+  return OptimizedRouteRequestFromJSONTyped(json, false);
 }
 
-export function OptimizedRouteRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): OptimizedRouteRequest {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'units': json['units'] == null ? undefined : DistanceUnitFromJSON(json['units']),
-        'language': json['language'] == null ? undefined : ValhallaLanguagesFromJSON(json['language']),
-        'directionsType': json['directions_type'] == null ? undefined : json['directions_type'],
-        'id': json['id'] == null ? undefined : json['id'],
-        'locations': ((json['locations'] as Array<any>).map(CoordinateFromJSON)),
-        'costing': MatrixCostingModelFromJSON(json['costing']),
-        'costingOptions': json['costing_options'] == null ? undefined : CostingOptionsFromJSON(json['costing_options']),
-    };
+export function OptimizedRouteRequestFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): OptimizedRouteRequest {
+  if (json == null) {
+    return json;
+  }
+  return {
+    units:
+      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
+    language:
+      json["language"] == null
+        ? undefined
+        : ValhallaLanguagesFromJSON(json["language"]),
+    directionsType:
+      json["directions_type"] == null ? undefined : json["directions_type"],
+    id: json["id"] == null ? undefined : json["id"],
+    locations: (json["locations"] as Array<any>).map(CoordinateFromJSON),
+    costing: MatrixCostingModelFromJSON(json["costing"]),
+    costingOptions:
+      json["costing_options"] == null
+        ? undefined
+        : CostingOptionsFromJSON(json["costing_options"]),
+  };
 }
 
-export function OptimizedRouteRequestToJSON(value?: OptimizedRouteRequest | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'units': DistanceUnitToJSON(value['units']),
-        'language': ValhallaLanguagesToJSON(value['language']),
-        'directions_type': value['directionsType'],
-        'id': value['id'],
-        'locations': ((value['locations'] as Array<any>).map(CoordinateToJSON)),
-        'costing': MatrixCostingModelToJSON(value['costing']),
-        'costing_options': CostingOptionsToJSON(value['costingOptions']),
-    };
+export function OptimizedRouteRequestToJSON(
+  value?: OptimizedRouteRequest | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    units: DistanceUnitToJSON(value["units"]),
+    language: ValhallaLanguagesToJSON(value["language"]),
+    directions_type: value["directionsType"],
+    id: value["id"],
+    locations: (value["locations"] as Array<any>).map(CoordinateToJSON),
+    costing: MatrixCostingModelToJSON(value["costing"]),
+    costing_options: CostingOptionsToJSON(value["costingOptions"]),
+  };
 }
-

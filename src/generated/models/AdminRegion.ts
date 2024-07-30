@@ -12,73 +12,75 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface AdminRegion
  */
 export interface AdminRegion {
-    /**
-     * The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
-     * @type {string}
-     * @memberof AdminRegion
-     */
-    countryCode?: string;
-    /**
-     * The country name
-     * @type {string}
-     * @memberof AdminRegion
-     */
-    countryText?: string;
-    /**
-     * The abbreviation code for the state (varies by country).
-     * @type {string}
-     * @memberof AdminRegion
-     */
-    stateCode?: string;
-    /**
-     * The state name.
-     * @type {string}
-     * @memberof AdminRegion
-     */
-    stateText?: string;
+  /**
+   * The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
+   * @type {string}
+   * @memberof AdminRegion
+   */
+  countryCode?: string;
+  /**
+   * The country name
+   * @type {string}
+   * @memberof AdminRegion
+   */
+  countryText?: string;
+  /**
+   * The abbreviation code for the state (varies by country).
+   * @type {string}
+   * @memberof AdminRegion
+   */
+  stateCode?: string;
+  /**
+   * The state name.
+   * @type {string}
+   * @memberof AdminRegion
+   */
+  stateText?: string;
 }
 
 /**
  * Check if a given object implements the AdminRegion interface.
  */
 export function instanceOfAdminRegion(value: object): value is AdminRegion {
-    return true;
+  return true;
 }
 
 export function AdminRegionFromJSON(json: any): AdminRegion {
-    return AdminRegionFromJSONTyped(json, false);
+  return AdminRegionFromJSONTyped(json, false);
 }
 
-export function AdminRegionFromJSONTyped(json: any, ignoreDiscriminator: boolean): AdminRegion {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'countryCode': json['country_code'] == null ? undefined : json['country_code'],
-        'countryText': json['country_text'] == null ? undefined : json['country_text'],
-        'stateCode': json['state_code'] == null ? undefined : json['state_code'],
-        'stateText': json['state_text'] == null ? undefined : json['state_text'],
-    };
+export function AdminRegionFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): AdminRegion {
+  if (json == null) {
+    return json;
+  }
+  return {
+    countryCode:
+      json["country_code"] == null ? undefined : json["country_code"],
+    countryText:
+      json["country_text"] == null ? undefined : json["country_text"],
+    stateCode: json["state_code"] == null ? undefined : json["state_code"],
+    stateText: json["state_text"] == null ? undefined : json["state_text"],
+  };
 }
 
 export function AdminRegionToJSON(value?: AdminRegion | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'country_code': value['countryCode'],
-        'country_text': value['countryText'],
-        'state_code': value['stateCode'],
-        'state_text': value['stateText'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    country_code: value["countryCode"],
+    country_text: value["countryText"],
+    state_code: value["stateCode"],
+    state_text: value["stateText"],
+  };
 }
-

@@ -12,81 +12,94 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
- * 
+ *
  * @export
  * @interface MapMatchTraceOptions
  */
 export interface MapMatchTraceOptions {
-    /**
-     * The search radius, in meters, when trying to match each trace point.
-     * @type {number}
-     * @memberof MapMatchTraceOptions
-     */
-    searchRadius?: number;
-    /**
-     * The accuracy of the GPS, in meters.
-     * @type {number}
-     * @memberof MapMatchTraceOptions
-     */
-    gpsAccuracy?: number;
-    /**
-     * The breaking distance, in meters, between trace points.
-     * @type {number}
-     * @memberof MapMatchTraceOptions
-     */
-    breakageDistance?: number;
-    /**
-     * The interpolation distance, in meters, beyond which trace points are merged together.
-     * @type {number}
-     * @memberof MapMatchTraceOptions
-     */
-    interpolationDistance?: number;
-    /**
-     * Penalizes turns from one road segment to next. For a pedestrian trace, you may see a back-and-forth motion along the streets of your path with the default settings. Try increasing the turn penalty factor to 500 to reduce jitter in the output. Note that if GPS accuracy is already good, increasing this above the default will usually negatively affect the quality of map matching.
-     * @type {number}
-     * @memberof MapMatchTraceOptions
-     */
-    turnPenaltyFactor?: number;
+  /**
+   * The search radius, in meters, when trying to match each trace point.
+   * @type {number}
+   * @memberof MapMatchTraceOptions
+   */
+  searchRadius?: number;
+  /**
+   * The accuracy of the GPS, in meters.
+   * @type {number}
+   * @memberof MapMatchTraceOptions
+   */
+  gpsAccuracy?: number;
+  /**
+   * The breaking distance, in meters, between trace points.
+   * @type {number}
+   * @memberof MapMatchTraceOptions
+   */
+  breakageDistance?: number;
+  /**
+   * The interpolation distance, in meters, beyond which trace points are merged together.
+   * @type {number}
+   * @memberof MapMatchTraceOptions
+   */
+  interpolationDistance?: number;
+  /**
+   * Penalizes turns from one road segment to next. For a pedestrian trace, you may see a back-and-forth motion along the streets of your path with the default settings. Try increasing the turn penalty factor to 500 to reduce jitter in the output. Note that if GPS accuracy is already good, increasing this above the default will usually negatively affect the quality of map matching.
+   * @type {number}
+   * @memberof MapMatchTraceOptions
+   */
+  turnPenaltyFactor?: number;
 }
 
 /**
  * Check if a given object implements the MapMatchTraceOptions interface.
  */
-export function instanceOfMapMatchTraceOptions(value: object): value is MapMatchTraceOptions {
-    return true;
+export function instanceOfMapMatchTraceOptions(
+  value: object,
+): value is MapMatchTraceOptions {
+  return true;
 }
 
 export function MapMatchTraceOptionsFromJSON(json: any): MapMatchTraceOptions {
-    return MapMatchTraceOptionsFromJSONTyped(json, false);
+  return MapMatchTraceOptionsFromJSONTyped(json, false);
 }
 
-export function MapMatchTraceOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): MapMatchTraceOptions {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'searchRadius': json['search_radius'] == null ? undefined : json['search_radius'],
-        'gpsAccuracy': json['gps_accuracy'] == null ? undefined : json['gps_accuracy'],
-        'breakageDistance': json['breakage_distance'] == null ? undefined : json['breakage_distance'],
-        'interpolationDistance': json['interpolation_distance'] == null ? undefined : json['interpolation_distance'],
-        'turnPenaltyFactor': json['turn_penalty_factor'] == null ? undefined : json['turn_penalty_factor'],
-    };
+export function MapMatchTraceOptionsFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): MapMatchTraceOptions {
+  if (json == null) {
+    return json;
+  }
+  return {
+    searchRadius:
+      json["search_radius"] == null ? undefined : json["search_radius"],
+    gpsAccuracy:
+      json["gps_accuracy"] == null ? undefined : json["gps_accuracy"],
+    breakageDistance:
+      json["breakage_distance"] == null ? undefined : json["breakage_distance"],
+    interpolationDistance:
+      json["interpolation_distance"] == null
+        ? undefined
+        : json["interpolation_distance"],
+    turnPenaltyFactor:
+      json["turn_penalty_factor"] == null
+        ? undefined
+        : json["turn_penalty_factor"],
+  };
 }
 
-export function MapMatchTraceOptionsToJSON(value?: MapMatchTraceOptions | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'search_radius': value['searchRadius'],
-        'gps_accuracy': value['gpsAccuracy'],
-        'breakage_distance': value['breakageDistance'],
-        'interpolation_distance': value['interpolationDistance'],
-        'turn_penalty_factor': value['turnPenaltyFactor'],
-    };
+export function MapMatchTraceOptionsToJSON(
+  value?: MapMatchTraceOptions | null,
+): any {
+  if (value == null) {
+    return value;
+  }
+  return {
+    search_radius: value["searchRadius"],
+    gps_accuracy: value["gpsAccuracy"],
+    breakage_distance: value["breakageDistance"],
+    interpolation_distance: value["interpolationDistance"],
+    turn_penalty_factor: value["turnPenaltyFactor"],
+  };
 }
-

@@ -12,74 +12,76 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { SearchQuery } from './SearchQuery';
+import { mapValues } from "../runtime";
+import type { SearchQuery } from "./SearchQuery";
 import {
-    SearchQueryFromJSON,
-    SearchQueryFromJSONTyped,
-    SearchQueryToJSON,
-} from './SearchQuery';
+  SearchQueryFromJSON,
+  SearchQueryFromJSONTyped,
+  SearchQueryToJSON,
+} from "./SearchQuery";
 
 /**
- * 
+ *
  * @export
  * @interface SearchBulkQuery
  */
 export interface SearchBulkQuery {
-    /**
-     * 
-     * @type {string}
-     * @memberof SearchBulkQuery
-     */
-    endpoint?: SearchBulkQueryEndpointEnum;
-    /**
-     * 
-     * @type {SearchQuery}
-     * @memberof SearchBulkQuery
-     */
-    query?: SearchQuery;
+  /**
+   *
+   * @type {string}
+   * @memberof SearchBulkQuery
+   */
+  endpoint?: SearchBulkQueryEndpointEnum;
+  /**
+   *
+   * @type {SearchQuery}
+   * @memberof SearchBulkQuery
+   */
+  query?: SearchQuery;
 }
-
 
 /**
  * @export
  */
 export const SearchBulkQueryEndpointEnum = {
-    V1Search: '/v1/search'
+  V1Search: "/v1/search",
 } as const;
-export type SearchBulkQueryEndpointEnum = typeof SearchBulkQueryEndpointEnum[keyof typeof SearchBulkQueryEndpointEnum];
-
+export type SearchBulkQueryEndpointEnum =
+  (typeof SearchBulkQueryEndpointEnum)[keyof typeof SearchBulkQueryEndpointEnum];
 
 /**
  * Check if a given object implements the SearchBulkQuery interface.
  */
-export function instanceOfSearchBulkQuery(value: object): value is SearchBulkQuery {
-    return true;
+export function instanceOfSearchBulkQuery(
+  value: object,
+): value is SearchBulkQuery {
+  return true;
 }
 
 export function SearchBulkQueryFromJSON(json: any): SearchBulkQuery {
-    return SearchBulkQueryFromJSONTyped(json, false);
+  return SearchBulkQueryFromJSONTyped(json, false);
 }
 
-export function SearchBulkQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchBulkQuery {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'endpoint': json['endpoint'] == null ? undefined : json['endpoint'],
-        'query': json['query'] == null ? undefined : SearchQueryFromJSON(json['query']),
-    };
+export function SearchBulkQueryFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): SearchBulkQuery {
+  if (json == null) {
+    return json;
+  }
+  return {
+    endpoint: json["endpoint"] == null ? undefined : json["endpoint"],
+    query:
+      json["query"] == null ? undefined : SearchQueryFromJSON(json["query"]),
+  };
 }
 
 export function SearchBulkQueryToJSON(value?: SearchBulkQuery | null): any {
-    if (value == null) {
-        return value;
-    }
-    return {
-        
-        'endpoint': value['endpoint'],
-        'query': SearchQueryToJSON(value['query']),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    endpoint: value["endpoint"],
+    query: SearchQueryToJSON(value["query"]),
+  };
 }
-

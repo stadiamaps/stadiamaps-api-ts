@@ -12,58 +12,71 @@
  * Do not edit the class manually.
  */
 
-import type { SearchBulkQuery } from './SearchBulkQuery';
+import type { SearchBulkQuery } from "./SearchBulkQuery";
 import {
-    instanceOfSearchBulkQuery,
-    SearchBulkQueryFromJSON,
-    SearchBulkQueryFromJSONTyped,
-    SearchBulkQueryToJSON,
-} from './SearchBulkQuery';
-import type { SearchStructuredBulkQuery } from './SearchStructuredBulkQuery';
+  instanceOfSearchBulkQuery,
+  SearchBulkQueryFromJSON,
+  SearchBulkQueryFromJSONTyped,
+  SearchBulkQueryToJSON,
+} from "./SearchBulkQuery";
+import type { SearchStructuredBulkQuery } from "./SearchStructuredBulkQuery";
 import {
-    instanceOfSearchStructuredBulkQuery,
-    SearchStructuredBulkQueryFromJSON,
-    SearchStructuredBulkQueryFromJSONTyped,
-    SearchStructuredBulkQueryToJSON,
-} from './SearchStructuredBulkQuery';
+  instanceOfSearchStructuredBulkQuery,
+  SearchStructuredBulkQueryFromJSON,
+  SearchStructuredBulkQueryFromJSONTyped,
+  SearchStructuredBulkQueryToJSON,
+} from "./SearchStructuredBulkQuery";
 
 /**
  * @type BulkRequest
- * 
+ *
  * @export
  */
-export type BulkRequest = { endpoint: '/v1/search' } & SearchBulkQuery | { endpoint: '/v1/search/structured' } & SearchStructuredBulkQuery;
+export type BulkRequest =
+  | ({ endpoint: "/v1/search" } & SearchBulkQuery)
+  | ({ endpoint: "/v1/search/structured" } & SearchStructuredBulkQuery);
 
 export function BulkRequestFromJSON(json: any): BulkRequest {
-    return BulkRequestFromJSONTyped(json, false);
+  return BulkRequestFromJSONTyped(json, false);
 }
 
-export function BulkRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BulkRequest {
-    if (json == null) {
-        return json;
-    }
-    switch (json['endpoint']) {
-        case '/v1/search':
-            return Object.assign({}, SearchBulkQueryFromJSONTyped(json, true), { endpoint: '/v1/search' } as const);
-        case '/v1/search/structured':
-            return Object.assign({}, SearchStructuredBulkQueryFromJSONTyped(json, true), { endpoint: '/v1/search/structured' } as const);
-        default:
-            throw new Error(`No variant of BulkRequest exists with 'endpoint=${json['endpoint']}'`);
-    }
+export function BulkRequestFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): BulkRequest {
+  if (json == null) {
+    return json;
+  }
+  switch (json["endpoint"]) {
+    case "/v1/search":
+      return Object.assign({}, SearchBulkQueryFromJSONTyped(json, true), {
+        endpoint: "/v1/search",
+      } as const);
+    case "/v1/search/structured":
+      return Object.assign(
+        {},
+        SearchStructuredBulkQueryFromJSONTyped(json, true),
+        { endpoint: "/v1/search/structured" } as const,
+      );
+    default:
+      throw new Error(
+        `No variant of BulkRequest exists with 'endpoint=${json["endpoint"]}'`,
+      );
+  }
 }
 
 export function BulkRequestToJSON(value?: BulkRequest | null): any {
-    if (value == null) {
-        return value;
-    }
-    switch (value['endpoint']) {
-        case '/v1/search':
-            return SearchBulkQueryToJSON(value);
-        case '/v1/search/structured':
-            return SearchStructuredBulkQueryToJSON(value);
-        default:
-            throw new Error(`No variant of BulkRequest exists with 'endpoint=${value['endpoint']}'`);
-    }
-
+  if (value == null) {
+    return value;
+  }
+  switch (value["endpoint"]) {
+    case "/v1/search":
+      return SearchBulkQueryToJSON(value);
+    case "/v1/search/structured":
+      return SearchStructuredBulkQueryToJSON(value);
+    default:
+      throw new Error(
+        `No variant of BulkRequest exists with 'endpoint=${value["endpoint"]}'`,
+      );
+  }
 }
-

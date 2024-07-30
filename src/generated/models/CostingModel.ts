@@ -12,47 +12,47 @@
  * Do not edit the class manually.
  */
 
-
 /**
  * A model which influences the routing based on the type of travel. The costing model affects parameters ranging from which roads are legally accessible to preferences based on comfort or speed.
  * See https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-models for in-depth descriptions of each costing model.
  * @export
  */
 export const CostingModel = {
-    Auto: 'auto',
-    Bus: 'bus',
-    Taxi: 'taxi',
-    Truck: 'truck',
-    Bicycle: 'bicycle',
-    Bikeshare: 'bikeshare',
-    MotorScooter: 'motor_scooter',
-    Motorcycle: 'motorcycle',
-    Pedestrian: 'pedestrian',
-    LowSpeedVehicle: 'low_speed_vehicle'
+  Auto: "auto",
+  Bus: "bus",
+  Taxi: "taxi",
+  Truck: "truck",
+  Bicycle: "bicycle",
+  Bikeshare: "bikeshare",
+  MotorScooter: "motor_scooter",
+  Motorcycle: "motorcycle",
+  Pedestrian: "pedestrian",
+  LowSpeedVehicle: "low_speed_vehicle",
 } as const;
-export type CostingModel = typeof CostingModel[keyof typeof CostingModel];
-
+export type CostingModel = (typeof CostingModel)[keyof typeof CostingModel];
 
 export function instanceOfCostingModel(value: any): boolean {
-    for (const key in CostingModel) {
-        if (Object.prototype.hasOwnProperty.call(CostingModel, key)) {
-            if ((CostingModel as Record<string, CostingModel>)[key] === value) {
-                return true;
-            }
-        }
+  for (const key in CostingModel) {
+    if (Object.prototype.hasOwnProperty.call(CostingModel, key)) {
+      if ((CostingModel as Record<string, CostingModel>)[key] === value) {
+        return true;
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 export function CostingModelFromJSON(json: any): CostingModel {
-    return CostingModelFromJSONTyped(json, false);
+  return CostingModelFromJSONTyped(json, false);
 }
 
-export function CostingModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): CostingModel {
-    return json as CostingModel;
+export function CostingModelFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CostingModel {
+  return json as CostingModel;
 }
 
 export function CostingModelToJSON(value?: CostingModel | null): any {
-    return value as any;
+  return value as any;
 }
-
