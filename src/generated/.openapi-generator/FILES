@@ -11,6 +11,8 @@ models/BaseCostingOptions.ts
 models/BaseTraceRequest.ts
 models/BicycleCostingOptions.ts
 models/BikeNetwork.ts
+models/BulkRequest.ts
+models/BulkSearchResponse.ts
 models/Contour.ts
 models/Coordinate.ts
 models/CostingModel.ts
@@ -81,6 +83,10 @@ models/RouteTrip.ts
 models/RoutingResponseWaypoint.ts
 models/RoutingWaypoint.ts
 models/RoutingWaypointAllOfSearchFilter.ts
+models/SearchBulkQuery.ts
+models/SearchQuery.ts
+models/SearchStructuredBulkQuery.ts
+models/SearchStructuredQuery.ts
 models/SimpleRoutingWaypoint.ts
 models/Speeds.ts
 models/TraceAttributeFilterOptions.ts

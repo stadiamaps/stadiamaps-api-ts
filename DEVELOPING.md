@@ -10,6 +10,14 @@ Regenerating the generated portions of the codebase can be done simply with this
 openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o src/generated
 ```
 
+## Run prettier
+
+This ensures consistency of code formatting.
+
+```shell
+npx prettier . --write
+```
+
 ## Tests
 
 The project includes some unit tests as a sanity check, utilizing mocks and real API responses,

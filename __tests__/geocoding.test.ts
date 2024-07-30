@@ -157,4 +157,17 @@ describe('GeocodingApi unit tests', () => {
         expect(res.features[0]?.properties?.country).toEqual("Estonia");
         expect(res.features[0]?.properties?.layer).toEqual("address");
     })
+
+    test('bulk geocode endpoint integration test', async () => {
+        const responses = await api.searchBulk({ bulkRequest: [
+            {endpoint: "/v1/search", query: { text: address }},
+            {endpoint: "/v1/search/structured", query: { address: address, country: "EE", layers: ["coarse", "address"] }}
+        ]});
+        expect(responses).toHaveLength(2);
+        for (const res of responses.values()) {
+            expect(res.status).toEqual(200);
+            expect(res.response?.features[0]?.properties?.country).toEqual("Estonia");
+            expect(res.response?.features[0]?.properties?.layer).toEqual("address");
+        }
+    })
 });

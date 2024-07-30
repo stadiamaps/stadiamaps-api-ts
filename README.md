@@ -22,24 +22,27 @@ example of getting started with the geocoding API:
 
 ```typescript
 // Imports: you need the API(s) that you intend to use at a minimum.
-import { GeocodingApi, Configuration } from '@stadiamaps/api';
+import { GeocodingApi, Configuration } from "@stadiamaps/api";
 
 // Most users can use our domain-based or localhost authentication methods (see https://docs.stadiamaps.com/authentication/).
 //
 // If you are writing for a backend application or can't use domain-based auth,
 // then you'll need to add your API key like so:
-// 
+//
 // const config = new Configuration({ apiKey: "YOUR-API-KEY" });
 // const api = new GeocodingApi(config);
 const api = new GeocodingApi();
 
 // Make an API call! The responses use the standard promise API.
 // You can use either the callback interface...
-api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(function (result) {
+api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(
+  function (result) {
     console.log(result);
-}, function (err) {
+  },
+  function (err) {
     console.log(err);
-});
+  },
+);
 
 // ... or the await keyword in an async context
 const res = await api.search({ text: "Põhja pst 27" });
@@ -54,29 +57,32 @@ functions exactly like if you used `npm` package tooling.
 Here's a quick usage example of a webpage that makes a geocoding query and displays the result.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <script type="text/javascript" src="https://www.unpkg.com/@stadiamaps/api@1.0.2"></script>
-        <script type="text/javascript">
-            // In nearly all cases, you should be able to construct any of the APIs as-is (see https://docs.stadiamaps.com/authentication/).
-            // If you really need an API key, you can add it like so:
-            // const config = new stadiaMapsApi.Configuration({ apiKey: "YOUR-API-KEY" });
-            // const api = new stadiaMapsApi.GeocodingApi(config);
-            const api = new stadiaMapsApi.GeocodingApi();
-            window.onload = async function() {
-                // You can use either the async interface or the other Promise API functions like .then; the choice is yours.
-                const res = await api.autocomplete({ text: "Põhja pst 27" });
-                document.getElementById("pre").innerHTML = JSON.stringify(res, null, 2);
-            }
-        </script>
-    </head>
-    
-    <body>
-        <div>
-            <pre id="pre">Loading...</pre>
-        </div>
-    </body>
+  <head>
+    <script
+      type="text/javascript"
+      src="https://www.unpkg.com/@stadiamaps/api@3"
+    ></script>
+    <script type="text/javascript">
+      // In nearly all cases, you should be able to construct any of the APIs as-is (see https://docs.stadiamaps.com/authentication/).
+      // If you really need an API key, you can add it like so:
+      // const config = new stadiaMapsApi.Configuration({ apiKey: "YOUR-API-KEY" });
+      // const api = new stadiaMapsApi.GeocodingApi(config);
+      const api = new stadiaMapsApi.GeocodingApi();
+      window.onload = async function () {
+        // You can use either the async interface or the other Promise API functions like .then; the choice is yours.
+        const res = await api.autocomplete({ text: "Põhja pst 27" });
+        document.getElementById("pre").innerHTML = JSON.stringify(res, null, 2);
+      };
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <pre id="pre">Loading...</pre>
+    </div>
+  </body>
 </html>
 ```
 
