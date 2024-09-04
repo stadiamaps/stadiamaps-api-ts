@@ -10,4 +10,3 @@ export type {
   ReverseRequest,
 } from "./generated/apis/GeocodingApi";
 export * from "./geocoding";
-export * from "./routing";

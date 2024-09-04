@@ -8,13 +8,10 @@ import {
   MatrixRequest,
   IsochroneRequest,
   MapMatchRequest,
-  MapMatchRequestShapeMatchEnum,
   TraceAttributesRequest,
   DistanceUnit,
   OptimizedRouteRequest,
-  RouteResponse,
-  isRouteResponse,
-  isOsrmRouteResponse,
+  instanceOfOsrmRouteResponse, instanceOfRouteResponse,
 } from "../src";
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";
@@ -6655,7 +6652,7 @@ describe("GeospatialApi unit tests", () => {
     test("route endpoint integration test", async () => {
       const res = await api.route({ routeRequest: routeRequest });
 
-      if (isRouteResponse(res)) {
+      if (instanceOfRouteResponse(res)) {
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
@@ -6669,7 +6666,7 @@ describe("GeospatialApi unit tests", () => {
     test("route endpoint integration test (with navigation aids)", async () => {
       const res = await api.route({ routeRequest: osrmFormatRouteRequest });
 
-      if (isOsrmRouteResponse(res)) {
+      if (instanceOfOsrmRouteResponse(res)) {
         expect(res.code).toEqual("Ok");
         const routes = res.routes;
         if (routes !== undefined) {
@@ -6695,7 +6692,7 @@ describe("GeospatialApi unit tests", () => {
         routeRequest: { alternates: 1, ...routeRequest },
       });
 
-      if (isRouteResponse(res)) {
+      if (instanceOfRouteResponse(res)) {
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
@@ -6711,7 +6708,7 @@ describe("GeospatialApi unit tests", () => {
         routeRequest: { elevationInterval: 30, ...routeRequest },
       });
 
-      if (isRouteResponse(res)) {
+      if (instanceOfRouteResponse(res)) {
         expect(res.id).toEqual(routeRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
@@ -6738,7 +6735,7 @@ describe("GeospatialApi unit tests", () => {
       };
       const res = await api.route({ routeRequest: hybridBicycleRouteRequest });
 
-      if (isRouteResponse(res)) {
+      if (instanceOfRouteResponse(res)) {
         expect(res.id).toEqual(hybridBicycleRouteRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("kilometers");
@@ -6753,7 +6750,7 @@ describe("GeospatialApi unit tests", () => {
         optimizedRouteRequest: optimizedRouteRequest,
       });
 
-      if (isRouteResponse(res)) {
+      if (instanceOfRouteResponse(res)) {
         expect(res.id).toEqual(optimizedRouteRequest.id);
         expect(res.trip.status).toEqual(0);
         expect(res.trip.units).toEqual("miles");
