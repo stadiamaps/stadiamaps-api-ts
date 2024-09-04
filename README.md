@@ -1,5 +1,7 @@
 # Stadia Maps JavaScript SDK
 
+[![NPM Downloads](https://img.shields.io/npm/dm/%40stadiamaps%2Fapi?style=for-the-badge&color=rgb(64%2C81%2C181))](https://www.npmjs.com/package/@stadiamaps/api)
+
 This SDK helps you access the full range of geospatial APIs from Stadia Maps using JavaScript, TypeScript, etc.
 We've written everything in TypeScript, derived from our official API spec, so you'll get all the goodies
 like autocomplete, type definitions, and documentation in your favorite editor.
