@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 4.0.0 - 2024-09-04
+
+### Added
+
+- Support for the OSRM format and navigation aids
+- BREAKING: To support the new format, the response type of directions APIs has changed
+
+TypeScript users will need to use a type guard
+in order to check the type of the response for directions APIs,
+as the response type is now a union.
+The response format will depend on the value of the format parameter in your request.
+
+Here is an example of how to do the check in your code.
+The guard helper function is included in this SDK and exported publicly.
+
+```typescript
+const res = await api.route({ routeRequest: routeRequest });
+
+if (isRouteResponse(res)) {
+  // TODO: Process the response
+} else {
+  fail("Expected a Valhalla JSON format route response");
+}
+```
+
+Alternately, you can guard for OSRM format responses like this:
+
+```typescript
+const res = await api.route({ routeRequest: osrmFormatRouteRequest });
+
+if (isOsrmRouteResponse(res)) {
+  // TODO: Process the response
+} else {
+  fail("Expected an OSRM format route response");
+}
+```
 
 ## Version 3.2.2 - 2024-08-16
 

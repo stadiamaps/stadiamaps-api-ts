@@ -257,7 +257,7 @@ describe("GeocodingApi unit tests", () => {
           {
             endpoint: "/v1/search/structured",
             query: {
-              address: address,
+              address: "Kursi tänav 3",
               country: "EE",
               layers: ["coarse", "address"],
             },

@@ -12,6 +12,9 @@ import {
   TraceAttributesRequest,
   DistanceUnit,
   OptimizedRouteRequest,
+  RouteResponse,
+  isRouteResponse,
+  isOsrmRouteResponse,
 } from "../src";
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";
@@ -39,6 +42,22 @@ const routeRequest: RouteRequest = {
     },
   },
   units: DistanceUnit.Mi,
+};
+const osrmFormatRouteRequest: RouteRequest = {
+  locations: [locationA, locationB],
+  costing: "auto",
+  costingOptions: {
+    auto: {
+      useHighways: 0.3,
+    },
+  },
+  units: DistanceUnit.Mi,
+  format: "osrm",
+  bannerInstructions: true,
+  filters: {
+    action: "include",
+    attributes: ["shape_attributes.speed_limit"],
+  },
 };
 const optimizedRouteRequest: OptimizedRouteRequest = {
   locations: [locationA, locationB, locationC, locationA],
@@ -120,6 +139,1344 @@ const mockRouteRes = {
     units: "miles",
     language: "en-US",
   },
+};
+
+const mockOsrmRouteRes = {
+  routes: [
+    {
+      weight_name: "auto",
+      weight: 271.504,
+      duration: 311.919,
+      distance: 7786.845,
+      legs: [
+        {
+          via_waypoints: [],
+          annotation: {
+            maxspeed: [
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 60,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+              {
+                speed: 100,
+                unit: "km/h",
+              },
+            ],
+            speed: [
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 16.7,
+              16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7,
+              16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7,
+              16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+              27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8, 27.8,
+            ],
+            distance: [
+              133.1, 148.9, 132.5, 162.9, 77.8, 32.9, 278.8, 237.5, 34.9, 113.7,
+              132.2, 205.5, 80.7, 143.4, 20.4, 9.4, 8.4, 8.7, 8.8, 7.8, 10.8,
+              10.7, 46.8, 58.8, 3.4, 12.0, 13.3, 12.2, 16.4, 13.7, 16.5, 19.5,
+              20.6, 25.3, 21.7, 17.9, 18.2, 20.9, 12.7, 19.2, 9.1, 9.2, 17.7,
+              30.0, 30.0, 19.0, 13.9, 15.1, 14.1, 22.1, 26.7, 31.2, 66.3, 101.5,
+              22.7, 23.8, 21.1, 21.5, 232.9, 26.3, 26.5, 24.0, 21.4, 20.1, 30.3,
+              22.2, 22.3, 95.0, 35.1, 26.8, 26.3, 21.5, 33.6, 36.7, 27.4, 40.1,
+              100.4, 68.3, 59.8, 53.3, 28.1, 32.0, 26.1, 24.3, 32.2, 27.1, 39.9,
+              19.2, 20.0, 15.3, 21.0, 17.0, 29.3, 54.2, 49.6, 78.0, 26.0, 16.6,
+              16.9, 18.0, 18.9, 32.4, 37.1, 20.0, 17.6, 24.6, 34.9, 31.4, 67.3,
+              41.5, 24.1, 19.8, 33.3, 27.6, 26.3, 23.5, 21.9, 11.4, 10.1, 21.2,
+              17.3, 22.4, 19.7, 37.3, 25.3, 41.8, 44.4, 24.4, 32.7, 9.4, 8.5,
+              7.1, 7.3, 8.6, 9.5, 8.2, 9.6, 31.9, 19.2, 31.6, 37.0, 48.6, 20.3,
+              16.5, 13.8, 12.8, 17.6, 14.1, 13.0, 18.0, 29.3, 19.1, 14.9, 17.1,
+              18.2, 21.6, 74.2, 44.2, 25.2, 20.2, 24.8, 40.1, 35.6, 20.9, 26.3,
+              15.5, 18.3, 27.4, 19.8, 12.5, 11.0, 14.1, 13.8, 10.5, 15.4, 39.7,
+              19.7, 18.6, 19.5, 14.9, 17.8, 24.5, 124.9, 132.7, 92.9, 59.4,
+              43.1, 37.1, 40.3, 28.5, 61.0, 30.3, 20.7, 30.6, 70.1, 134.8, 38.7,
+              21.2, 17.5, 70.2, 45.0, 45.1, 46.6, 34.2, 32.0, 43.8, 61.9,
+            ],
+            duration: [
+              4.792, 5.359, 4.769, 5.865, 2.8, 1.186, 10.037, 8.549, 1.255,
+              4.094, 7.933, 12.332, 4.841, 8.601, 1.224, 0.565, 0.503, 0.522,
+              0.529, 0.471, 0.651, 0.644, 2.81, 3.529, 0.201, 0.72, 0.797,
+              0.731, 0.984, 0.823, 0.989, 1.17, 1.237, 1.518, 1.301, 1.076,
+              1.089, 1.256, 0.764, 1.15, 0.326, 0.33, 0.636, 1.082, 1.08, 0.685,
+              0.501, 0.545, 0.508, 0.796, 0.961, 1.124, 2.386, 3.654, 0.817,
+              0.857, 0.761, 0.775, 8.385, 0.948, 0.955, 0.863, 0.772, 0.722,
+              1.092, 0.799, 0.802, 3.418, 1.264, 0.966, 0.947, 0.774, 1.208,
+              1.321, 0.985, 1.445, 3.614, 2.459, 2.152, 1.918, 1.011, 1.154,
+              0.938, 0.875, 1.158, 0.974, 1.436, 0.693, 0.722, 0.552, 0.756,
+              0.611, 1.056, 1.95, 1.784, 2.809, 0.936, 0.599, 0.608, 0.647,
+              0.682, 1.167, 1.336, 0.72, 0.632, 0.886, 1.256, 1.131, 2.422,
+              1.495, 0.867, 0.713, 1.2, 0.995, 0.945, 0.847, 0.789, 0.412,
+              0.364, 0.765, 0.624, 0.807, 0.71, 1.343, 0.912, 1.504, 1.599,
+              0.879, 1.176, 0.34, 0.308, 0.257, 0.262, 0.308, 0.342, 0.294,
+              0.345, 1.147, 0.69, 1.137, 1.331, 1.748, 0.731, 0.596, 0.497,
+              0.459, 0.632, 0.508, 0.47, 0.649, 1.055, 0.687, 0.536, 0.617,
+              0.657, 0.778, 2.671, 1.592, 0.909, 0.725, 0.894, 1.442, 1.282,
+              0.754, 0.948, 0.558, 0.66, 0.987, 0.713, 0.451, 0.396, 0.508,
+              0.498, 0.379, 0.554, 1.43, 0.709, 0.668, 0.702, 0.537, 0.641,
+              0.882, 4.497, 4.776, 3.344, 2.137, 1.551, 1.335, 1.45, 1.027,
+              2.197, 1.091, 0.745, 1.102, 2.525, 4.851, 1.392, 0.765, 0.631,
+              2.527, 1.621, 1.622, 1.677, 1.232, 1.151, 1.575, 2.228,
+            ],
+          },
+          admins: [
+            {
+              iso_3166_1_alpha3: "NZL",
+              iso_3166_1: "NZ",
+            },
+          ],
+          weight: 271.504,
+          duration: 311.919,
+          steps: [
+            {
+              intersections: [
+                {
+                  entry: [true],
+                  bearings: [192],
+                  duration: 23.585,
+                  admin_index: 0,
+                  out: 0,
+                  weight: 20.047,
+                  geometry_index: 0,
+                  location: [172.186547, -42.317419],
+                },
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [10, 99, 191],
+                  duration: 21.043,
+                  turn_duration: 0.019,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 17.87,
+                  geometry_index: 5,
+                  location: [172.184954, -42.323185],
+                },
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [11, 191, 282],
+                  duration: 4.122,
+                  turn_duration: 0.018,
+                  admin_index: 0,
+                  out: 1,
+                  weight: 3.488,
+                  geometry_index: 9,
+                  location: [172.183537, -42.328326],
+                },
+                {
+                  bearings: [11, 191],
+                  entry: [false, true],
+                  in: 0,
+                  admin_index: 0,
+                  out: 1,
+                  geometry_index: 10,
+                  location: [172.183267, -42.329328],
+                },
+              ],
+              speedLimitUnit: "km/h",
+              maneuver: {
+                instruction: "Drive south on State Highway 65/SH 65.",
+                type: "depart",
+                bearing_after: 192,
+                bearing_before: 0,
+                location: [172.186547, -42.317419],
+              },
+              speedLimitSign: "vienna",
+              name: "State Highway 65",
+              duration: 84.75,
+              distance: 1953.139,
+              driving_side: "left",
+              weight: 72.006,
+              mode: "driving",
+              ref: "SH 65",
+              geometry:
+                "tezuoAezllgIfhAdStpAzV`hAxQlxA|X|i@vIdQpCnxClh@laCjd@dRdDr}@zOxgApR`pBf^jk@hKvmAnUfJ|AdDj@tCR",
+              voiceInstructions: [
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Drive south on State Highway 65/SH 65.</prosody></amazon:effect></speak>',
+                  announcement: "Drive south on State Highway 65/SH 65.",
+                  distanceAlongGeometry: 1953.139,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Drive south on State Highway 65/SH 65 for one and a quarter miles.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "Drive south on State Highway 65/SH 65 for one and a quarter miles.",
+                  distanceAlongGeometry: 1855.4820499999998,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">In a half mile, turn right onto State Highway 7/SH 7.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "In a half mile, turn right onto State Highway 7/SH 7.",
+                  distanceAlongGeometry: 804.672,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Turn right onto State Highway 7/SH 7.</prosody></amazon:effect></speak>',
+                  announcement: "Turn right onto State Highway 7/SH 7.",
+                  distanceAlongGeometry: 150,
+                },
+              ],
+              bannerInstructions: [
+                {
+                  primary: {
+                    components: [
+                      {
+                        type: "text",
+                        text: "State Highway 7",
+                      },
+                    ],
+                    type: "end of road",
+                    modifier: "right",
+                    text: "State Highway 7",
+                  },
+                  distanceAlongGeometry: 1953.139,
+                },
+              ],
+            },
+            {
+              intersections: [
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [9, 127, 274],
+                  duration: 7.845,
+                  turn_weight: 12.5,
+                  turn_duration: 5.025,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 14.897,
+                  geometry_index: 17,
+                  location: [172.181818, -42.33461],
+                },
+                {
+                  entry: [false, false, true],
+                  in: 0,
+                  bearings: [70, 162, 252],
+                  duration: 6.561,
+                  turn_duration: 0.021,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 5.559,
+                  geometry_index: 22,
+                  location: [172.181266, -42.334668],
+                },
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [73, 259, 344],
+                  duration: 0.748,
+                  turn_duration: 0.028,
+                  admin_index: 0,
+                  out: 1,
+                  weight: 0.612,
+                  geometry_index: 25,
+                  location: [172.180007, -42.334972],
+                },
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [79, 169, 266],
+                  duration: 14.91,
+                  turn_duration: 0.03,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 12.648,
+                  geometry_index: 26,
+                  location: [172.179864, -42.334993],
+                },
+                {
+                  entry: [false, true],
+                  in: 0,
+                  bearings: [98, 265],
+                  duration: 61.74,
+                  admin_index: 0,
+                  out: 1,
+                  weight: 52.479,
+                  geometry_index: 40,
+                  location: [172.17742, -42.333912],
+                },
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [79, 173, 264],
+                  duration: 33.688,
+                  turn_duration: 0.028,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 28.611,
+                  geometry_index: 86,
+                  location: [172.160507, -42.337063],
+                },
+                {
+                  bearings: [59, 149, 242],
+                  entry: [false, true, true],
+                  in: 0,
+                  turn_duration: 0.022,
+                  admin_index: 0,
+                  out: 2,
+                  geometry_index: 118,
+                  location: [172.152693, -42.342762],
+                },
+              ],
+              speedLimitUnit: "km/h",
+              maneuver: {
+                modifier: "right",
+                instruction: "Turn right onto State Highway 7/SH 7.",
+                type: "end of road",
+                bearing_after: 274,
+                bearing_before: 189,
+                location: [172.181818, -42.33461],
+              },
+              speedLimitSign: "vienna",
+              name: "State Highway 7",
+              duration: 137.107,
+              distance: 3388.0,
+              driving_side: "left",
+              weight: 124.659,
+              mode: "driving",
+              ref: "SH 7",
+              geometry:
+                "bx{voAsrclgI[nEItEVzD`AvF~@tFhGv`@hIli@JnAh@|G^~HGfHiA`KsBdHsD|HsGbHmH`HkJnJaH~I_E|I}C`KkCvMq@lHk@lMFzEL|Ex@dLvBfUjBhU`@jMEpIo@hJiAfI_DjNgFvPiJbQqWxd@_d@ry@qFzLcE`OcC`N{AzNc^xjDu@zRx@~RvAxPjDpM`FzJbLtM|I`GtJ~Ddp@xZpPbKjKrJhIhM|FhKvI|SxGdXrEvQbJnYd`@r|@~Xbe@tWv]~Sx[~HnOfHzSdE|PdCpP`CxVzAdShAb]dAhMlBnMrBpIpEfL`E|HjKtMdUb[xRlY`[nl@vHtMzEpGrFrFzGnEvHvDlP`F~RzFdIjEnGvEpI`KpLbR|JpPtVxf@bN~VvHtKtGjHtNxLnKlKxIpLjGxLzExL~AtFrAxEtDdMbDdJnGpKbGdI~OpOdK|HlTzKlVnJ|KbEjP|FvCdB`B~C^fD",
+              voiceInstructions: [
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Continue on State Highway 7 for two point one miles.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "Continue on State Highway 7 for two point one miles.",
+                  distanceAlongGeometry: 3218.6,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">In one mile, turn right to stay on State Highway 7/SH 7.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "In one mile, turn right to stay on State Highway 7/SH 7.",
+                  distanceAlongGeometry: 1609.344,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">In a half mile, turn right to stay on State Highway 7/SH 7.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "In a half mile, turn right to stay on State Highway 7/SH 7.",
+                  distanceAlongGeometry: 804.672,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Turn right to stay on State Highway 7/SH 7.</prosody></amazon:effect></speak>',
+                  announcement: "Turn right to stay on State Highway 7/SH 7.",
+                  distanceAlongGeometry: 100,
+                },
+              ],
+              bannerInstructions: [
+                {
+                  primary: {
+                    components: [
+                      {
+                        type: "text",
+                        text: "State Highway 7",
+                      },
+                    ],
+                    type: "continue",
+                    modifier: "right",
+                    text: "State Highway 7",
+                  },
+                  distanceAlongGeometry: 3388.0,
+                },
+              ],
+            },
+            {
+              intersections: [
+                {
+                  entry: [false, true, true],
+                  in: 0,
+                  bearings: [53, 189, 298],
+                  duration: 75.781,
+                  turn_duration: 2.017,
+                  admin_index: 0,
+                  out: 2,
+                  weight: 62.699,
+                  geometry_index: 132,
+                  location: [172.15056, -42.345054],
+                },
+                {
+                  entry: [false, true],
+                  in: 0,
+                  bearings: [149, 332],
+                  duration: 0.648,
+                  admin_index: 0,
+                  out: 1,
+                  weight: 0.551,
+                  geometry_index: 198,
+                  location: [172.137785, -42.330687],
+                },
+                {
+                  bearings: [152, 333],
+                  entry: [false, true],
+                  in: 0,
+                  admin_index: 0,
+                  out: 1,
+                  geometry_index: 199,
+                  location: [172.137685, -42.330548],
+                },
+              ],
+              speedLimitUnit: "km/h",
+              maneuver: {
+                modifier: "right",
+                instruction: "Turn right to stay on State Highway 7/SH 7.",
+                type: "continue",
+                bearing_after: 298,
+                bearing_before: 233,
+                location: [172.15056, -42.345054],
+              },
+              speedLimitSign: "vienna",
+              name: "State Highway 7",
+              duration: 90.063,
+              distance: 2445.706,
+              driving_side: "left",
+              weight: 74.839,
+              mode: "driving",
+              ref: "SH 7",
+              geometry:
+                "zdpwoA_qfjgIKnDgAvDuClBqCPiDc@wPaBwIKuPr@oSlC_ZbDcJjBkGlDyE~CeDtEeEjI}BhHoAhHeAjLwA|TgBxLmBhI_EdIsFfH_IhHuc@tYoTxOcJzJgFvJ_GlN}LzVgLfSsGxIsHdNkCdI_BhLiC~RuD|KeDlEkDbCkF|BwFRwDy@_GmC{RuLoIuCkIk@{It@_GjB}G`E_JdJyu@dz@uy@`}@mg@pk@aZhYqSfPqQvKwSdKcNbFe_@zN}M~IaIzFmLnMq\\db@wx@baAcP`QgIfGuGfE_b@nWwTlPuTrP}TfRgNxNuKdPeO~WsSxd@",
+              voiceInstructions: [
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">Continue on State Highway 7 for one and a half miles.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "Continue on State Highway 7 for one and a half miles.",
+                  distanceAlongGeometry: 2323.4207,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">In a half mile, you have arrived at your destination.</prosody></amazon:effect></speak>',
+                  announcement:
+                    "In a half mile, you have arrived at your destination.",
+                  distanceAlongGeometry: 804.672,
+                },
+                {
+                  ssmlAnnouncement:
+                    '<speak><amazon:effect name="drc"><prosody rate="1.08">You have arrived at your destination.</prosody></amazon:effect></speak>',
+                  announcement: "You have arrived at your destination.",
+                  distanceAlongGeometry: 150,
+                },
+              ],
+              bannerInstructions: [
+                {
+                  primary: {
+                    components: [
+                      {
+                        type: "text",
+                        text: "State Highway 7",
+                      },
+                    ],
+                    type: "arrive",
+                    text: "State Highway 7",
+                  },
+                  distanceAlongGeometry: 2445.706,
+                },
+              ],
+            },
+            {
+              intersections: [
+                {
+                  bearings: [126],
+                  entry: [true],
+                  in: 0,
+                  admin_index: 0,
+                  geometry_index: 207,
+                  location: [172.134891, -42.327906],
+                },
+              ],
+              speedLimitUnit: "km/h",
+              maneuver: {
+                instruction: "You have arrived at your destination.",
+                type: "arrive",
+                bearing_after: 0,
+                bearing_before: 306,
+                location: [172.134891, -42.327906],
+              },
+              speedLimitSign: "vienna",
+              name: "State Highway 7",
+              duration: 0.0,
+              distance: 0.0,
+              driving_side: "left",
+              weight: 0.0,
+              mode: "driving",
+              ref: "SH 7",
+              geometry: "bunvoAu}gigI??",
+              voiceInstructions: [],
+              bannerInstructions: [
+                {
+                  primary: {
+                    components: [
+                      {
+                        type: "text",
+                        text: "Arrive",
+                      },
+                    ],
+                    type: "arrive",
+                    text: "Arrive",
+                  },
+                  distanceAlongGeometry: 0,
+                },
+              ],
+            },
+          ],
+          distance: 7786.845,
+          summary: "State Highway 65, State Highway 7",
+        },
+      ],
+      geometry:
+        "tezuoAezllgIfhAdStpAzV`hAxQlxA|X|i@vIdQpCnxClh@laCjd@dRdDr}@zOxgApR`pBf^jk@hKvmAnUfJ|AdDj@tCR[nEItEVzD`AvF~@tFhGv`@hIli@JnAh@|G^~HGfHiA`KsBdHsD|HsGbHmH`HkJnJaH~I_E|I}C`KkCvMq@lHk@lMFzEL|Ex@dLvBfUjBhU`@jMEpIo@hJiAfI_DjNgFvPiJbQqWxd@_d@ry@qFzLcE`OcC`N{AzNc^xjDu@zRx@~RvAxPjDpM`FzJbLtM|I`GtJ~Ddp@xZpPbKjKrJhIhM|FhKvI|SxGdXrEvQbJnYd`@r|@~Xbe@tWv]~Sx[~HnOfHzSdE|PdCpP`CxVzAdShAb]dAhMlBnMrBpIpEfL`E|HjKtMdUb[xRlY`[nl@vHtMzEpGrFrFzGnEvHvDlP`F~RzFdIjEnGvEpI`KpLbR|JpPtVxf@bN~VvHtKtGjHtNxLnKlKxIpLjGxLzExL~AtFrAxEtDdMbDdJnGpKbGdI~OpOdK|HlTzKlVnJ|KbEjP|FvCdB`B~C^fDKnDgAvDuClBqCPiDc@wPaBwIKuPr@oSlC_ZbDcJjBkGlDyE~CeDtEeEjI}BhHoAhHeAjLwA|TgBxLmBhI_EdIsFfH_IhHuc@tYoTxOcJzJgFvJ_GlN}LzVgLfSsGxIsHdNkCdI_BhLiC~RuD|KeDlEkDbCkF|BwFRwDy@_GmC{RuLoIuCkIk@{It@_GjB}G`E_JdJyu@dz@uy@`}@mg@pk@aZhYqSfPqQvKwSdKcNbFe_@zN}M~IaIzFmLnMq\\db@wx@baAcP`QgIfGuGfE_b@nWwTlPuTrP}TfRgNxNuKdPeO~WsSxd@",
+    },
+  ],
+  waypoints: [
+    {
+      distance: 13.528,
+      name: "State Highway 65",
+      location: [172.186547, -42.317419],
+    },
+    {
+      distance: 0.213,
+      name: "State Highway 7",
+      location: [172.134891, -42.327906],
+    },
+  ],
+  code: "Ok",
 };
 
 const nearestRoadsRequest: NearestRoadsRequest = {
@@ -5219,6 +6576,15 @@ describe("GeospatialApi unit tests", () => {
     expect(res).toBeApproximatelyEquivalent(mockRouteRes);
   });
 
+  test("route endpoint data parsing (OSRM format)", async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(mockOsrmRouteRes));
+
+    const res = await api.route({ routeRequest: routeRequest });
+    expect(fetchMock.mock.calls.length).toEqual(1);
+
+    expect(res).toBeApproximatelyEquivalent(mockOsrmRouteRes);
+  });
+
   test("nearest_roads endpoint data parsing", async () => {
     fetchMock.mockResponseOnce(JSON.stringify(nearestRoadsMockRes));
 
@@ -5289,11 +6655,39 @@ describe("GeospatialApi unit tests", () => {
     test("route endpoint integration test", async () => {
       const res = await api.route({ routeRequest: routeRequest });
 
-      expect(res.id).toEqual(routeRequest.id);
-      expect(res.trip.status).toEqual(0);
-      expect(res.trip.units).toEqual("miles");
-      expect(res.trip.legs.length).toEqual(1);
-      expect(res.alternates?.length || 0).toEqual(0);
+      if (isRouteResponse(res)) {
+        expect(res.id).toEqual(routeRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("miles");
+        expect(res.trip.legs.length).toEqual(1);
+        expect(res.alternates?.length || 0).toEqual(0);
+      } else {
+        fail("Expected a Valhalla JSON format route response");
+      }
+    });
+
+    test("route endpoint integration test (with navigation aids)", async () => {
+      const res = await api.route({ routeRequest: osrmFormatRouteRequest });
+
+      if (isOsrmRouteResponse(res)) {
+        expect(res.code).toEqual("Ok");
+        const routes = res.routes;
+        if (routes !== undefined) {
+          expect(routes.length).toEqual(1);
+          let hasBannerInstructions = false;
+          for (const step of routes[0].legs[0].steps) {
+            if (step.bannerInstructions?.length ?? 0 > 0) {
+              hasBannerInstructions = true;
+            }
+          }
+
+          expect(hasBannerInstructions).toBeTruthy();
+        } else {
+          fail("Expected an array of routes");
+        }
+      } else {
+        fail("Expected an OSRM format route response");
+      }
     });
 
     test("route endpoint integration test with alternates", async () => {
@@ -5301,11 +6695,15 @@ describe("GeospatialApi unit tests", () => {
         routeRequest: { alternates: 1, ...routeRequest },
       });
 
-      expect(res.id).toEqual(routeRequest.id);
-      expect(res.trip.status).toEqual(0);
-      expect(res.trip.units).toEqual("miles");
-      expect(res.trip.legs.length).toEqual(1);
-      expect(res.alternates?.length || 0).toEqual(1);
+      if (isRouteResponse(res)) {
+        expect(res.id).toEqual(routeRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("miles");
+        expect(res.trip.legs.length).toEqual(1);
+        expect(res.alternates?.length || 0).toEqual(1);
+      } else {
+        fail("Expected a Valhalla JSON format route response");
+      }
     });
 
     test("route endpoint integration test with elevation", async () => {
@@ -5313,11 +6711,15 @@ describe("GeospatialApi unit tests", () => {
         routeRequest: { elevationInterval: 30, ...routeRequest },
       });
 
-      expect(res.id).toEqual(routeRequest.id);
-      expect(res.trip.status).toEqual(0);
-      expect(res.trip.units).toEqual("miles");
-      expect(res.trip.legs.length).toEqual(1);
-      expect(res.trip.legs[0].elevation?.length || 0).toBeGreaterThan(1);
+      if (isRouteResponse(res)) {
+        expect(res.id).toEqual(routeRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("miles");
+        expect(res.trip.legs.length).toEqual(1);
+        expect(res.trip.legs[0].elevation?.length || 0).toBeGreaterThan(1);
+      } else {
+        fail("Expected a Valhalla JSON format route response");
+      }
     });
 
     test("route endpoint integration test using a special bicycle type", async () => {
@@ -5336,10 +6738,14 @@ describe("GeospatialApi unit tests", () => {
       };
       const res = await api.route({ routeRequest: hybridBicycleRouteRequest });
 
-      expect(res.id).toEqual(hybridBicycleRouteRequest.id);
-      expect(res.trip.status).toEqual(0);
-      expect(res.trip.units).toEqual("kilometers");
-      expect(res.trip.legs.length).toEqual(1);
+      if (isRouteResponse(res)) {
+        expect(res.id).toEqual(hybridBicycleRouteRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("kilometers");
+        expect(res.trip.legs.length).toEqual(1);
+      } else {
+        fail("Expected a Valhalla JSON format route response");
+      }
     });
 
     test("optimized_route endpoint integration test", async () => {
@@ -5347,10 +6753,14 @@ describe("GeospatialApi unit tests", () => {
         optimizedRouteRequest: optimizedRouteRequest,
       });
 
-      expect(res.id).toEqual(routeRequest.id);
-      expect(res.trip.status).toEqual(0);
-      expect(res.trip.units).toEqual("miles");
-      expect(res.trip.legs.length).toEqual(3);
+      if (isRouteResponse(res)) {
+        expect(res.id).toEqual(optimizedRouteRequest.id);
+        expect(res.trip.status).toEqual(0);
+        expect(res.trip.units).toEqual("miles");
+        expect(res.trip.legs.length).toEqual(3);
+      } else {
+        fail("Expected a Valhalla JSON format route response");
+      }
     });
 
     test("matrix endpoint integration test", async () => {
