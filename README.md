@@ -6,6 +6,16 @@ This SDK helps you access the full range of geospatial APIs from Stadia Maps usi
 We've written everything in TypeScript, derived from our official API spec, so you'll get all the goodies
 like autocomplete, type definitions, and documentation in your favorite editor.
 
+### Create a Stadia Maps account
+
+You can try everything out locally in a web browser without any special setup!
+To deploy to an internet server though, you'll need a Stadia Maps account.
+Learn more about how we authenticate requests in our
+[documentation](https://docs.stadiamaps.com/authentication/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme),
+and sign up for a free account (no credit card required)
+using our [client dashboard](https://client.stadiamaps.com/signup/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme).
+
+
 ## Getting started with npm
 
 First, add `@stadiamaps/api` as a dependency of your project using your favorite package manager
@@ -90,8 +100,13 @@ Here's a quick usage example of a webpage that makes a geocoding query and displ
 
 ## Documentation
 
-Official documentation lives at [docs.stadiamaps.com](https://docs.stadiamaps.com/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme),
-where we have both long-form prose explanations of each endpoint and an interactive [API reference](https://docs.stadiamaps.com/api-reference/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme).
+Everything is documented with docstrings,
+so IDEs with documentation display and autocomplete (ex: WebStorm)
+should give a seamless experience.
+You can find additional documentation, best practices, and sample code at
+[docs.stadiamaps.com](https://docs.stadiamaps.com/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme).
+You can also check out the full [API reference](https://docs.stadiamaps.com/api-reference/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme)
+in your browser.
 
 ## Developing
 
