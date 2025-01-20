@@ -31,7 +31,14 @@ models/GeoJSONGeometryBase.ts
 models/GeoJSONLineString.ts
 models/GeoJSONPoint.ts
 models/GeoJSONPolygon.ts
+models/GeocodeResponse.ts
+models/GeocodingGeoJSONFeature.ts
+models/GeocodingGeoJSONProperties.ts
+models/GeocodingGeoJSONPropertiesAddendum.ts
+models/GeocodingGeoJSONPropertiesAddendumOsm.ts
+models/GeocodingLayer.ts
 models/GeocodingObject.ts
+models/GeocodingSource.ts
 models/HeightRequest.ts
 models/HeightResponse.ts
 models/HighwayClassification.ts
@@ -85,13 +92,6 @@ models/OsrmViaWaypoint.ts
 models/OsrmVoiceInstruction.ts
 models/OsrmWaypoint.ts
 models/PedestrianCostingOptions.ts
-models/PeliasGeoJSONFeature.ts
-models/PeliasGeoJSONProperties.ts
-models/PeliasGeoJSONPropertiesAddendum.ts
-models/PeliasGeoJSONPropertiesAddendumOsm.ts
-models/PeliasLayer.ts
-models/PeliasResponse.ts
-models/PeliasSource.ts
 models/Restrictions.ts
 models/RoadClass.ts
 models/Route200Response.ts
@@ -102,6 +102,8 @@ models/RouteResponse.ts
 models/RouteResponseAlternatesInner.ts
 models/RouteSummary.ts
 models/RouteTrip.ts
+models/RoutingLanguages.ts
+models/RoutingLongUnits.ts
 models/RoutingResponseWaypoint.ts
 models/RoutingWaypoint.ts
 models/RoutingWaypointAllOfSearchFilter.ts
@@ -119,8 +121,6 @@ models/TravelMode.ts
 models/Traversability.ts
 models/TruckCostingOptions.ts
 models/TzResponse.ts
-models/ValhallaLanguages.ts
-models/ValhallaLongUnits.ts
 models/Warning.ts
 models/index.ts
 runtime.ts

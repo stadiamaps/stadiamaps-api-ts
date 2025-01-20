@@ -2,7 +2,7 @@ import {
   AutocompleteRequest,
   GeocodingApi as GeneratedApi,
   InitOverrideFunction,
-  PeliasResponse,
+  GeocodeResponse,
 } from "./generated";
 
 export class GeocodingApi extends GeneratedApi {
@@ -17,7 +17,7 @@ export class GeocodingApi extends GeneratedApi {
   async autocomplete(
     requestParameters: AutocompleteRequest,
     initOverrides?: RequestInit | InitOverrideFunction,
-  ): Promise<PeliasResponse> {
+  ): Promise<GeocodeResponse> {
     let overridesKey =
       initOverrides === null
         ? "null"

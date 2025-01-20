@@ -1,4 +1,4 @@
-import { GeocodingApi, Configuration, PeliasResponse } from "../src";
+import { GeocodingApi, Configuration, GeocodeResponse } from "../src";
 // @ts-ignore
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";
@@ -48,7 +48,7 @@ const mockRes = {
   features: [kultuurikatel],
   geocoding: {
     attribution: "https://stadiamaps.com/attribution/",
-    engine: { author: "Mapzen", name: "Pelias", version: "1.0" },
+    engine: { author: "Stadia Maps", name: "Theseus", version: "1.0" },
     query: {
       "boundary.circle.lat": 59.44436,
       "boundary.circle.lon": 24.75071,
@@ -89,7 +89,7 @@ describe("GeocodingApi unit tests", () => {
 
   // Checks that the parsed response *approximately* equals the exact response. Some fields are added with a value of
   // undefined because TypeScript is explicit, and other properties have key changes to make them more friendly.
-  function assertResponseEqualsMock(res: PeliasResponse) {
+  function assertResponseEqualsMock(res: GeocodeResponse) {
     expect(res.bbox).toEqual(mockRes.bbox);
     res.features.forEach((feature, index) => {
       let mockFeature = mockRes.features[index];

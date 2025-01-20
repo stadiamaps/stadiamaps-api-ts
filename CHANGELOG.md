@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 5.0.0 - 2025-01-20
+
+### Added
+
+- BREAKING: Renamed models containing Valhalla and Pelias in their names to be generic. These now have rout(e|ing) or geocod(e|ing) prefixes.
+- Explicitly documented more properties to the geocoding feature model.
+- Adds support for the `foursquare` data source.
+- Documents the elevation_interval parameter on certain routing requests.
+
 ## Version 5.0.0 - 2024-09-04
 
 ### Removed

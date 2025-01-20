@@ -1,6 +1,6 @@
 # Stadia Maps JavaScript SDK
 
-[![NPM Downloads](https://img.shields.io/npm/dm/%40stadiamaps%2Fapi?style=for-the-badge&color=rgb(64%2C81%2C181))](https://www.npmjs.com/package/@stadiamaps/api)
+[![NPM Downloads](<https://img.shields.io/npm/dm/%40stadiamaps%2Fapi?style=for-the-badge&color=rgb(64%2C81%2C181)>)](https://www.npmjs.com/package/@stadiamaps/api)
 
 This SDK helps you access the full range of geospatial APIs from Stadia Maps using JavaScript, TypeScript, etc.
 We've written everything in TypeScript, derived from our official API spec, so you'll get all the goodies
@@ -14,7 +14,6 @@ Learn more about how we authenticate requests in our
 [documentation](https://docs.stadiamaps.com/authentication/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme),
 and sign up for a free account (no credit card required)
 using our [client dashboard](https://client.stadiamaps.com/signup/?utm_source=github&utm_campaign=sdk_readme&utm_content=typescript_readme).
-
 
 ## Getting started with npm
 

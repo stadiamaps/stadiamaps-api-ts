@@ -11,7 +11,8 @@ import {
   TraceAttributesRequest,
   DistanceUnit,
   OptimizedRouteRequest,
-  instanceOfOsrmRouteResponse, instanceOfRouteResponse,
+  instanceOfOsrmRouteResponse,
+  instanceOfRouteResponse,
 } from "../src";
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";

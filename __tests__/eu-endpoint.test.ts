@@ -1,4 +1,4 @@
-import { GeocodingApi, Configuration, PeliasResponse } from "../src";
+import { GeocodingApi, Configuration } from "../src";
 // @ts-ignore
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";
@@ -48,7 +48,7 @@ const mockRes = {
   features: [kultuurikatel],
   geocoding: {
     attribution: "https://stadiamaps.com/attribution/",
-    engine: { author: "Mapzen", name: "Pelias", version: "1.0" },
+    engine: { author: "Stadia Maps", name: "Theseus", version: "1.0" },
     query: {
       "boundary.circle.lat": 59.44436,
       "boundary.circle.lon": 24.75071,
