@@ -1,4 +1,9 @@
-import { GeocodingApi, Configuration, GeocodeResponse } from "../src";
+import {
+  GeocodingApi,
+  Configuration,
+  GeocodeResponse,
+  GeocodeResponseEnvelopePropertiesV2,
+} from "../src";
 // @ts-ignore
 import { shouldRunIntegrationTests, apiKey } from "./utils";
 import { disableFetchMocks, enableFetchMocks } from "jest-fetch-mock";
@@ -71,7 +76,207 @@ const mockRes = {
   type: "FeatureCollection",
 };
 
-describe("GeocodingApi unit tests", () => {
+const mockResV2 = {
+  geocoding: {
+    attribution: "https://stadiamaps.com/attribution/",
+  },
+  type: "FeatureCollection",
+  bbox: [126.776403, 37.426604, 127.20553, 37.697176],
+  features: [
+    {
+      // type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [127.009676, 37.539619],
+      },
+      bbox: [126.776403, 37.426604, 127.20553, 37.697176],
+      properties: {
+        gid: "whosonfirst:locality:102026327",
+        layer: "locality",
+        sources: [
+          {
+            source: "whosonfirst",
+            source_id: "102026327",
+          },
+        ],
+        precision: "centroid",
+        name: "Seoul",
+        coarse_location: "서울특별시, South Korea",
+        context: {
+          whosonfirst: {
+            continent: {
+              gid: "whosonfirst:continent:102191569",
+              name: "Asia",
+            },
+            country: {
+              gid: "whosonfirst:country:85632231",
+              name: "South Korea",
+            },
+            region: {
+              gid: "whosonfirst:region:85673185",
+              name: "서울특별시",
+            },
+            county: {
+              gid: "whosonfirst:county:890475295",
+              name: "Yongsan District",
+            },
+            locality: {
+              gid: "whosonfirst:locality:102026327",
+              name: "Seoul",
+            },
+          },
+          iso_3166_a2: "KR",
+          iso_3166_a3: "KOR",
+        },
+        addendum: {
+          whosonfirst_concordances: {
+            geonames_id: 1835848,
+            geoplanet_id: 1132599,
+            quattroshapes_pg_id: 1073966,
+            wikidata_id: "Q8684",
+            factual_id: "14700d1c-8f76-11e1-848f-cfd5bf3ef515",
+          },
+        },
+      },
+    },
+  ],
+};
+
+const mockResV2Parsed: GeocodeResponseEnvelopePropertiesV2 = {
+  geocoding: {
+    attribution: "https://stadiamaps.com/attribution/",
+  },
+  type: "FeatureCollection",
+  bbox: [126.776403, 37.426604, 127.20553, 37.697176],
+  features: [
+    {
+      // type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [127.009676, 37.539619],
+      },
+      bbox: [126.776403, 37.426604, 127.20553, 37.697176],
+      properties: {
+        gid: "whosonfirst:locality:102026327",
+        layer: "locality",
+        sources: [
+          {
+            source: "whosonfirst",
+            sourceId: "102026327",
+          },
+        ],
+        precision: "centroid",
+        name: "Seoul",
+        coarseLocation: "서울특별시, South Korea",
+        context: {
+          whosonfirst: {
+            continent: {
+              gid: "whosonfirst:continent:102191569",
+              name: "Asia",
+            },
+            country: {
+              gid: "whosonfirst:country:85632231",
+              name: "South Korea",
+            },
+            region: {
+              gid: "whosonfirst:region:85673185",
+              name: "서울특별시",
+            },
+            county: {
+              gid: "whosonfirst:county:890475295",
+              name: "Yongsan District",
+            },
+            locality: {
+              gid: "whosonfirst:locality:102026327",
+              name: "Seoul",
+            },
+          },
+          iso3166A2: "KR",
+          iso3166A3: "KOR",
+        },
+        addendum: {
+          whosonfirstConcordances: {
+            factualId: "14700d1c-8f76-11e1-848f-cfd5bf3ef515",
+            geonamesId: 1835848,
+            geoplanetId: 1132599,
+            quattroshapesPgId: 1073966,
+            wikidataId: "Q8684",
+          },
+        },
+      },
+    },
+  ],
+};
+
+const mockResAutocompleteV2 = {
+  geocoding: {
+    attribution: "https://stadiamaps.com/attribution/",
+  },
+  type: "FeatureCollection",
+  features: [
+    {
+      // type: "Feature",
+      geometry: null,
+      properties: {
+        gid: "whosonfirst:locality:102026327",
+        layer: "locality",
+        precision: "centroid",
+        name: "Seoul",
+        coarse_location: "서울특별시, South Korea",
+      },
+    },
+  ],
+};
+
+const mockResAutocompleteV2Parsed: GeocodeResponseEnvelopePropertiesV2 = {
+  geocoding: {
+    attribution: "https://stadiamaps.com/attribution/",
+  },
+  type: "FeatureCollection",
+  features: [
+    {
+      // type: "Feature",
+      properties: {
+        gid: "whosonfirst:locality:102026327",
+        layer: "locality",
+        precision: "centroid",
+        name: "Seoul",
+        coarseLocation: "서울특별시, South Korea",
+      },
+    },
+  ],
+};
+
+// Checks that the parsed response *approximately* equals the exact response. Some fields are added with a value of
+// undefined because TypeScript is explicit, and other properties have key changes to make them more friendly.
+function assertResponseEqualsMock(res: GeocodeResponse) {
+  expect(res.bbox).toEqual(mockRes.bbox);
+  res.features.forEach((feature, index) => {
+    let mockFeature = mockRes.features[index];
+    expect(feature.geometry).toEqual(mockFeature.geometry);
+    expect(feature.type).toEqual(mockFeature.type);
+    expect(feature.properties).toEqual(
+      expect.objectContaining(mockFeature.properties),
+    );
+  });
+}
+
+function assertResponseEqualsMockV2(
+  res: GeocodeResponseEnvelopePropertiesV2,
+  mockRes: GeocodeResponseEnvelopePropertiesV2,
+) {
+  expect(res.bbox).toEqual(mockRes.bbox);
+  res.features.forEach((feature, index) => {
+    let mockFeature = mockRes.features[index];
+    expect(feature.geometry).toEqual(mockFeature.geometry);
+    expect(feature.type).toEqual(mockFeature.type);
+    expect(feature.properties).toEqual(
+      expect.objectContaining(mockFeature.properties),
+    );
+  });
+}
+
+describe("GeocodingApi V1 unit tests", () => {
   const api = new GeocodingApi();
 
   beforeAll(() => {
@@ -86,20 +291,6 @@ describe("GeocodingApi unit tests", () => {
   afterAll(() => {
     disableFetchMocks();
   });
-
-  // Checks that the parsed response *approximately* equals the exact response. Some fields are added with a value of
-  // undefined because TypeScript is explicit, and other properties have key changes to make them more friendly.
-  function assertResponseEqualsMock(res: GeocodeResponse) {
-    expect(res.bbox).toEqual(mockRes.bbox);
-    res.features.forEach((feature, index) => {
-      let mockFeature = mockRes.features[index];
-      expect(feature.geometry).toEqual(mockFeature.geometry);
-      expect(feature.type).toEqual(mockFeature.type);
-      expect(feature.properties).toEqual(
-        expect.objectContaining(mockFeature.properties),
-      );
-    });
-  }
 
   test("autocomplete endpoint data parsing", async () => {
     const res = await api.autocomplete({ text: address });
@@ -135,7 +326,10 @@ describe("GeocodingApi unit tests", () => {
   });
 
   test("structured search endpoint data parsing", async () => {
-    const res = await api.searchStructured({ address: address, country: "EE" });
+    const res = await api.searchStructured({
+      address: address,
+      country: "EE",
+    });
     expect(fetchMock.mock.calls.length).toEqual(1);
 
     let [url, req] = fetchMock.mock.calls[0];
@@ -166,7 +360,7 @@ describe("GeocodingApi unit tests", () => {
   });
 
   test("place endpoint data parsing", async () => {
-    const res = await api.place({
+    const res = await api.placeDetails({
       ids: [kultuurikatel.properties.gid, "foo:bar"],
     });
     expect(fetchMock.mock.calls.length).toEqual(1);
@@ -181,8 +375,68 @@ describe("GeocodingApi unit tests", () => {
   });
 });
 
+describe("GeocodingApi Autocomplete V2 unit tests", () => {
+  const api = new GeocodingApi();
+
+  beforeAll(() => {
+    enableFetchMocks();
+  });
+
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    fetchMock.mockResponse(JSON.stringify(mockResAutocompleteV2));
+  });
+
+  afterAll(() => {
+    disableFetchMocks();
+  });
+
+  test("autocomplete endpoint data parsing", async () => {
+    const res = await api.autocompleteV2({ text: address });
+    expect(fetchMock.mock.calls.length).toEqual(1);
+
+    let [url, req] = fetchMock.mock.calls[0];
+    expect(req?.method).toEqual("GET");
+    expect(url).toContain(`text=${encodeURIComponent(address)}`);
+
+    assertResponseEqualsMockV2(res, mockResAutocompleteV2Parsed);
+  });
+});
+
+describe("GeocodingApi V2 unit tests", () => {
+  const api = new GeocodingApi();
+
+  beforeAll(() => {
+    enableFetchMocks();
+  });
+
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    fetchMock.mockResponse(JSON.stringify(mockResV2));
+  });
+
+  afterAll(() => {
+    disableFetchMocks();
+  });
+
+  test("place detail endpoint data parsing", async () => {
+    const res = await api.placeDetailsV2({
+      ids: [kultuurikatel.properties.gid, "foo:bar"],
+    });
+    expect(fetchMock.mock.calls.length).toEqual(1);
+
+    let [url, req] = fetchMock.mock.calls[0];
+    expect(req?.method).toEqual("GET");
+    expect(url).toContain(
+      `ids=${encodeURIComponent(kultuurikatel.properties.gid)}%2C${encodeURIComponent("foo:bar")}`,
+    );
+
+    assertResponseEqualsMockV2(res, mockResV2Parsed);
+  });
+});
+
 (shouldRunIntegrationTests ? describe : describe.skip)(
-  "GeocodingApi integration tests",
+  "GeocodingApi v1 integration tests",
   () => {
     const config = new Configuration({
       apiKey: apiKey,
@@ -220,7 +474,6 @@ describe("GeocodingApi unit tests", () => {
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
       expect(res.features[0]?.properties?.country).toEqual("Estonia");
-      expect(res.features[0]?.properties?.layer).toEqual("address");
     });
 
     test("reverse endpoint explicit layer integration test", async () => {
@@ -244,7 +497,9 @@ describe("GeocodingApi unit tests", () => {
     });
 
     test("place endpoint integration test", async () => {
-      const res = await api.place({ ids: [kultuurikatel.properties.gid] });
+      const res = await api.placeDetails({
+        ids: [kultuurikatel.properties.gid],
+      });
       expect(res.features).toHaveLength(1);
       expect(res.features[0]?.properties?.country).toEqual("Estonia");
       expect(res.features[0]?.properties?.layer).toEqual("address");
@@ -272,6 +527,35 @@ describe("GeocodingApi unit tests", () => {
         );
         expect(res.response?.features[0]?.properties?.layer).toEqual("address");
       }
+    });
+  },
+);
+
+(shouldRunIntegrationTests ? describe : describe.skip)(
+  "GeocodingApi v2 integration tests",
+  () => {
+    const config = new Configuration({
+      apiKey: apiKey,
+    });
+    const api = new GeocodingApi(config);
+
+    test("autocomplete endpoint integration test", async () => {
+      const res = await api.autocompleteV2({ text: address });
+      expect(res.features.length).toBeGreaterThanOrEqual(1);
+      expect(res.features[0]?.properties?.context).toBeUndefined();
+      expect(res.features[0]?.properties?.layer).toEqual("address");
+    });
+
+    test("place endpoint integration test", async () => {
+      const res = await api.placeDetailsV2({
+        ids: [kultuurikatel.properties.gid],
+      });
+      expect(res.features).toHaveLength(1);
+      expect(
+        res.features[0]?.properties?.context?.whosonfirst?.country?.name,
+      ).toEqual("Estonia");
+      expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
+      expect(res.features[0]?.properties?.layer).toEqual("address");
     });
   },
 );

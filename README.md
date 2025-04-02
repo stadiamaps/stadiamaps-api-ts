@@ -73,7 +73,7 @@ Here's a quick usage example of a webpage that makes a geocoding query and displ
   <head>
     <script
       type="text/javascript"
-      src="https://www.unpkg.com/@stadiamaps/api@3"
+      src="https://www.unpkg.com/@stadiamaps/api@7"
     ></script>
     <script type="text/javascript">
       // In nearly all cases, you should be able to construct any of the APIs as-is (see https://docs.stadiamaps.com/authentication/).
@@ -83,7 +83,7 @@ Here's a quick usage example of a webpage that makes a geocoding query and displ
       const api = new stadiaMapsApi.GeocodingApi();
       window.onload = async function () {
         // You can use either the async interface or the other Promise API functions like .then; the choice is yours.
-        const res = await api.autocomplete({ text: "Põhja pst 27" });
+        const res = await api.autocompleteV2({ text: "Põhja pst 27" });
         document.getElementById("pre").innerHTML = JSON.stringify(res, null, 2);
       };
     </script>

@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 7.0.0 - 2025-04-07
+
+### Added
+
+- Support for the v2 autocomplete and place details APIs!
+- **BREAKING:** We have renamed the Place Details method to clarify its purpose.
+
+If you want to keep using the v1 endpoint, you can amend your code like so:
+
+```diff
+- const res = await api.place({ ids: ["whosonfirst:locality:123"] });
++ const res = await api.placeDetails({ ids: ["whosonfirst:locality:123"] });
+```
+
+To upgrade to the v2 Place Details endpoint, which features improved address formatting,
+use the new V2 method:
+
+```diff
+- const res = await api.place({ ids: ["whosonfirst:locality:123"] });
++ const res = await api.placeDetailsV2({ ids: ["whosonfirst:locality:123"] });
+```
+
+TypeScript users will receive errors at build time to keep breakage obvious.
+
+For an overview of the structural changes we've made in the V2 API,
+refer to the [migration guide](https://docs.stadiamaps.com/geocoding-search-autocomplete/v2-api-migration-guide/).
+
+### Fixed
+
+- The v1 geocoding model now includes the confidence score. This was always available in the API response, but wasn't in the OpenAPI spec.
+
 ## Version 6.0.0 - 2025-01-20
 
 ### Added

@@ -4,7 +4,9 @@ export * from "./generated/apis/GeospatialApi";
 export * from "./generated/apis/RoutingApi";
 export type {
   AutocompleteRequest,
-  PlaceRequest,
+  AutocompleteV2Request,
+  PlaceDetailsRequest,
+  PlaceDetailsV2Request,
   SearchRequest,
   SearchStructuredRequest,
   ReverseRequest,

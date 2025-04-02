@@ -4,6 +4,8 @@ apis/RoutingApi.ts
 apis/index.ts
 index.ts
 models/Access.ts
+models/AddendumV2.ts
+models/AddressComponentsV2.ts
 models/AdminRegion.ts
 models/Administrative.ts
 models/AnnotationFilters.ts
@@ -15,6 +17,7 @@ models/BikeNetwork.ts
 models/BulkRequest.ts
 models/BulkRequestQuery.ts
 models/BulkSearchResponse.ts
+models/Context.ts
 models/Contour.ts
 models/Coordinate.ts
 models/CostingModel.ts
@@ -25,20 +28,23 @@ models/EdgeSign.ts
 models/EdgeUse.ts
 models/EndNode.ts
 models/ExtendedDirectionsOptions.ts
+models/FeaturePropertiesV2.ts
+models/FeaturePropertiesV2Properties.ts
+models/FoursquareAddendum.ts
 models/GeoAttributes.ts
-models/GeoJSONGeometry.ts
 models/GeoJSONGeometryBase.ts
-models/GeoJSONLineString.ts
 models/GeoJSONPoint.ts
-models/GeoJSONPolygon.ts
 models/GeocodeResponse.ts
+models/GeocodeResponseEnvelopePropertiesV2.ts
 models/GeocodingGeoJSONFeature.ts
 models/GeocodingGeoJSONProperties.ts
 models/GeocodingGeoJSONPropertiesAddendum.ts
 models/GeocodingGeoJSONPropertiesAddendumOsm.ts
 models/GeocodingLayer.ts
+models/GeocodingMeta.ts
 models/GeocodingObject.ts
 models/GeocodingSource.ts
+models/GeonamesAddendum.ts
 models/HeightRequest.ts
 models/HeightResponse.ts
 models/HighwayClassification.ts
@@ -48,6 +54,7 @@ models/IsochroneFeature.ts
 models/IsochroneProperties.ts
 models/IsochroneRequest.ts
 models/IsochroneResponse.ts
+models/LayerId.ts
 models/LocateDetailedEdge.ts
 models/LocateEdge.ts
 models/LocateEdgeInfo.ts
@@ -61,6 +68,7 @@ models/MapMatchRequest.ts
 models/MapMatchRouteResponse.ts
 models/MapMatchTraceOptions.ts
 models/MapMatchWaypoint.ts
+models/MatchType.ts
 models/MatchedPoint.ts
 models/MatrixCostingModel.ts
 models/MatrixDistance.ts
@@ -72,6 +80,7 @@ models/MotorcycleCostingOptions.ts
 models/NearestRoadsRequest.ts
 models/NodeId.ts
 models/NodeType.ts
+models/OpenStreetMapAddendum.ts
 models/OptimizedRouteRequest.ts
 models/OsrmAdmin.ts
 models/OsrmAnnotation.ts
@@ -92,6 +101,10 @@ models/OsrmViaWaypoint.ts
 models/OsrmVoiceInstruction.ts
 models/OsrmWaypoint.ts
 models/PedestrianCostingOptions.ts
+models/PedestrianType.ts
+models/Point.ts
+models/Precision.ts
+models/PropertiesV2.ts
 models/Restrictions.ts
 models/RoadClass.ts
 models/Route200Response.ts
@@ -110,6 +123,8 @@ models/RoutingWaypointAllOfSearchFilter.ts
 models/SearchQuery.ts
 models/SearchStructuredQuery.ts
 models/SimpleRoutingWaypoint.ts
+models/SourceAttribution.ts
+models/SourceId.ts
 models/Speeds.ts
 models/TraceAttributeFilterOptions.ts
 models/TraceAttributeKey.ts
@@ -122,5 +137,8 @@ models/Traversability.ts
 models/TruckCostingOptions.ts
 models/TzResponse.ts
 models/Warning.ts
+models/WhosOnFirstConcordances.ts
+models/WofContext.ts
+models/WofContextComponent.ts
 models/index.ts
 runtime.ts
