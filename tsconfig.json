@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "target": "es6",
-    "moduleResolution": "node16",
+    "moduleResolution": "bundler",
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "dist",
