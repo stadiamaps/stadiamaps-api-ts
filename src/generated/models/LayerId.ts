@@ -13,7 +13,7 @@
  */
 
 /**
- * Canonical geocoding layer IDs.
+ * Canonical geocoding layer IDs for querying.
  * @export
  */
 export const LayerId = {
@@ -30,6 +30,13 @@ export const LayerId = {
   Borough: "borough",
   Neighbourhood: "neighbourhood",
   Postalcode: "postalcode",
+  Dependency: "dependency",
+  Macrohood: "macrohood",
+  Marinearea: "marinearea",
+  Disputed: "disputed",
+  Empire: "empire",
+  Continent: "continent",
+  Ocean: "ocean",
   Coarse: "coarse",
 } as const;
 export type LayerId = (typeof LayerId)[keyof typeof LayerId];
