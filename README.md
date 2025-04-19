@@ -46,7 +46,7 @@ const api = new GeocodingApi();
 
 // Make an API call! The responses use the standard promise API.
 // You can use either the callback interface...
-api.reverse({ pointLat: 59.44436, pointLon: 24.75071 }).then(
+api.reverseV2({ pointLat: 59.44436, pointLon: 24.75071, lang: "en" }).then(
   function (result) {
     console.log(result);
   },
