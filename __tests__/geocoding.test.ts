@@ -540,7 +540,7 @@ describe("GeocodingApi V2 unit tests", () => {
     const api = new GeocodingApi(config);
 
     test("autocomplete endpoint integration test", async () => {
-      const res = await api.autocompleteV2({ text: address });
+      const res = await api.autocompleteV2({ text: address, lang: "en" });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
       expect(res.features[0]?.properties?.context).toBeUndefined();
       expect(res.features[0]?.properties?.layer).toEqual("address");
@@ -549,6 +549,7 @@ describe("GeocodingApi V2 unit tests", () => {
     test("place endpoint integration test", async () => {
       const res = await api.placeDetailsV2({
         ids: [kultuurikatel.properties.gid],
+        lang: "en",
       });
       expect(res.features).toHaveLength(1);
       expect(
@@ -562,6 +563,7 @@ describe("GeocodingApi V2 unit tests", () => {
       const res = await api.reverseV2({
         pointLat: kultuurikatel.geometry.coordinates[1],
         pointLon: kultuurikatel.geometry.coordinates[0],
+        lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
       expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
@@ -572,6 +574,7 @@ describe("GeocodingApi V2 unit tests", () => {
         pointLat: kultuurikatel.geometry.coordinates[1],
         pointLon: kultuurikatel.geometry.coordinates[0],
         layers: ["address"],
+        lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
       expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
@@ -582,6 +585,7 @@ describe("GeocodingApi V2 unit tests", () => {
       const res = await api.reverseV2({
         pointLat: kultuurikatel.geometry.coordinates[0],
         pointLon: kultuurikatel.geometry.coordinates[1],
+        lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
       expect(res.features[0]?.properties?.layer).toEqual("marinearea");
