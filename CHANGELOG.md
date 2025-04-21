@@ -5,17 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 7.2.0 - 2025-04-21
+
+# Added
+
+- Add documentation for the geocoding metadata `query` field.
+
+## Fixed
+
+- Removed boundary circle properties that were mistakenly added.
+  They did not behave as expected, so this is a bug fix despite being a code-breaking change if you used it.
+- Added missing water layers to context.
+
 ## Version 7.1.0 - 2025-04-19
 
 ### Added
 
-* Support for the v2 reverse geocoding endpoint! The new API includes better structure, more details, and better address formatting.
+- Support for the v2 reverse geocoding endpoint! The new API includes better structure, more details, and better address formatting.
 
 ```diff
 - const res = await api.reverse({
 + const res = await api.reverseV2({
     pointLat: 48.848268,
-    pointLon: 2.294471 
+    pointLon: 2.294471
   });
 ```
 
@@ -24,8 +36,8 @@ refer to the [migration guide](https://docs.stadiamaps.com/geocoding-search-auto
 
 ### Fixed
 
-* Added the `wheelchair` property to the OSM addendum model (it was in the API response, but not explicitly modeled).
-* Fix the types of the Natural Earth and Karmashapes identifiers
+- Added the `wheelchair` property to the OSM addendum model (it was in the API response, but not explicitly modeled).
+- Fix the types of the Natural Earth and Karmashapes identifiers
 
 ## Version 7.0.0 - 2025-04-07
 
