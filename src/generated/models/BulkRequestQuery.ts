@@ -45,6 +45,9 @@ export function BulkRequestQueryFromJSONTyped(
   if (json == null) {
     return json;
   }
+  if (typeof json !== "object") {
+    return json;
+  }
   if (instanceOfSearchQuery(json)) {
     return SearchQueryFromJSONTyped(json, true);
   }
@@ -66,7 +69,9 @@ export function BulkRequestQueryToJSONTyped(
   if (value == null) {
     return value;
   }
-
+  if (typeof value !== "object") {
+    return value;
+  }
   if (instanceOfSearchQuery(value)) {
     return SearchQueryToJSON(value as SearchQuery);
   }

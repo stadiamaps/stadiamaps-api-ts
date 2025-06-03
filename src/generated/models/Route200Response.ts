@@ -45,6 +45,9 @@ export function Route200ResponseFromJSONTyped(
   if (json == null) {
     return json;
   }
+  if (typeof json !== "object") {
+    return json;
+  }
   if (instanceOfOsrmRouteResponse(json)) {
     return OsrmRouteResponseFromJSONTyped(json, true);
   }
@@ -66,7 +69,9 @@ export function Route200ResponseToJSONTyped(
   if (value == null) {
     return value;
   }
-
+  if (typeof value !== "object") {
+    return value;
+  }
   if (instanceOfOsrmRouteResponse(value)) {
     return OsrmRouteResponseToJSON(value as OsrmRouteResponse);
   }
