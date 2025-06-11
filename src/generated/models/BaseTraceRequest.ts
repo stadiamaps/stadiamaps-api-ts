@@ -86,7 +86,7 @@ export interface BaseTraceRequest {
    */
   shape?: Array<MapMatchWaypoint>;
   /**
-   * REQUIRED if `shape` is not present. An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm). Note that the polyline must be encoded with 6 digits of precision rather than the usual 5.
+   * REQUIRED if `shape` is not present. An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm). Note that the polyline must be encoded with 6 digits of precision rather than the default 5!
    * @type {string}
    * @memberof BaseTraceRequest
    */

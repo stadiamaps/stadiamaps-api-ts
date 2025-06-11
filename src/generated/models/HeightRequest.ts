@@ -52,7 +52,7 @@ export interface HeightRequest {
    */
   shapeFormat?: HeightRequestShapeFormatEnum;
   /**
-   * Controls whether or not the returned array is one-dimensional (height only) or two-dimensional (with a range and height). The range dimension can be used to generate a graph or steepness gradient along a route.
+   * Controls whether the returned array is one-dimensional (height only) or two-dimensional (with a range and height). The range dimension can be used to generate a graph or steepness gradient along a route.
    * @type {boolean}
    * @memberof HeightRequest
    */

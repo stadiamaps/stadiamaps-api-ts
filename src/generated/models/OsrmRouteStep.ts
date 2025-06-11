@@ -61,7 +61,7 @@ export interface OsrmRouteStep {
    */
   duration: number;
   /**
-   * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm) with 6 digits of decimal precision.
+   * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm) with 6 digits of decimal precision (NOTE: most implementations default to 5).
    * @type {string}
    * @memberof OsrmRouteStep
    */

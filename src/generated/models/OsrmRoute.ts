@@ -40,7 +40,7 @@ export interface OsrmRoute {
    */
   duration: number;
   /**
-   * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
+   * An encoded polyline (https://developers.google.com/maps/documentation/utilities/polylinealgorithm). Note that the polyline is encoded with 6 digits of precision rather than the default 5!
    * @type {string}
    * @memberof OsrmRoute
    */
