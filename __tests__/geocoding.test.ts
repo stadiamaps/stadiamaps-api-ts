@@ -542,8 +542,15 @@ describe("GeocodingApi V2 unit tests", () => {
     test("autocomplete endpoint integration test", async () => {
       const res = await api.autocompleteV2({ text: address, lang: "en" });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
-      expect(res.features[0]?.properties?.context).toBeUndefined();
-      expect(res.features[0]?.properties?.layer).toEqual("address");
+      expect(res.features[0]?.properties.context).toBeUndefined();
+      expect(res.features[0]?.properties.layer).toEqual("address");
+    });
+
+    test("search endpoint integration test", async () => {
+      const res = await api.searchV2({ text: address });
+      expect(res.features.length).toBeGreaterThanOrEqual(1);
+      expect(res.features[0]?.properties.context?.iso3166A3).toEqual("EST");
+      expect(res.features[0]?.properties.layer).toEqual("address");
     });
 
     test("place endpoint integration test", async () => {
@@ -553,10 +560,10 @@ describe("GeocodingApi V2 unit tests", () => {
       });
       expect(res.features).toHaveLength(1);
       expect(
-        res.features[0]?.properties?.context?.whosonfirst?.country?.name,
+        res.features[0]?.properties.context?.whosonfirst?.country?.name,
       ).toEqual("Estonia");
-      expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
-      expect(res.features[0]?.properties?.layer).toEqual("address");
+      expect(res.features[0]?.properties.context?.iso3166A3).toEqual("EST");
+      expect(res.features[0]?.properties.layer).toEqual("address");
     });
 
     test("reverse endpoint integration test", async () => {
@@ -566,7 +573,7 @@ describe("GeocodingApi V2 unit tests", () => {
         lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
-      expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
+      expect(res.features[0]?.properties.context?.iso3166A3).toEqual("EST");
     });
 
     test("reverse endpoint explicit layer integration test", async () => {
@@ -577,8 +584,8 @@ describe("GeocodingApi V2 unit tests", () => {
         lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
-      expect(res.features[0]?.properties?.context?.iso3166A3).toEqual("EST");
-      expect(res.features[0]?.properties?.layer).toEqual("address");
+      expect(res.features[0]?.properties.context?.iso3166A3).toEqual("EST");
+      expect(res.features[0]?.properties.layer).toEqual("address");
     });
 
     test("reverse endpoint uncommon layer integration test", async () => {
@@ -588,7 +595,7 @@ describe("GeocodingApi V2 unit tests", () => {
         lang: "en",
       });
       expect(res.features.length).toBeGreaterThanOrEqual(1);
-      expect(res.features[0]?.properties?.layer).toEqual("marinearea");
+      expect(res.features[0]?.properties.layer).toEqual("marinearea");
     });
   },
 );

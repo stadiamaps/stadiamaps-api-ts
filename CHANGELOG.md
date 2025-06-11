@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 8.0.0 - 2025-06-12
+
+### Added
+
+- Support for the v2 `search` (forward geocoding) endpoint! The new API includes better structure, more details, and better address formatting.
+
+```diff
+- const res = await api.search({
++ const res = await api.searchV2({
+    text: 'Telliskivi 60a/3, Tallinn, Estonia'
+  });
+```
+
+For an overview of the structural changes we've made in the V2 API,
+refer to the [migration guide](https://docs.stadiamaps.com/geocoding-search-autocomplete/v2-api-migration-guide/).
+
+### Fixed
+
+- **Potentially breaking change:** The `maneuvers` property on route responses was previously marked as required.
+  However, it is possible to explicitly request routes with this field removed.
+  These would fail validation and the whole request would end with an exception
+  in the API client.
+  This has been fixed in this version, so the property is optional.
+
 ## Version 7.3.0 - 2025-06-03
 
 ### Added
