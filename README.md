@@ -56,7 +56,7 @@ api.reverseV2({ pointLat: 59.44436, pointLon: 24.75071, lang: "en" }).then(
 );
 
 // ... or the await keyword in an async context
-const res = await api.search({ text: "Põhja pst 27" });
+const res = await api.searchV2({ text: "Põhja pst 27" });
 ```
 
 ## Getting started with unpkg
