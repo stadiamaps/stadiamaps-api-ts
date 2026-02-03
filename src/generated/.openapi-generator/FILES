@@ -106,6 +106,7 @@ models/Point.ts
 models/Precision.ts
 models/PropertiesV2.ts
 models/Restrictions.ts
+models/ReverseQuery.ts
 models/RoadClass.ts
 models/Route200Response.ts
 models/RouteLeg.ts

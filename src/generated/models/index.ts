@@ -103,6 +103,7 @@ export * from "./Point";
 export * from "./Precision";
 export * from "./PropertiesV2";
 export * from "./Restrictions";
+export * from "./ReverseQuery";
 export * from "./RoadClass";
 export * from "./Route200Response";
 export * from "./RouteLeg";

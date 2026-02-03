@@ -508,7 +508,10 @@ describe("GeocodingApi V2 unit tests", () => {
     test("bulk geocode endpoint integration test", async () => {
       const responses = await api.searchBulk({
         bulkRequest: [
-          { endpoint: "/v1/search", query: { text: address } },
+          {
+            endpoint: "/v1/search",
+            query: { text: address, lang: "en", size: 3 },
+          },
           {
             endpoint: "/v1/search/structured",
             query: {
@@ -517,9 +520,17 @@ describe("GeocodingApi V2 unit tests", () => {
               layers: ["coarse", "address"],
             },
           },
+          {
+            endpoint: "/v1/reverse",
+            "query": {
+              pointLat: 59.439623,
+              pointLon: 24.729214,
+              lang: "en"
+            }
+          }
         ],
       });
-      expect(responses).toHaveLength(2);
+      expect(responses).toHaveLength(3);
       for (const res of responses.values()) {
         expect(res.status).toEqual(200);
         expect(res.response?.features[0]?.properties?.country).toEqual(
