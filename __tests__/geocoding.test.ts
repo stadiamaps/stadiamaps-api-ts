@@ -522,12 +522,12 @@ describe("GeocodingApi V2 unit tests", () => {
           },
           {
             endpoint: "/v1/reverse",
-            "query": {
+            query: {
               pointLat: 59.439623,
               pointLon: 24.729214,
-              lang: "en"
-            }
-          }
+              lang: "en",
+            },
+          },
         ],
       });
       expect(responses).toHaveLength(3);
