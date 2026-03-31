@@ -16,45 +16,40 @@ import { mapValues } from "../runtime";
 /**
  *
  * @export
- * @interface TzResponse
+ * @interface TzResponseV2
  */
-export interface TzResponse {
+export interface TzResponseV2 {
   /**
    * The canonical time zone ID.
    *
    * In the event that multiple time zones could be returned,
    * the first one from the Unicode CLDR timezone.xml is returned.
    * @type {string}
-   * @memberof TzResponse
+   * @memberof TzResponseV2
    */
   tzId: string;
   /**
-   * The base offset, in seconds, from UTC that is normally in effect for this time zone.
+   * The total offset, in seconds, from UTC that is currently in effect for this time zone.
+   *
+   * This accounts for both the standard offset and any seasonal adjustments (e.g. DST).
    * @type {number}
-   * @memberof TzResponse
+   * @memberof TzResponseV2
    */
-  baseUtcOffset: number;
+  utcOffset: number;
   /**
-   * The special offset, in seconds, from UTC that is in effect for this time zone as of the queried timestamp (defaults to now).
-   *
-   * If no additional offsets are in effect, this value is zero.
-   * This typically reflects Daylight Saving Time, but may indicate other special offsets.
-   * To get the total offset in effect, add `dst_offset` and `utc_offset` together.
-   *
-   * NOTE: This field can be somewhat confusing.
-   * We recommend switching to the v2 endpoint and using the is_dst filed if you need to identify whether DST is being observed.
-   * @type {number}
-   * @memberof TzResponse
-   * @deprecated
+   * Whether Daylight Saving Time (or a similar seasonal offset) is in effect
+   * at the queried timestamp.
+   * @type {boolean}
+   * @memberof TzResponseV2
    */
-  dstOffset: number;
+  isDst: boolean;
   /**
    * Integer non-leap seconds since January 1, 1970 (UNIX timestamp).
    *
    * If present, offsets will be calculated as of this time.
    * Otherwise, offsets will be effective as of the time of the query.
    * @type {number}
-   * @memberof TzResponse
+   * @memberof TzResponseV2
    */
   timestamp: number;
   /**
@@ -65,67 +60,66 @@ export interface TzResponse {
    *
    * NOTE: RFC 2822 is more restrictive than other formats and cannot represent all dates.
    * @type {string}
-   * @memberof TzResponse
+   * @memberof TzResponseV2
    */
   localRfc2822Timestamp?: string | null;
   /**
-   * The local time expressed as an RFC 3389 (ISO 8601) timestamp (e.g. 2003-06-01T10:52:37+02:00).
+   * The local time expressed as an RFC 3339 (ISO 8601) timestamp (e.g. 2003-06-01T10:52:37+02:00).
    *
    * If a timestamp is included in the request, it will be localized here.
    * Otherwise, this will reflect the time of the request.
    * @type {string}
-   * @memberof TzResponse
+   * @memberof TzResponseV2
    */
-  localRfc3389Timestamp: string;
+  localRfc3339Timestamp: string;
 }
 
 /**
- * Check if a given object implements the TzResponse interface.
+ * Check if a given object implements the TzResponseV2 interface.
  */
-export function instanceOfTzResponse(value: object): value is TzResponse {
+export function instanceOfTzResponseV2(value: object): value is TzResponseV2 {
   if (!("tzId" in value) || value["tzId"] === undefined) return false;
-  if (!("baseUtcOffset" in value) || value["baseUtcOffset"] === undefined)
-    return false;
-  if (!("dstOffset" in value) || value["dstOffset"] === undefined) return false;
+  if (!("utcOffset" in value) || value["utcOffset"] === undefined) return false;
+  if (!("isDst" in value) || value["isDst"] === undefined) return false;
   if (!("timestamp" in value) || value["timestamp"] === undefined) return false;
   if (
-    !("localRfc3389Timestamp" in value) ||
-    value["localRfc3389Timestamp"] === undefined
+    !("localRfc3339Timestamp" in value) ||
+    value["localRfc3339Timestamp"] === undefined
   )
     return false;
   return true;
 }
 
-export function TzResponseFromJSON(json: any): TzResponse {
-  return TzResponseFromJSONTyped(json, false);
+export function TzResponseV2FromJSON(json: any): TzResponseV2 {
+  return TzResponseV2FromJSONTyped(json, false);
 }
 
-export function TzResponseFromJSONTyped(
+export function TzResponseV2FromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): TzResponse {
+): TzResponseV2 {
   if (json == null) {
     return json;
   }
   return {
     tzId: json["tz_id"],
-    baseUtcOffset: json["base_utc_offset"],
-    dstOffset: json["dst_offset"],
+    utcOffset: json["utc_offset"],
+    isDst: json["is_dst"],
     timestamp: json["timestamp"],
     localRfc2822Timestamp:
       json["local_rfc_2822_timestamp"] == null
         ? undefined
         : json["local_rfc_2822_timestamp"],
-    localRfc3389Timestamp: json["local_rfc_3389_timestamp"],
+    localRfc3339Timestamp: json["local_rfc_3339_timestamp"],
   };
 }
 
-export function TzResponseToJSON(json: any): TzResponse {
-  return TzResponseToJSONTyped(json, false);
+export function TzResponseV2ToJSON(json: any): TzResponseV2 {
+  return TzResponseV2ToJSONTyped(json, false);
 }
 
-export function TzResponseToJSONTyped(
-  value?: TzResponse | null,
+export function TzResponseV2ToJSONTyped(
+  value?: TzResponseV2 | null,
   ignoreDiscriminator: boolean = false,
 ): any {
   if (value == null) {
@@ -134,10 +128,10 @@ export function TzResponseToJSONTyped(
 
   return {
     tz_id: value["tzId"],
-    base_utc_offset: value["baseUtcOffset"],
-    dst_offset: value["dstOffset"],
+    utc_offset: value["utcOffset"],
+    is_dst: value["isDst"],
     timestamp: value["timestamp"],
     local_rfc_2822_timestamp: value["localRfc2822Timestamp"],
-    local_rfc_3389_timestamp: value["localRfc3389Timestamp"],
+    local_rfc_3339_timestamp: value["localRfc3339Timestamp"],
   };
 }

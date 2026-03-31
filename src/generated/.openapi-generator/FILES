@@ -123,10 +123,12 @@ models/RoutingWaypoint.ts
 models/RoutingWaypointAllOfSearchFilter.ts
 models/SearchQuery.ts
 models/SearchStructuredQuery.ts
+models/ShapeFormat.ts
 models/SimpleRoutingWaypoint.ts
 models/SourceAttribution.ts
 models/SourceId.ts
 models/Speeds.ts
+models/TimeConstraintV1.ts
 models/TraceAttributeFilterOptions.ts
 models/TraceAttributeKey.ts
 models/TraceAttributesBaseResponse.ts
@@ -137,6 +139,7 @@ models/TravelMode.ts
 models/Traversability.ts
 models/TruckCostingOptions.ts
 models/TzResponse.ts
+models/TzResponseV2.ts
 models/Warning.ts
 models/WhosOnFirstConcordances.ts
 models/WofContext.ts

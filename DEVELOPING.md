@@ -10,9 +10,11 @@ Regenerating the generated portions of the codebase can be done simply with this
 openapi-generator generate -i https://api.stadiamaps.com/openapi.yaml -g typescript-fetch --strict-spec true -o src/generated
 ```
 
-NOTE: The OpenAPI generator has been broken for quite some years, and does not properly handle some models,
-particularly with the bulk API.
-Be extremely careful about these changes and don't blindly accept what the generator suggests.
+### Notes for code gen
+
+- The OpenAPI generator has been broken for quite some years, and does not properly handle some models, particularly with the bulk API.
+  Be extremely careful about these changes and don't blindly accept what the generator suggests.
+- Don't stage the MarkDown docs. We should figure out how to stop generating these. And be sure to remove these lines from the OpenAPI manifest.
 
 ## Run prettier
 
