@@ -59,13 +59,16 @@ const osrmFormatRouteRequest: RouteRequest = {
 };
 const optimizedRouteRequest: OptimizedRouteRequest = {
   locations: [locationA, locationB, locationC, locationA],
-  costing: "auto",
+  costing: "auto_traffic",
   costingOptions: {
     auto: {
       useHighways: 0.3,
     },
   },
   units: DistanceUnit.Mi,
+  dateTime: {
+    type: 0,
+  },
 };
 const mockRouteRes = {
   id: "42",
