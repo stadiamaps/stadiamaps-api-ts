@@ -28,13 +28,12 @@ export interface SourceAttribution {
   fixitUrl?: string | null;
   /**
    * The source identifier.
-   * The ID of the record as it appears in the original source.
    * @type {string}
    * @memberof SourceAttribution
    */
   source: string;
   /**
-   *
+   * The ID of the record as it appears in the original source.
    * @type {string}
    * @memberof SourceAttribution
    */

@@ -14,19 +14,19 @@
 
 import { mapValues } from "../runtime";
 /**
- * Specifies the time context for time-dependent routing (e.g., to account for traffic patterns or time-based access restrictions). Defaults "now" for traffic-influenced routing profiles like `auto_traffic`.
+ * Specifies the time context for time-dependent routing (e.g., to account for traffic patterns or time-based access restrictions). Defaults to "depart_now" for traffic-influenced routing profiles like `auto_traffic`.
  * @export
  * @interface TimeConstraintV1
  */
 export interface TimeConstraintV1 {
   /**
-   * The type of time constraint: 0 = current time (depart now), 1 = depart at the specified time, 2 = arrive by the specified time.
+   * The type of time constraint: "depart_now" = depart now (current time), "depart_at" = depart at the specified time, "arrive_at" = arrive by the specified time.
    * @type {TimeConstraintV1TypeEnum}
    * @memberof TimeConstraintV1
    */
   type: TimeConstraintV1TypeEnum;
   /**
-   * The date and time in `YYYY-MM-DDTHH:MM` format (seconds are accepted, but will be ignored). The date and time are local (civil) time as observed at the location. Required for types 1 and 2. Must not be provided for type 0.
+   * The date and time in `YYYY-MM-DDTHH:MM` format (seconds are accepted, but will be ignored). The date and time are local (civil) time as observed at the location. Required when type is depart_at or arrive_at. Must not be provided for depart_now.
    * @type {string}
    * @memberof TimeConstraintV1
    */
@@ -37,9 +37,9 @@ export interface TimeConstraintV1 {
  * @export
  */
 export const TimeConstraintV1TypeEnum = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  DepartNow: "depart_now",
+  DepartAt: "depart_at",
+  ArriveAt: "arrive_at",
 } as const;
 export type TimeConstraintV1TypeEnum =
   (typeof TimeConstraintV1TypeEnum)[keyof typeof TimeConstraintV1TypeEnum];
