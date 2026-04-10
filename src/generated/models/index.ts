@@ -74,6 +74,7 @@ export * from "./MatrixResponse";
 export * from "./MatrixWaypoint";
 export * from "./MotorScooterCostingOptions";
 export * from "./MotorcycleCostingOptions";
+export * from "./NearestRoadsCostingModel";
 export * from "./NearestRoadsRequest";
 export * from "./NodeId";
 export * from "./NodeType";

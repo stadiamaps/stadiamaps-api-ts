@@ -67,7 +67,7 @@ const optimizedRouteRequest: OptimizedRouteRequest = {
   },
   units: DistanceUnit.Mi,
   dateTime: {
-    type: 0,
+    type: "depart_now",
   },
 };
 const mockRouteRes = {

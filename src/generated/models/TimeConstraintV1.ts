@@ -14,13 +14,13 @@
 
 import { mapValues } from "../runtime";
 /**
- * Specifies the time context for time-dependent routing (e.g., to account for traffic patterns or time-based access restrictions). Defaults to "depart_now" for traffic-influenced routing profiles like `auto_traffic`.
+ * Specifies the time context for time-dependent routing (e.g., to account for traffic patterns or time-based access restrictions). Defaults to depart_now for traffic-influenced routing profiles like `auto_traffic`.
  * @export
  * @interface TimeConstraintV1
  */
 export interface TimeConstraintV1 {
   /**
-   * The type of time constraint: "depart_now" = depart now (current time), "depart_at" = depart at the specified time, "arrive_at" = arrive by the specified time.
+   * The type of time constraint: `depart_now` = depart now (current time), `depart_at` = depart at the specified time, `arrive_at` = arrive by the specified time.
    * @type {TimeConstraintV1TypeEnum}
    * @memberof TimeConstraintV1
    */

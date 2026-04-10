@@ -34,20 +34,6 @@ import {
   TimeConstraintV1ToJSON,
   TimeConstraintV1ToJSONTyped,
 } from "./TimeConstraintV1";
-import type { DistanceUnit } from "./DistanceUnit";
-import {
-  DistanceUnitFromJSON,
-  DistanceUnitFromJSONTyped,
-  DistanceUnitToJSON,
-  DistanceUnitToJSONTyped,
-} from "./DistanceUnit";
-import type { RoutingLanguages } from "./RoutingLanguages";
-import {
-  RoutingLanguagesFromJSON,
-  RoutingLanguagesFromJSONTyped,
-  RoutingLanguagesToJSON,
-  RoutingLanguagesToJSONTyped,
-} from "./RoutingLanguages";
 import type { MapMatchWaypoint } from "./MapMatchWaypoint";
 import {
   MapMatchWaypointFromJSON,
@@ -62,24 +48,6 @@ import {
  * @interface BaseTraceRequest
  */
 export interface BaseTraceRequest {
-  /**
-   *
-   * @type {DistanceUnit}
-   * @memberof BaseTraceRequest
-   */
-  units?: DistanceUnit;
-  /**
-   *
-   * @type {RoutingLanguages}
-   * @memberof BaseTraceRequest
-   */
-  language?: RoutingLanguages;
-  /**
-   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-   * @type {BaseTraceRequestDirectionsTypeEnum}
-   * @memberof BaseTraceRequest
-   */
-  directionsType?: BaseTraceRequestDirectionsTypeEnum;
   /**
    * An identifier to disambiguate requests (echoed by the server).
    * @type {string}
@@ -128,17 +96,6 @@ export interface BaseTraceRequest {
 /**
  * @export
  */
-export const BaseTraceRequestDirectionsTypeEnum = {
-  None: "none",
-  Maneuvers: "maneuvers",
-  Instructions: "instructions",
-} as const;
-export type BaseTraceRequestDirectionsTypeEnum =
-  (typeof BaseTraceRequestDirectionsTypeEnum)[keyof typeof BaseTraceRequestDirectionsTypeEnum];
-
-/**
- * @export
- */
 export const BaseTraceRequestShapeMatchEnum = {
   EdgeWalk: "edge_walk",
   MapSnap: "map_snap",
@@ -169,14 +126,6 @@ export function BaseTraceRequestFromJSONTyped(
     return json;
   }
   return {
-    units:
-      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
-    language:
-      json["language"] == null
-        ? undefined
-        : RoutingLanguagesFromJSON(json["language"]),
-    directionsType:
-      json["directions_type"] == null ? undefined : json["directions_type"],
     id: json["id"] == null ? undefined : json["id"],
     shape:
       json["shape"] == null
@@ -210,9 +159,6 @@ export function BaseTraceRequestToJSONTyped(
   }
 
   return {
-    units: DistanceUnitToJSON(value["units"]),
-    language: RoutingLanguagesToJSON(value["language"]),
-    directions_type: value["directionsType"],
     id: value["id"],
     shape:
       value["shape"] == null

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CostingModel } from "./CostingModel";
-import {
-  CostingModelFromJSON,
-  CostingModelFromJSONTyped,
-  CostingModelToJSON,
-  CostingModelToJSONTyped,
-} from "./CostingModel";
 import type { CostingOptions } from "./CostingOptions";
 import {
   CostingOptionsFromJSON,
@@ -34,6 +27,13 @@ import {
   CoordinateToJSON,
   CoordinateToJSONTyped,
 } from "./Coordinate";
+import type { NearestRoadsCostingModel } from "./NearestRoadsCostingModel";
+import {
+  NearestRoadsCostingModelFromJSON,
+  NearestRoadsCostingModelFromJSONTyped,
+  NearestRoadsCostingModelToJSON,
+  NearestRoadsCostingModelToJSONTyped,
+} from "./NearestRoadsCostingModel";
 
 /**
  *
@@ -49,10 +49,10 @@ export interface NearestRoadsRequest {
   locations: Array<Coordinate>;
   /**
    *
-   * @type {CostingModel}
+   * @type {NearestRoadsCostingModel}
    * @memberof NearestRoadsRequest
    */
-  costing?: CostingModel;
+  costing?: NearestRoadsCostingModel;
   /**
    *
    * @type {CostingOptions}
@@ -93,7 +93,7 @@ export function NearestRoadsRequestFromJSONTyped(
     costing:
       json["costing"] == null
         ? undefined
-        : CostingModelFromJSON(json["costing"]),
+        : NearestRoadsCostingModelFromJSON(json["costing"]),
     costingOptions:
       json["costing_options"] == null
         ? undefined
@@ -116,7 +116,7 @@ export function NearestRoadsRequestToJSONTyped(
 
   return {
     locations: (value["locations"] as Array<any>).map(CoordinateToJSON),
-    costing: CostingModelToJSON(value["costing"]),
+    costing: NearestRoadsCostingModelToJSON(value["costing"]),
     costing_options: CostingOptionsToJSON(value["costingOptions"]),
     verbose: value["verbose"],
   };

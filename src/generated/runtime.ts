@@ -309,6 +309,12 @@ export class ResponseError extends Error {
     msg?: string,
   ) {
     super(msg);
+
+    // restore prototype chain
+    const actualProto = new.target.prototype;
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(this, actualProto);
+    }
   }
 }
 
@@ -319,6 +325,12 @@ export class FetchError extends Error {
     msg?: string,
   ) {
     super(msg);
+
+    // restore prototype chain
+    const actualProto = new.target.prototype;
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(this, actualProto);
+    }
   }
 }
 
@@ -329,6 +341,12 @@ export class RequiredError extends Error {
     msg?: string,
   ) {
     super(msg);
+
+    // restore prototype chain
+    const actualProto = new.target.prototype;
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(this, actualProto);
+    }
   }
 }
 

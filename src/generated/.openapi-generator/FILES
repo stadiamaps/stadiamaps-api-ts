@@ -77,6 +77,7 @@ models/MatrixResponse.ts
 models/MatrixWaypoint.ts
 models/MotorScooterCostingOptions.ts
 models/MotorcycleCostingOptions.ts
+models/NearestRoadsCostingModel.ts
 models/NearestRoadsRequest.ts
 models/NodeId.ts
 models/NodeType.ts

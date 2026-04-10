@@ -48,13 +48,6 @@ import {
   DistanceUnitToJSON,
   DistanceUnitToJSONTyped,
 } from "./DistanceUnit";
-import type { RoutingLanguages } from "./RoutingLanguages";
-import {
-  RoutingLanguagesFromJSON,
-  RoutingLanguagesFromJSONTyped,
-  RoutingLanguagesToJSON,
-  RoutingLanguagesToJSONTyped,
-} from "./RoutingLanguages";
 import type { MapMatchWaypoint } from "./MapMatchWaypoint";
 import {
   MapMatchWaypointFromJSON,
@@ -113,24 +106,6 @@ export interface TraceAttributesRequest {
    */
   shapeMatch?: TraceAttributesRequestShapeMatchEnum;
   /**
-   *
-   * @type {DistanceUnit}
-   * @memberof TraceAttributesRequest
-   */
-  units?: DistanceUnit;
-  /**
-   *
-   * @type {RoutingLanguages}
-   * @memberof TraceAttributesRequest
-   */
-  language?: RoutingLanguages;
-  /**
-   * The level of directional narrative to include. Locations and times will always be returned, but narrative generation verbosity can be controlled with this parameter.
-   * @type {TraceAttributesRequestDirectionsTypeEnum}
-   * @memberof TraceAttributesRequest
-   */
-  directionsType?: TraceAttributesRequestDirectionsTypeEnum;
-  /**
    * If present, provides either a whitelist or a blacklist of keys to include/exclude in the response. This key is optional, and if omitted from the request, all available info will be returned.
    * @type {TraceAttributeFilterOptions}
    * @memberof TraceAttributesRequest
@@ -144,6 +119,12 @@ export interface TraceAttributesRequest {
    * @memberof TraceAttributesRequest
    */
   elevationInterval?: number;
+  /**
+   *
+   * @type {DistanceUnit}
+   * @memberof TraceAttributesRequest
+   */
+  units?: DistanceUnit;
 }
 
 /**
@@ -156,17 +137,6 @@ export const TraceAttributesRequestShapeMatchEnum = {
 } as const;
 export type TraceAttributesRequestShapeMatchEnum =
   (typeof TraceAttributesRequestShapeMatchEnum)[keyof typeof TraceAttributesRequestShapeMatchEnum];
-
-/**
- * @export
- */
-export const TraceAttributesRequestDirectionsTypeEnum = {
-  None: "none",
-  Maneuvers: "maneuvers",
-  Instructions: "instructions",
-} as const;
-export type TraceAttributesRequestDirectionsTypeEnum =
-  (typeof TraceAttributesRequestDirectionsTypeEnum)[keyof typeof TraceAttributesRequestDirectionsTypeEnum];
 
 /**
  * Check if a given object implements the TraceAttributesRequest interface.
@@ -209,14 +179,6 @@ export function TraceAttributesRequestFromJSONTyped(
         ? undefined
         : TimeConstraintV1FromJSON(json["date_time"]),
     shapeMatch: json["shape_match"] == null ? undefined : json["shape_match"],
-    units:
-      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
-    language:
-      json["language"] == null
-        ? undefined
-        : RoutingLanguagesFromJSON(json["language"]),
-    directionsType:
-      json["directions_type"] == null ? undefined : json["directions_type"],
     filters:
       json["filters"] == null
         ? undefined
@@ -225,6 +187,8 @@ export function TraceAttributesRequestFromJSONTyped(
       json["elevation_interval"] == null
         ? undefined
         : json["elevation_interval"],
+    units:
+      json["units"] == null ? undefined : DistanceUnitFromJSON(json["units"]),
   };
 }
 
@@ -253,10 +217,8 @@ export function TraceAttributesRequestToJSONTyped(
     costing_options: CostingOptionsToJSON(value["costingOptions"]),
     date_time: TimeConstraintV1ToJSON(value["dateTime"]),
     shape_match: value["shapeMatch"],
-    units: DistanceUnitToJSON(value["units"]),
-    language: RoutingLanguagesToJSON(value["language"]),
-    directions_type: value["directionsType"],
     filters: TraceAttributeFilterOptionsToJSON(value["filters"]),
     elevation_interval: value["elevationInterval"],
+    units: DistanceUnitToJSON(value["units"]),
   };
 }
