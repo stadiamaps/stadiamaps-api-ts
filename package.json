@@ -1,6 +1,6 @@
 {
   "name": "@stadiamaps/api",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "Stadia Maps Geospatial APIs",
   "keywords": [
     "stadia maps",
@@ -44,11 +44,11 @@
     "jest": "^29.5.0",
     "jest-diff": "^29.5.0",
     "jest-fetch-mock": "^3.0.3",
-    "lodash": "4.17.23",
+    "lodash": "^4.17.23",
     "parcel": "^2.8.3",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4",
-    "vite": "7.1.11",
+    "vite": "^7.3.2",
     "vite-plugin-dts": "^4.5.3"
   }
 }

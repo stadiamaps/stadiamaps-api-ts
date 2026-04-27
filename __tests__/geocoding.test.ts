@@ -467,6 +467,17 @@ describe("GeocodingApi V2 unit tests", () => {
       expect(res.features[0]?.properties?.layer).toEqual("address");
     });
 
+    test("structured search endpoint integration test (new params)", async () => {
+      const res = await api.searchStructured({
+        street: "Põhja pst",
+        houseNumber: "27",
+        country: "EE",
+      });
+      expect(res.features.length).toBeGreaterThanOrEqual(1);
+      expect(res.features[0]?.properties?.country).toEqual("Estonia");
+      expect(res.features[0]?.properties?.layer).toEqual("address");
+    });
+
     test("reverse endpoint integration test", async () => {
       const res = await api.reverse({
         pointLat: kultuurikatel.geometry.coordinates[1],
